@@ -18,13 +18,15 @@
     <link href="starter-template.css" rel="stylesheet">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    
+    <script src="../../../sdk/sdk-pblib.js/playbasis.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->	
     <script>
+      var playbasis = new Playbasis('2767998996');
+      var playbasisToken;
       var sliceTimePlain = 2;
       var sliceTimeMexican = 4;
       var availableSlicingTime = 345;
@@ -41,11 +43,15 @@
         }
         if (q1Profit===344) {
           alert("You found the most profitable solution");
-          
+          playbasis.rule(playbasisToken, "read", "1", "ORValue", function (result) {
+            console.log("pb.auth");
+            console.log(result);
+          });
         } else {
           alert("This is not the most profitable solution.");
         }
       }
+      
       function initValues() {
         $("#slicingTimePlainValue").text(sliceTimePlain);
         $("#slicingTimeMexicanValue").text(sliceTimeMexican);
@@ -53,8 +59,11 @@
         $("#sellPricePlainValue").text(sellPricePlain);
         $("#sellPriceMexicanValue").text(sellPriceMexican);
         $("#q1Profit").text(q1Profit);
-        
+        playbasis.auth('a45ae6e91f0f07125d60f8b92f8948c3', function (result) {
+          playbasisToken=result.response.token;
+        });
       }
+      
       function updateQ1Profit(){
         var plainToSlice = $('#plainToSlice').val();
         var mexicanToSlice = $('#mexicanToSlice').val();
@@ -178,10 +187,10 @@
                 </thead>
                 <tr>
                   <td>plain</td>
-                  <td><input id="plainToSlice" onkeyup="updateQ1Profit()" value="0"></td></tr>
+                  <td><input id="plainToSlice" onchange="updateQ1Profit()" value="0" type="number"></td></tr>
                 <tr>
                   <td>mexican</td>
-                  <td><input id="mexicanToSlice" onkeyup="updateQ1Profit()" value="0"></td></tr>
+                  <td><input id="mexicanToSlice" onchange="updateQ1Profit()" value="0" type="number"></td></tr>
                 <tr>
                   <td>Profit</td>
                   <td id="q1Profit"></td></tr>
@@ -196,9 +205,9 @@
           <div class="tab-pane" id="VeryVeryHard">..safdasdfas.</div>
         </div>
       </div>
-
     </div><!-- /.container -->
-	<div class="pb-userbar" data-pb-displayPoint="exp" ></div>
+    
+    <div class="pb-userbar" data-pb-displayPoint="exp" ></div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
