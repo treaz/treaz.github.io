@@ -8,73 +8,128 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
-    
+    <title>Optimization modeling tutorial</title>
+
     <!-- Bootstrap core CSS -->
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for the tutorial -->
     <link href="starter-template.css" rel="stylesheet">
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="../../../sdk/sdk-pblib.js/playbasis.js"></script>
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->	
+
     <script>
       var playbasis = new Playbasis('2767998996');
       var playbasisToken;
+      
+      /*table 1 values*/
       var sliceTimePlain = 2;
       var sliceTimeMexican = 4;
+      var fryingTimePlain = 4;
+      var fryingTimeMexican = 5;
+      var packingTimePlain = 4;
+      var packingTimeMexican = 2;
+      
+      /*table 1 values*/
       var availableSlicingTime = 345;
+      var availableFryingTime = 480;
+      var availablePackingTime = 330;
+      
+      /*table 3 values*/
       var sellPricePlain = 2;
       var sellPriceMexican = 1.5;
       
       var q1Profit = 0;
-      function validateProdMixEasyInputs() {
-        var plainToSlice = $('#plainToSlice').val();
-        var mexicanToSlice = $('#mexicanToSlice').val();
-        if (availableSlicingTime < plainToSlice*sliceTimePlain + mexicanToSlice*sliceTimeMexican) {
-          alert("You have exceeded the available slicing time.");
-          return;
-        }
-        if (q1Profit===344) {
-          alert("You found the most profitable solution");
-          playbasis.rule(playbasisToken, "read", "1", "ORValue", function (result) {
-            console.log("pb.auth");
-            console.log(result);
-          });
-        } else {
-          alert("This is not the most profitable solution.");
-        }
-      }
+      var medProfit = 0;
+      var hardProfit = 0;
       
-      function initValues() {
-        $("#slicingTimePlainValue").text(sliceTimePlain);
-        $("#slicingTimeMexicanValue").text(sliceTimeMexican);
-        $("#availableSlicingTimeValue").text(availableSlicingTime);
-        $("#sellPricePlainValue").text(sellPricePlain);
-        $("#sellPriceMexicanValue").text(sellPriceMexican);
-        $("#q1Profit").text(q1Profit);
+      
+      $(document).ready(function(){
+        $('.validateProdMixEasy').on('click',function() {
+          var plainToSlice = $('.plainToSlice').val();
+          var mexicanToSlice = $('.mexicanToSlice').val();
+          if (availableSlicingTime < plainToSlice*sliceTimePlain + mexicanToSlice*sliceTimeMexican) {
+            alert("You have exceeded the available slicing time.");
+            return;
+          }
+          if (q1Profit===344) {
+            alert("You found the most profitable solution");
+            playbasis.rule(playbasisToken, "read", "1", "ORValue", function (result) {
+              console.log("pb.auth");
+              console.log(result);
+            });
+          } else {
+            alert("This is not the most profitable solution.");
+          }
+        });
+      });
+      
+      $(document).ready(function(){
+        $('.validateProdMixMed').on('click',function() {
+          var plainToSlice = $('.plainToSliceMed').val();
+          var mexicanToSlice = $('.mexicanToSliceMed').val();
+          if (availableSlicingTime < plainToSlice*sliceTimePlain + mexicanToSlice*sliceTimeMexican) {
+            alert("You have exceeded the available slicing time.");
+            return;
+          }
+          if (availableFryingTime < plainToSlice*fryingTimePlain + mexicanToSlice*fryingTimeMexican) {
+            alert("You have exceeded the available frying time.");
+            return;
+          }
+          if (medProfit===240) {
+            alert("You found the most profitable solution");
+            playbasis.rule(playbasisToken, "read", "1", "ORValue", function (result) {
+              console.log("pb.auth");
+              console.log(result);
+            });
+          } else {
+            alert("This is not the most profitable solution.");
+          }
+        });
+      });
+      
+      function initPage() {
+        
+        /*initialize table 1*/
+        $(".slicingTimePlainValue").text(sliceTimePlain);
+        $(".slicingTimeMexicanValue").text(sliceTimeMexican);
+        $(".fryingTimePlain").text(fryingTimePlain);
+        $(".fryingTimeMexican").text(fryingTimeMexican);
+        
+        /*initialize table 2*/
+        $(".availableSlicingTime").text(availableSlicingTime);
+        $(".availableFryingTime").text(availableFryingTime);
+        
+        /*initialize table 3*/
+        $(".sellPricePlainValue").text(sellPricePlain);
+        $(".sellPriceMexicanValue").text(sellPriceMexican);
+        $(".q1Profit").text(q1Profit);
+        $(".medProfit").text(medProfit);
+        $(".hardProfit").text(hardProfit);
+        
         playbasis.auth('a45ae6e91f0f07125d60f8b92f8948c3', function (result) {
           playbasisToken=result.response.token;
         });
       }
       
-      function updateQ1Profit(){
-        var plainToSlice = $('#plainToSlice').val();
-        var mexicanToSlice = $('#mexicanToSlice').val();
-        q1Profit = plainToSlice*sellPricePlain+mexicanToSlice*sellPriceMexican;
-        $("#q1Profit").text(q1Profit);
-      }
+      $(document).ready(function(){
+        $('.plainToSlice, .mexicanToSlice').on('change',function() {
+          q1Profit = $('.plainToSlice').val()*sellPricePlain + $('.mexicanToSlice').val()*sellPriceMexican;
+          $(".q1Profit").text(q1Profit);
+        });
+      });
+      
+      $(document).ready(function(){
+        $('.plainToSliceMed, .mexicanToSliceMed').on('change',function() {
+          medProfit = $('.plainToSliceMed').val()*sellPricePlain + $('.mexicanToSliceMed').val()*sellPriceMexican;
+          $(".medProfit").text(medProfit);
+        });
+      });
   </script>
     
   </head>
 
-  <body onload="initValues()">
+  <body onload="initPage()">
 
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
@@ -105,14 +160,14 @@
         Below we show a simplifed example of a common decision problem: the product mix problem.
         </p>
         <ul class="nav nav-tabs" role="tablist">
-          <li class="active"><a href="#Easy" role="tab" data-toggle="tab">Easy</a></li>
-          <li><a href="#Medium" role="tab" data-toggle="tab">Medium</a></li>
-          <li><a href="#Hard" role="tab" data-toggle="tab">Hard</a></li>
-          <li><a href="#VeryHard" role="tab" data-toggle="tab">VeryHard</a></li>
-          <li><a href="#VeryVeryHard" role="tab" data-toggle="tab">VeryVeryHard</a></li>
+          <li class="active"><a href="#easy" role="tab" data-toggle="tab">Easy</a></li>
+          <li><a href="#medium" role="tab" data-toggle="tab">Medium</a></li>
+          <li><a href="#hard" role="tab" data-toggle="tab">Hard</a></li>
+          <li><a href="#veryHard" role="tab" data-toggle="tab">VeryHard</a></li>
+          <li><a href="#veryVeryHard" role="tab" data-toggle="tab">VeryVeryHard</a></li>
         </ul>
         <div class="tab-content">
-          <div class="tab-pane active" id="Easy">
+          <div class="tab-pane active" id="easy">
             <div class="row">
               <div class="col-xs-8">
                 <p>A company slices potatoes into 2 shapes: plain and mexican (wavy). </br>
@@ -134,7 +189,6 @@
                 </figure>
               </div>
             </div>
-              
             <div class="row">
               <div class="col-xs-2">
                 <table class="table table-condensed table-striped table-bordered">
@@ -145,10 +199,10 @@
                   </thead>
                   <tr>
                     <td>plain</td>
-                    <td id="slicingTimePlainValue"></td></tr>
+                    <td class="slicingTimePlainValue"></td></tr>
                   <tr>
                     <td>mexican</td>
-                    <td id="slicingTimeMexicanValue"></td></tr>
+                    <td class="slicingTimeMexicanValue"></td></tr>
                   <caption class="text-left">Table 1, 1kg of potatoes slice time</caption>
                 </table>
               </div>
@@ -156,7 +210,7 @@
                 <table class="table table-condensed table-striped table-bordered">
                   <tr>
                     <td>Available slicing time</td>
-                    <td id="availableSlicingTimeValue"></td></tr>
+                    <td class="availableSlicingTime"></td></tr>
                   <caption class="text-left">Table 2, slicing machine availability(min)</caption>
                 </table>
               </div>
@@ -169,10 +223,10 @@
                   </thead>
                   <tr>
                     <td>plain</td>
-                    <td id="sellPricePlainValue"></td></tr>
+                    <td class="sellPricePlainValue"></td></tr>
                   <tr>
                     <td>mexican</td>
-                    <td id="sellPriceMexicanValue"></td></tr>
+                    <td class="sellPriceMexicanValue"></td></tr>
                   <caption class="text-left">Table 3, sliced potatoes sell price</caption>
                 </table>
               </div>
@@ -187,22 +241,111 @@
                 </thead>
                 <tr>
                   <td>plain</td>
-                  <td><input id="plainToSlice" onchange="updateQ1Profit()" value="0" type="number"></td></tr>
+                  <td><input class="plainToSlice" value="0" type="number"></td></tr>
                 <tr>
                   <td>mexican</td>
-                  <td><input id="mexicanToSlice" onchange="updateQ1Profit()" value="0" type="number"></td></tr>
+                  <td><input class="mexicanToSlice" value="0" type="number"></td></tr>
                 <tr>
                   <td>Profit</td>
-                  <td id="q1Profit"></td></tr>
+                  <td class="q1Profit"></td></tr>
               </table>
-              <button class="btn btn-default" onclick="validateProdMixEasyInputs()">Check solution</button>
+              <button class="btn btn-default validateProdMixEasy">Check solution</button>
             </div>
-            
           </div>
-          <div class="tab-pane" id="Medium">...adsfdsaaf</div>
-          <div class="tab-pane" id="Hard">..dasfdasf.</div>
-          <div class="tab-pane" id="VeryHard">..safdasdfas.</div>
-          <div class="tab-pane" id="VeryVeryHard">..safdasdfas.</div>
+          <div class="tab-pane" id="medium">
+            <div class="row">
+              <div class="col-xs-8">
+                <p>A company produces potato chips of 2 types: plain and mexican. The process includes slicing and frying the potatoes.
+                  The time (minutes) required to process 1kg of each chip type is presented in Table 1. There is a limit on the time available for each process (Table 2). The sell price of the chips is presented in Table 3.</br>
+                  </br>
+                  What combination of chips should be produced in order to yelds the highest profit possible?
+                </p>
+              </div>
+              <div class="col-xs-2">
+                <figure>
+                  <img src="img/plainChips.jpg" class="img-rounded chips">
+                  <figcaption>Plain chips</figcaption>
+                </figure>
+              </div>
+              <div class="col-xs-2">
+                <figure>
+                  <img src="img/mexicanChips.jpg" class="img-rounded chips">
+                  <figcaption>Mexican chips</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">
+                <table class="table table-condensed table-striped table-bordered">
+                  <thead>
+                  <tr>
+                    <td></td>
+                    <td>Slicing(min)</td>
+                    <td>Frying(min)</td></tr>
+                  </thead>
+                  <tr>
+                    <td>plain</td>
+                    <td class="slicingTimePlainValue"></td>
+                    <td class="fryingTimePlain"></td></tr>
+                  <tr>
+                    <td>mexican</td>
+                    <td class="slicingTimeMexicanValue"></td>
+                    <td class="fryingTimeMexican"></td></tr>
+                  <caption class="text-left">Table 1, 1kg of potatoes slice time</caption>
+                </table>
+              </div>
+              <div class="col-xs-2">
+                <table class="table table-condensed table-striped table-bordered">
+                  <tr>
+                    <td>Available slicing time</td>
+                    <td class="availableSlicingTime"></td></tr>
+                  <tr>
+                    <td>Available frying time</td>
+                    <td class="availableFryingTime"></td>
+                  <caption class="text-left">Table 2, slicing machine availability(min)</caption>
+                </table>
+              </div>
+              <div class="col-xs-3">
+                <table class="table table-condensed table-striped table-bordered">
+                  <thead>
+                  <tr>
+                    <td></td>
+                    <td>Sell price(euro)</td></tr>
+                  </thead>
+                  <tr>
+                    <td>plain</td>
+                    <td class="sellPricePlainValue"></td></tr>
+                  <tr>
+                    <td>mexican</td>
+                    <td class="sellPriceMexicanValue"></td></tr>
+                  <caption class="text-left">Table 3, sliced potatoes sell price</caption>
+                </table>
+              </div>
+            </div>
+            <p class="lead">Below you can enter and check your solution</p>
+            <div class="col-xs-3">
+              <table class="table table-condensed table-striped table-bordered">
+                <thead>
+                <tr>
+                  <td></td>
+                  <td>kg to slice</td></tr>
+                </thead>
+                <tr>
+                  <td>plain</td>
+                  <td><input class="plainToSliceMed" value="0" type="number"></td></tr>
+                <tr>
+                  <td>mexican</td>
+                  <td><input class="mexicanToSliceMed" value="0" type="number"></td></tr>
+                <tr>
+                  <td>Profit</td>
+                  <td class="medProfit"></td></tr>
+              </table>
+              <button class="btn btn-default validateProdMixMed">Check solution</button>
+            </div>
+          </div>
+          <div class="tab-pane" id="hard">..dasfdasf.</div>
+          <div class="tab-pane" id="veryHard">..safdasdfas.</div>
+          <div class="tab-pane" id="veryVeryHard">..safdasdfas.</div>
         </div>
       </div>
     </div><!-- /.container -->
