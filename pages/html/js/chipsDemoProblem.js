@@ -24,6 +24,8 @@ var medProfit = 0;
 var hardProfit = 0;
 var veryHardProfit = 0;
 
+var USER_ID=localStorage.getItem("userId");
+
 /* Functions used in the easy version*/
 $(document).ready(function(){
   $('.validateProdMixEasy').on('click',function() {
@@ -35,7 +37,7 @@ $(document).ready(function(){
     }
     if (q1Profit===344) {
       bootbox.alert("You found the most profitable solution");
-      playbasis.rule(playbasisToken, "read", "1", "ORValue", function (result) {
+      playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
         console.log("pb.auth");
         console.log(result);
       });
@@ -67,7 +69,7 @@ $(document).ready(function(){
     }
     if (medProfit===240) {
       bootbox.alert("You found the most profitable solution");
-      playbasis.rule(playbasisToken, "read", "1", "ORValue", function (result) {
+      playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
         console.log(result);
       });
     } else {
@@ -102,7 +104,7 @@ $(document).ready(function(){
     }
     if (hardProfit===189) {
       bootbox.alert("You found the most profitable solution");
-      playbasis.rule(playbasisToken, "read", "1", "ORValue", function (result) {
+      playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
         console.log(result);
       });
     } else {
@@ -138,7 +140,7 @@ $(document).ready(function(){
     }
     if (veryHardProfit===201.5) {
       bootbox.alert("You found the most profitable solution");
-      playbasis.rule(playbasisToken, "read", "1", "ORValue", function (result) {
+      playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
         console.log(result);
       });
     } else {

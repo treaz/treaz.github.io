@@ -7,6 +7,10 @@ body {
   padding: 40px 15px;
 }
 
+.sign-in {
+text-align: center;
+}
+
 caption {
   caption-side: bottom;
 }
