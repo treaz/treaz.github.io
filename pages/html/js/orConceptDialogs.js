@@ -12,7 +12,7 @@ $(document).ready(function(){
 });
 
 function awardPointForFirstRead(conceptId){
-  var readConcepts = getReadConceptsArray();;
+  var readConcepts = getReadConceptsArray();
   if ($.inArray(conceptId, readConcepts)===-1) {
     alert("first time reading the concept. giving 10 points");
   }
@@ -30,7 +30,11 @@ function addConceptToReadConcepts(conceptId){
 }
 
 function getReadConceptsArray(){
-  return localStorage.getItem("readConcepts").split(CONCEPT_SEPARATOR);
+  if (localStorage.getItem("readConcepts")===null) {
+    return [];
+  } else {
+    return localStorage.getItem("readConcepts").split(CONCEPT_SEPARATOR);
+  }
 }
 
 function checkAllConceptsRead(){
