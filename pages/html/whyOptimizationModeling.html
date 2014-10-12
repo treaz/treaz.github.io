@@ -4,9 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
     <title>Optimization modeling tutorial</title>
 
@@ -17,120 +14,19 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="../../../sdk/sdk-pblib.js/playbasis.js"></script>
-
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/chipsDemoProblem.js"></script>
+    
     <script>
       var playbasis = new Playbasis('2767998996');
       var playbasisToken;
-      
-      /*table 1 values*/
-      var sliceTimePlain = 2;
-      var sliceTimeMexican = 4;
-      var fryingTimePlain = 4;
-      var fryingTimeMexican = 5;
-      var packingTimePlain = 4;
-      var packingTimeMexican = 2;
-      
-      /*table 1 values*/
-      var availableSlicingTime = 345;
-      var availableFryingTime = 480;
-      var availablePackingTime = 330;
-      
-      /*table 3 values*/
-      var sellPricePlain = 2;
-      var sellPriceMexican = 1.5;
-      
-      var q1Profit = 0;
-      var medProfit = 0;
-      var hardProfit = 0;
-      
-      
-      $(document).ready(function(){
-        $('.validateProdMixEasy').on('click',function() {
-          var plainToSlice = $('.plainToSlice').val();
-          var mexicanToSlice = $('.mexicanToSlice').val();
-          if (availableSlicingTime < plainToSlice*sliceTimePlain + mexicanToSlice*sliceTimeMexican) {
-            alert("You have exceeded the available slicing time.");
-            return;
-          }
-          if (q1Profit===344) {
-            alert("You found the most profitable solution");
-            playbasis.rule(playbasisToken, "read", "1", "ORValue", function (result) {
-              console.log("pb.auth");
-              console.log(result);
-            });
-          } else {
-            alert("This is not the most profitable solution.");
-          }
-        });
+      playbasis.auth('a45ae6e91f0f07125d60f8b92f8948c3', function (result) {
+        playbasisToken=result.response.token;
       });
-      
-      $(document).ready(function(){
-        $('.validateProdMixMed').on('click',function() {
-          var plainToSlice = $('.plainToSliceMed').val();
-          var mexicanToSlice = $('.mexicanToSliceMed').val();
-          if (availableSlicingTime < plainToSlice*sliceTimePlain + mexicanToSlice*sliceTimeMexican) {
-            alert("You have exceeded the available slicing time.");
-            return;
-          }
-          if (availableFryingTime < plainToSlice*fryingTimePlain + mexicanToSlice*fryingTimeMexican) {
-            alert("You have exceeded the available frying time.");
-            return;
-          }
-          if (medProfit===240) {
-            alert("You found the most profitable solution");
-            playbasis.rule(playbasisToken, "read", "1", "ORValue", function (result) {
-              console.log("pb.auth");
-              console.log(result);
-            });
-          } else {
-            alert("This is not the most profitable solution.");
-          }
-        });
-      });
-      
-      function initPage() {
-        
-        /*initialize table 1*/
-        $(".slicingTimePlainValue").text(sliceTimePlain);
-        $(".slicingTimeMexicanValue").text(sliceTimeMexican);
-        $(".fryingTimePlain").text(fryingTimePlain);
-        $(".fryingTimeMexican").text(fryingTimeMexican);
-        
-        /*initialize table 2*/
-        $(".availableSlicingTime").text(availableSlicingTime);
-        $(".availableFryingTime").text(availableFryingTime);
-        
-        /*initialize table 3*/
-        $(".sellPricePlainValue").text(sellPricePlain);
-        $(".sellPriceMexicanValue").text(sellPriceMexican);
-        $(".q1Profit").text(q1Profit);
-        $(".medProfit").text(medProfit);
-        $(".hardProfit").text(hardProfit);
-        
-        playbasis.auth('a45ae6e91f0f07125d60f8b92f8948c3', function (result) {
-          playbasisToken=result.response.token;
-        });
-      }
-      
-      $(document).ready(function(){
-        $('.plainToSlice, .mexicanToSlice').on('change',function() {
-          q1Profit = $('.plainToSlice').val()*sellPricePlain + $('.mexicanToSlice').val()*sellPriceMexican;
-          $(".q1Profit").text(q1Profit);
-        });
-      });
-      
-      $(document).ready(function(){
-        $('.plainToSliceMed, .mexicanToSliceMed').on('change',function() {
-          medProfit = $('.plainToSliceMed').val()*sellPricePlain + $('.mexicanToSliceMed').val()*sellPriceMexican;
-          $(".medProfit").text(medProfit);
-        });
-      });
-  </script>
-    
+    </script>
   </head>
 
-  <body onload="initPage()">
-
+  <body>
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -145,8 +41,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Why optimization modeling</a></li>
-            <li><a href="#about">Intro to optimization modeling</a></li>
-            <li><a href="#contact">Modeling a LP problem</a></li>
+            <li><a href="introToOptimizationModeling.html">Intro to optimization modeling</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -169,24 +64,26 @@
         <div class="tab-content">
           <div class="tab-pane active" id="easy">
             <div class="row">
-              <div class="col-xs-8">
+              <div class="col-xs-6">
                 <p>A company slices potatoes into 2 shapes: plain and mexican (wavy). </br>
                     The time (minutes) required to slice 1kg of each shape is presented in Table 1. There is a limit on the amount of time available for slicing (Table 2). The sell price of the potatoes is presented in Table 3.</br>
                     </br>
                     What combination of potatoes to slice in order to yelds the highest profit possible?
                 </p>
               </div>
-              <div class="col-xs-2">
-                <figure>
-                  <img src="img/plainChips.jpg" class="img-rounded chips">
-                  <figcaption>Plain chips</figcaption>
-                </figure>
-              </div>
-              <div class="col-xs-2">
-                <figure>
-                  <img src="img/mexicanChips.jpg" class="img-rounded chips">
-                  <figcaption>Mexican chips</figcaption>
-                </figure>
+              <div class="col-xs-6">
+                <div class="col-xs-4">
+                  <figure>
+                    <img src="img/plainChips.jpg" class="img-rounded img-responsive">
+                    <figcaption>Plain chips</figcaption>
+                  </figure>
+                </div>
+                <div class="col-xs-4">
+                  <figure>
+                    <img src="img/mexicanChips.jpg" class="img-rounded img-responsive">
+                    <figcaption>Mexican chips</figcaption>
+                  </figure>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -199,19 +96,19 @@
                   </thead>
                   <tr>
                     <td>plain</td>
-                    <td class="slicingTimePlainValue"></td></tr>
+                    <td class="slicingTimePlain"></td></tr>
                   <tr>
                     <td>mexican</td>
-                    <td class="slicingTimeMexicanValue"></td></tr>
-                  <caption class="text-left">Table 1, 1kg of potatoes slice time</caption>
+                    <td class="slicingTimeMexican"></td></tr>
+                  <caption class="text-left">Table 1, 1kg of potatoes processing time</caption>
                 </table>
               </div>
-              <div class="col-xs-2">
+              <div class="col-xs-3">
                 <table class="table table-condensed table-striped table-bordered">
                   <tr>
                     <td>Available slicing time</td>
                     <td class="availableSlicingTime"></td></tr>
-                  <caption class="text-left">Table 2, slicing machine availability(min)</caption>
+                  <caption class="text-left">Table 2, machine availability(min)</caption>
                 </table>
               </div>
               <div class="col-xs-3">
@@ -223,10 +120,10 @@
                   </thead>
                   <tr>
                     <td>plain</td>
-                    <td class="sellPricePlainValue"></td></tr>
+                    <td class="sellPricePlain"></td></tr>
                   <tr>
                     <td>mexican</td>
-                    <td class="sellPriceMexicanValue"></td></tr>
+                    <td class="sellPriceMexican"></td></tr>
                   <caption class="text-left">Table 3, sliced potatoes sell price</caption>
                 </table>
               </div>
@@ -237,14 +134,14 @@
                 <thead>
                 <tr>
                   <td></td>
-                  <td>kg to slice</td></tr>
+                  <td>kg to make</td></tr>
                 </thead>
                 <tr>
                   <td>plain</td>
-                  <td><input class="plainToSlice" value="0" type="number"></td></tr>
+                  <td><input class="plainToMake" value="0" type="number"></td></tr>
                 <tr>
                   <td>mexican</td>
-                  <td><input class="mexicanToSlice" value="0" type="number"></td></tr>
+                  <td><input class="mexicanToMake" value="0" type="number"></td></tr>
                 <tr>
                   <td>Profit</td>
                   <td class="q1Profit"></td></tr>
@@ -254,24 +151,26 @@
           </div>
           <div class="tab-pane" id="medium">
             <div class="row">
-              <div class="col-xs-8">
+              <div class="col-xs-6">
                 <p>A company produces potato chips of 2 types: plain and mexican. The process includes slicing and frying the potatoes.
                   The time (minutes) required to process 1kg of each chip type is presented in Table 1. There is a limit on the time available for each process (Table 2). The sell price of the chips is presented in Table 3.</br>
                   </br>
                   What combination of chips should be produced in order to yelds the highest profit possible?
                 </p>
               </div>
-              <div class="col-xs-2">
-                <figure>
-                  <img src="img/plainChips.jpg" class="img-rounded chips">
-                  <figcaption>Plain chips</figcaption>
-                </figure>
-              </div>
-              <div class="col-xs-2">
-                <figure>
-                  <img src="img/mexicanChips.jpg" class="img-rounded chips">
-                  <figcaption>Mexican chips</figcaption>
-                </figure>
+              <div class="col-xs-6">
+                <div class="col-xs-4">
+                  <figure>
+                    <img src="img/plainChips.jpg" class="img-rounded img-responsive">
+                    <figcaption>Plain chips</figcaption>
+                  </figure>
+                </div>
+                <div class="col-xs-4">
+                  <figure>
+                    <img src="img/mexicanChips.jpg" class="img-rounded img-responsive">
+                    <figcaption>Mexican chips</figcaption>
+                  </figure>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -285,24 +184,24 @@
                   </thead>
                   <tr>
                     <td>plain</td>
-                    <td class="slicingTimePlainValue"></td>
+                    <td class="slicingTimePlain"></td>
                     <td class="fryingTimePlain"></td></tr>
                   <tr>
                     <td>mexican</td>
-                    <td class="slicingTimeMexicanValue"></td>
+                    <td class="slicingTimeMexican"></td>
                     <td class="fryingTimeMexican"></td></tr>
-                  <caption class="text-left">Table 1, 1kg of potatoes slice time</caption>
+                  <caption class="text-left">Table 1, 1kg of potatoes processing time</caption>
                 </table>
               </div>
-              <div class="col-xs-2">
+              <div class="col-xs-3">
                 <table class="table table-condensed table-striped table-bordered">
                   <tr>
                     <td>Available slicing time</td>
                     <td class="availableSlicingTime"></td></tr>
                   <tr>
                     <td>Available frying time</td>
-                    <td class="availableFryingTime"></td>
-                  <caption class="text-left">Table 2, slicing machine availability(min)</caption>
+                    <td class="availableFryingTime"></td></tr>
+                  <caption class="text-left">Table 2, machine availability(min)</caption>
                 </table>
               </div>
               <div class="col-xs-3">
@@ -314,11 +213,11 @@
                   </thead>
                   <tr>
                     <td>plain</td>
-                    <td class="sellPricePlainValue"></td></tr>
+                    <td class="sellPricePlain"></td></tr>
                   <tr>
                     <td>mexican</td>
-                    <td class="sellPriceMexicanValue"></td></tr>
-                  <caption class="text-left">Table 3, sliced potatoes sell price</caption>
+                    <td class="sellPriceMexican"></td></tr>
+                  <caption class="text-left">Table 3, chips sell price</caption>
                 </table>
               </div>
             </div>
@@ -328,7 +227,7 @@
                 <thead>
                 <tr>
                   <td></td>
-                  <td>kg to slice</td></tr>
+                  <td>kg to make</td></tr>
                 </thead>
                 <tr>
                   <td>plain</td>
@@ -343,9 +242,347 @@
               <button class="btn btn-default validateProdMixMed">Check solution</button>
             </div>
           </div>
-          <div class="tab-pane" id="hard">..dasfdasf.</div>
-          <div class="tab-pane" id="veryHard">..safdasdfas.</div>
-          <div class="tab-pane" id="veryVeryHard">..safdasdfas.</div>
+          <div class="tab-pane" id="hard">
+            <div class="row">
+              <div class="col-xs-6">
+                <p>A company produces potato chips of 2 types: plain and mexican. The process includes slicing, frying and packing the chips.
+                  The time (minutes) required to process 1kg of each chip type is presented in Table 1. There is a limit on the time available for each process (Table 2). The sell price of the chips is presented in Table 3.</br>
+                  </br>
+                  What combination of chips should be produced in order to yelds the highest profit possible?
+                </p>
+              </div>
+              <div class="col-xs-6">
+                <div class="col-xs-4">
+                  <figure>
+                    <img src="img/plainChips.jpg" class="img-rounded img-responsive">
+                    <figcaption>Plain chips</figcaption>
+                  </figure>
+                </div>
+                <div class="col-xs-4">
+                  <figure>
+                    <img src="img/mexicanChips.jpg" class="img-rounded img-responsive">
+                    <figcaption>Mexican chips</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4">
+                <table class="table table-condensed table-striped table-bordered">
+                  <thead>
+                  <tr>
+                    <td></td>
+                    <td>Slicing(min)</td>
+                    <td>Frying(min)</td>
+                    <td>Packing(min)</td></tr>
+                  </thead>
+                  <tr>
+                    <td>plain</td>
+                    <td class="slicingTimePlain"></td>
+                    <td class="fryingTimePlain"></td>
+                    <td class="packingTimePlain"></td></tr>
+                  <tr>
+                    <td>mexican</td>
+                    <td class="slicingTimeMexican"></td>
+                    <td class="fryingTimeMexican"></td>
+                    <td class="packingTimeMexican"></td></tr>
+                  <caption class="text-left">Table 1, 1kg of potatoes processing time</caption>
+                </table>
+              </div>
+              <div class="col-xs-3">
+                <table class="table table-condensed table-striped table-bordered">
+                  <tr>
+                    <td>Available slicing time</td>
+                    <td class="availableSlicingTime"></td></tr>
+                  <tr>
+                    <td>Available frying time</td>
+                    <td class="availableFryingTime"></td></tr>
+                  <tr>
+                    <td>Available packing time</td>
+                    <td class="availablePackingTime"></td></tr>
+                  <caption class="text-left">Table 2, machine availability(min)</caption>
+                </table>
+              </div>
+              <div class="col-xs-3">
+                <table class="table table-condensed table-striped table-bordered">
+                  <thead>
+                  <tr>
+                    <td></td>
+                    <td>Sell price(euro)</td></tr>
+                  </thead>
+                  <tr>
+                    <td>plain</td>
+                    <td class="sellPricePlain"></td></tr>
+                  <tr>
+                    <td>mexican</td>
+                    <td class="sellPriceMexican"></td></tr>
+                  <caption class="text-left">Table 3, chips sell price</caption>
+                </table>
+              </div>
+            </div>
+            <p class="lead">Below you can enter and check your solution</p>
+            <div class="col-xs-3">
+              <table class="table table-condensed table-striped table-bordered">
+                <thead>
+                <tr>
+                  <td></td>
+                  <td>kg to make</td></tr>
+                </thead>
+                <tr>
+                  <td>plain</td>
+                  <td><input class="plainToSliceHard" value="0" type="number"></td></tr>
+                <tr>
+                  <td>mexican</td>
+                  <td><input class="mexicanToSliceHard" value="0" type="number"></td></tr>
+                <tr>
+                  <td>Profit</td>
+                  <td class="hardProfit"></td></tr>
+              </table>
+              <button class="btn btn-default validateProdMixHard">Check solution</button>
+            </div>
+          </div>
+          <div class="tab-pane" id="veryHard">
+            <div class="row">
+              <div class="col-xs-6">
+                <p>A company produces potato chips of 3 types: plain, mexican, twisted. The process includes slicing, frying and packing the chips.
+                  The time (minutes) required to process 1kg of each chip type is presented in Table 1. There is a limit on the time available for each process (Table 2). The sell price of the chips is presented in Table 3.</br>
+                  </br>
+                  What combination of chips should be produced in order to yelds the highest profit possible?
+                </p>
+              </div>
+              <div class="col-xs-6">
+                <div class="col-xs-4">
+                  <figure>
+                    <img src="img/plainChips.jpg" class="img-rounded img-responsive">
+                    <figcaption>Plain chips</figcaption>
+                  </figure>
+                </div>
+                <div class="col-xs-4">
+                  <figure>
+                    <img src="img/mexicanChips.jpg" class="img-rounded img-responsive">
+                    <figcaption>Mexican chips</figcaption>
+                  </figure>
+                </div>
+                <div class="col-xs-4">
+                  <figure>
+                    <img src="img/twistedChips.jpg" class="img-rounded img-responsive">
+                    <figcaption>Twisted chips</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4">
+                <table class="table table-condensed table-striped table-bordered">
+                  <thead>
+                  <tr>
+                    <td></td>
+                    <td>Slicing(min)</td>
+                    <td>Frying(min)</td>
+                    <td>Packing(min)</td></tr>
+                  </thead>
+                  <tr>
+                    <td>plain</td>
+                    <td class="slicingTimePlain"></td>
+                    <td class="fryingTimePlain"></td>
+                    <td class="packingTimePlain"></td></tr>
+                  <tr>
+                    <td>mexican</td>
+                    <td class="slicingTimeMexican"></td>
+                    <td class="fryingTimeMexican"></td>
+                    <td class="packingTimeMexican"></td></tr>
+                  <tr>
+                    <td>twisted</td>
+                    <td class="slicingTimeTwisted"></td>
+                    <td class="fryingTimeTwisted"></td>
+                    <td class="packingTimeTwisted"></td></tr>
+                  <caption class="text-left">Table 1, 1kg of potatoes processing time</caption>
+                </table>
+              </div>
+              <div class="col-xs-3">
+                <table class="table table-condensed table-striped table-bordered">
+                  <tr>
+                    <td>Available slicing time</td>
+                    <td class="availableSlicingTime"></td></tr>
+                  <tr>
+                    <td>Available frying time</td>
+                    <td class="availableFryingTime"></td></tr>
+                  <tr>
+                    <td>Available packing time</td>
+                    <td class="availablePackingTime"></td></tr>
+                  <caption class="text-left">Table 2, machine availability(min)</caption>
+                </table>
+              </div>
+              <div class="col-xs-3">
+                <table class="table table-condensed table-striped table-bordered">
+                  <thead>
+                  <tr>
+                    <td></td>
+                    <td>Sell price(euro)</td></tr>
+                  </thead>
+                  <tr>
+                    <td>plain</td>
+                    <td class="sellPricePlain"></td></tr>
+                  <tr>
+                    <td>mexican</td>
+                    <td class="sellPriceMexican"></td></tr>
+                  <tr>
+                    <td>twisted</td>
+                    <td class="sellPriceTwisted"></td></tr>
+                  <caption class="text-left">Table 3, chips sell price</caption>
+                </table>
+              </div>
+            </div>
+            <p class="lead">Below you can enter and check your solution</p>
+            <div class="col-xs-3">
+              <table class="table table-condensed table-striped table-bordered">
+                <thead>
+                <tr>
+                  <td></td>
+                  <td>kg to make</td></tr>
+                </thead>
+                <tr>
+                  <td>plain</td>
+                  <td><input class="plainToSliceVeryHard" value="0" type="number"></td></tr>
+                <tr>
+                  <td>mexican</td>
+                  <td><input class="mexicanToSliceVeryHard" value="0" type="number"></td></tr>
+                <tr>
+                  <td>twisted</td>
+                  <td><input class="twistedToSliceVeryHard" value="0" type="number"></td></tr>
+                <tr>
+                  <td>Profit</td>
+                  <td class="veryHardProfit"></td></tr>
+              </table>
+              <button class="btn btn-default validateProdMixVeryHard">Check solution</button>
+            </div>
+          </div>
+          <div class="tab-pane" id="veryVeryHard">
+            <div class="row">
+              <div class="col-xs-6">
+                <p>A company produces potato chips of 3 types: plain, mexican, twisted. The process includes peeling, slicing, frying, flavoring, cooling and packing the chips.
+                  The time (minutes) required to process 1kg of each chip type is presented in Table 1. There is a limit on the time available for each process (Table 2). The sell price of the chips is presented in Table 3.</br>
+                  </br>
+                  What combination of chips should be produced in order to yelds the highest profit possible?
+                </p>
+              </div>
+              <div class="col-xs-6">
+                <div class="col-xs-4">
+                  <figure>
+                    <img src="img/plainChips.jpg" class="img-rounded img-responsive">
+                    <figcaption>Plain chips</figcaption>
+                  </figure>
+                </div>
+                <div class="col-xs-4">
+                  <figure>
+                    <img src="img/mexicanChips.jpg" class="img-rounded img-responsive">
+                    <figcaption>Mexican chips</figcaption>
+                  </figure>
+                </div>
+                <div class="col-xs-4">
+                  <figure>
+                    <img src="img/twistedChips.jpg" class="img-rounded img-responsive">
+                    <figcaption>Twisted chips</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-7">
+                <table class="table table-condensed table-striped table-bordered">
+                  <thead>
+                  <tr>
+                    <td></td>
+                    <td>Peeling(min)</td>
+                    <td>Slicing(min)</td>
+                    <td>Frying(min)</td>
+                    <td>Flavoring(min)</td>
+                    <td>Cooling(min)</td>
+                    <td>Packing(min)</td></tr>
+                  </thead>
+                  <tr>
+                    <td>plain</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>0.5</td>
+                    <td>3</td>
+                    <td>4</td></tr>
+                  <tr>
+                    <td>mexican</td>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td></tr>
+                  <tr>
+                    <td>twisted</td>
+                    <td>1.5</td>
+                    <td>3</td>
+                    <td>6</td>
+                    <td>1.5</td>
+                    <td>4</td>
+                    <td>4</td></tr>
+                  <caption class="text-left">Table 1, 1kg of potatoes processing time</caption>
+                </table>
+              </div>
+              <div class="col-xs-3">
+                <table class="table table-condensed table-striped table-bordered">
+                  <tr>
+                    <td>Available peeling time</td>
+                    <td>250</td></tr>
+                  <tr>
+                    <td>Available slicing time</td>
+                    <td class="availableSlicingTime"></td></tr>
+                  <tr>
+                    <td>Available frying time</td>
+                    <td class="availableFryingTime"></td></tr>
+                  <tr>
+                    <td>Available flavoring time</td>
+                    <td>550</td></tr>
+                  <tr>
+                    <td>Available cooling time</td>
+                    <td>345</td></tr>
+                  <tr>
+                    <td>Available packing time</td>
+                    <td class="availablePackingTime"></td></tr>
+                  <caption class="text-left">Table 2, machine availability(min)</caption>
+                </table>
+              </div>
+              <div class="col-xs-3">
+                <table class="table table-condensed table-striped table-bordered">
+                  <thead>
+                  <tr>
+                    <td></td>
+                    <td>Sell price(euro)</td></tr>
+                  </thead>
+                  <tr>
+                    <td>plain</td>
+                    <td class="sellPricePlain"></td></tr>
+                  <tr>
+                    <td>mexican</td>
+                    <td class="sellPriceMexican"></td></tr>
+                  <tr>
+                    <td>twisted</td>
+                    <td class="sellPriceTwisted"></td></tr>
+                  <caption class="text-left">Table 3, chips sell price</caption>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-5">
+                <img src="img/Decision-making-role-for-a-manager.jpg" class="img-rounded">
+              </div>
+              <div class="col-xs-7">
+                <p>You probably see a pattern emerging: as more and more variables are added to the decision process, it is harder and harder to find the most profitable solution.</br>
+                  The current decision problem does not have yet the complexity of a real situation, and even if it would have, there are harder decisions out there than choosing how many chips of each type to produce.</br>
+                  </br>
+                  <a href="#">Optimization modeling</a> allows you to create a model of any decision problem and, with the help of a computer, find out what the most profitable decision is.</br>
+                  <a href="introToOptimizationModeling.html" class="btn btn-block btn-primary btn-custom">Intro to optimization modeling</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div><!-- /.container -->
