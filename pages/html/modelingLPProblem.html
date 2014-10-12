@@ -43,6 +43,7 @@
             <li><a href="whyOptimizationModeling.html">Why optimization modeling</a></li>
             <li><a href="introToOptimizationModeling.html">Intro to optimization modeling</a></li>
             <li class="active"><a href="modelingLPProblem.html">Modeling a LP problem</a></li>
+            <li><a href="lpProblemText.html">LP problem</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -75,6 +76,21 @@
             Two auxiliary concepts to this methodology that have introduced during the examples are: <a href="#" class="parameters">parameters</a> and <a href="#" class="optimalSolution">optimal solution</a>. </br>
             There were many new concepts presented in this section. We have created a concept map that shows how they relate to each other.
           </p>
+          <h1>Chips problem model</h1>
+          <p>Decision variable: X_i, where i= {plain, mexican}.</br>
+            P(rofit) = sum (X_i*SellPrice_i); i= {plain, mexican}, needing to be maximized</br>
+            sum (X_i*TS_i) <= TSa; i = {plain, mexican}</br>
+            sum(X_i*TF_i) <= TFa; i = {plain, mexican}</br>
+            sum(X_i*TP_i) <= TPa; i = {plain, mexican}</br>
+            X_i >= 0; i = {plain, mexican}</br>
+            </br>
+            For the given parameters, the optimal solution is:</br>
+            X_plain = 57.5</br>
+            X_mexican = 50</br>
+            </br>
+            Since this is a very easy LP problem, we can create, for the model, a <a href="#" class="graphicalRepresentation">graphical representation</a>.
+          </p>
+          <a href="lpProblemText.html" class="btn btn-block btn-primary btn-custom">Continue</a>
         </div>
       </div>
     </div><!-- /.container -->
