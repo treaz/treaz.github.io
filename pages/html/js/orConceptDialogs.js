@@ -1,15 +1,43 @@
-var allConcepts = ["or", "testconcept"];
+var allConcepts = ["operationsResearch", "optimizationModeling"];
 var CONCEPT_SEPARATOR = "|";
 
 $(document).ready(function(){
   $('.optimizationModeling').on('click',function() {
-    bootbox.alert($('<div></div>').load( "dialogs/or.html" ), function(result) {
-      awardPointForFirstRead("or");
-      addConceptToReadConcepts("or");
-      checkAllConceptsRead();
+    bootbox.alert($('<div></div>').load( "dialogs/optimizationModeling.html" ), function(result) {
+      handleConceptGamification("optimizationModeling");
     });
   });
 });
+
+$(document).ready(function(){
+  $('.operationsResearch').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/operationsResearch.html" ), function(result) {
+      handleConceptGamification("operationsResearch");
+    });
+  });
+});
+
+$(document).ready(function(){
+  $('.mathematicalProgramming').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/mathematicalProgramming.html" ), function(result) {
+      handleConceptGamification("mathematicalProgramming");
+    });
+  });
+});
+
+$(document).ready(function(){
+  $('.linearProgramming').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/linearProgramming.html" ), function(result) {
+      handleConceptGamification("linearProgramming");
+    });
+  });
+});
+
+function handleConceptGamification(conceptName){
+  awardPointForFirstRead(conceptName);
+      addConceptToReadConcepts(conceptName);
+      checkAllConceptsRead();
+}
 
 function awardPointForFirstRead(conceptId){
   var readConcepts = getReadConceptsArray();

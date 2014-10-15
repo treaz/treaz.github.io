@@ -40,4 +40,22 @@ $(document).ready(function(){
   });
 });
 
+$(document).ready(function(){
+  $('.parameters').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/parameters.html" ), function(result) {
+    });
+  });
+});
 
+$(document).ready(function(){
+  $('.optimalSolution').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/optimalSolution.html" ), function(result) {
+    });
+  });
+});
+
+$(document).ready(function(){
+  $('.showChipsModel').on('click',function() {
+    $('.chipsModel').slideToggle();
+  });
+});
