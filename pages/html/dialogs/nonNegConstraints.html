@@ -1,0 +1,39 @@
+<h1>Non-negativity constraints</h1>
+<p class="lead">Description</p>
+<p>A special kind of constraint. In most practical problems most variables are required to be nonnegative.</p>
+<p class="lead">Quiz</p>
+<p>For the <a href="introToOptimizationModeling.html" target="_blank">chips problem</a> (opens in new page) presented before, can you identify the non-negativity constraints?</p>
+<div class="form-group">
+  <label for="answer">Answer:</label>
+  <textarea class="form-control userAnswerQuizNonNegConstraints" rows="5"></textarea>
+</div>
+<p class="correctAnswerQuizNonNegConstraints" style="display:none">
+  The units of plain chips produced (X_plain) cannot be negative.</br>
+  The units of mexican chips produced (X_mexican) cannot be negative.</br>
+  X_i >= 0; i = {plain, mexican}</br>
+</p>
+<button class="btn btn-primary btn-default validateQuizNonNegConstraints">Submit answer</button>
+<button class="btn btn-primary btn-default showAnswerQuizNonNegConstraints">Show correct answer</button>
+
+
+<script>
+//answer should contain the following words: plain, mexican, non-negative || non negative || >=0 || >= 0
+$(document).ready(function(){
+  $('.validateQuizNonNegConstraints').on('click',function() {
+    var answer = $('.userAnswerQuizNonNegConstraints').val().toLowerCase();
+    if(answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1 && (answer.indexOf("non-negative") != -1 || answer.indexOf("non negative") != -1|| answer.indexOf(">=0") != -1|| answer.indexOf(">= 0") != -1|| answer.indexOf("nonnegative") != -1)){
+      alert("correct answer");
+      $('.correctAnswerQuizNonNegConstraints').slideDown();
+    } else {
+      alert("try again answer");
+    }
+  });
+});
+
+$(document).ready(function(){
+  $('.showAnswerQuizNonNegConstraints').on('click',function() {
+    alert("you looked at the answer...");
+    $('.correctAnswerQuizNonNegConstraints').slideToggle();
+  });
+});
+</script>

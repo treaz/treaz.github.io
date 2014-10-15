@@ -12,19 +12,13 @@
     <!-- Custom styles for the tutorial -->
     <link href="starter-template.css" rel="stylesheet">
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/playbasis.js"></script>
+    <script src="js/playBasisImplementation.js"></script>
     <script src="js/bootbox.min.js"></script>
     <script src="js/chipsDemoProblem.js"></script>
     <script src="js/orConceptDialogs.js"></script>
-    
-    <script>
-      var playbasis = new Playbasis('2767998996');
-      var playbasisToken;
-      playbasis.auth('a45ae6e91f0f07125d60f8b92f8948c3', function (result) {
-        playbasisToken=result.response.token;
-      });
-    </script>
+
   </head>
 
   <body>
@@ -598,6 +592,5 @@
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="js/playbasisWidgets.js"></script>
   </body>
 </html>

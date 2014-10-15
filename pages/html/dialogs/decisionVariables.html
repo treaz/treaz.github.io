@@ -1,0 +1,35 @@
+<h1>Decision variables</h1>
+<p class="lead">Description</p>
+<p>The quantities that the decision makers would like to determine. They are the unknowns of a mathematical programming model.</p>
+<p class="lead">Quiz</p>
+<p>For the <a href="introToOptimizationModeling.html" target="_blank">chips problem</a> (opens in new page) presented before, can you identify the decision variables?</p>
+<div class="form-group">
+  <label for="answer">Answer:</label>
+  <textarea class="form-control userAnswerQuizDecisionVariables" rows="5"></textarea>
+</div>
+<p class="correctAnswerQuizDecisionVariables" style="display:none">The decision variables are the number of bags of plain chips and of mexican chips to produce, X_plain and X_mexican.</p>
+<button class="btn btn-primary btn-default validateQuizDecisionVariables">Submit answer</button>
+<button class="btn btn-primary btn-default showAnswerQuizDecisionVariables">Show correct answer</button>
+
+
+<script>
+//answer should contain the following words: plain, mexican
+$(document).ready(function(){
+  $('.validateQuizDecisionVariables').on('click',function() {
+    var answer = $('.userAnswerQuizDecisionVariables').val().toLowerCase();
+    if(answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1){
+      alert("correct answer");
+      $('.correctAnswerQuizDecisionVariables').slideDown();
+    } else {
+      alert("try again answer");
+    }
+  });
+});
+
+$(document).ready(function(){
+  $('.showAnswerQuizDecisionVariables').on('click',function() {
+    alert("you looked at the answer...");
+    $('.correctAnswerQuizDecisionVariables').slideToggle();
+  });
+});
+</script>

@@ -12,18 +12,12 @@
     <!-- Custom styles for the tutorial -->
     <link href="starter-template.css" rel="stylesheet">
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/playbasis.js"></script>
-    <script src="js/chipsDemoProblem.js"></script>
+    <script src="js/playBasisImplementation.js"></script>
+    <script src="js/beerTransportProblem.js"></script>
     <script src="js/bootbox.min.js"></script>
     
-    <script>
-      var playbasis = new Playbasis('2767998996');
-      var playbasisToken;
-      playbasis.auth('a45ae6e91f0f07125d60f8b92f8948c3', function (result) {
-        playbasisToken=result.response.token;
-      });
-    </script>
   </head>
 
   <body>
@@ -51,6 +45,87 @@
     
     <div class="container">
       <div class="starter-template">
+        <div class="row">
+          <div class="col-xs-7">
+            <p> A small beer company established in the Netherlands needs to deliver (every day) beer produced in 2 breweries to 3 customers in different cities (Figure 1).</br>
+              <img src="img/beerKegPallet.jpg" class="img-rounded img-responsive">
+              Beer is delivered in pallets (Figure 2). The available supply, Table 1, and the beer demand by each customer (Table 2) are known. The cost associated with moving one truck load from a brewery to a customer (P_b_c) is also known (Table 3).</br>
+              </br>
+              The objective is to make a least-cost plan for moving the beer such that the demand is met and shipments do not exceed the available supply from each brewery.
+            </p>
+            <div class="col-xs-4">
+              <table class="table table-condensed table-striped table-bordered">
+                <thead>
+                <tr>
+                  <td></td>
+                  <td>Beer supply</td></tr>
+                </thead>
+                <tr>
+                  <td>Haarlem</td>
+                  <td>47</td></tr>
+                <tr>
+                  <td>Eindhoven</td>
+                  <td>63</td></tr>
+                <caption class="text-left">Table 1</caption>
+              </table>
+            </div>
+            <div class="col-xs-4">
+              <table class="table table-condensed table-striped table-bordered">
+                <thead>
+                <tr>
+                  <td></td>
+                  <td>Beer demand</td></tr>
+                </thead>
+                <tr>
+                  <td>Amersfoort</td>
+                  <td>31</td></tr>
+                <tr>
+                  <td>Amsterdam</td>
+                  <td>28</td></tr>
+                <tr>
+                  <td>Gouda</td>
+                  <td>22</td></tr>
+                <caption class="text-left">Table 2</caption>
+              </table>
+            </div>
+            <div class="col-xs-6">
+              <table class="table table-condensed table-striped table-bordered">
+                <thead>
+                <tr>
+                  <td></td>
+                  <td colspan="3">Transport cost per pallet</td></tr>
+                <tr>
+                  <td></td>
+                  <td>Amersfoort</td>
+                  <td>Amsterdam</td>
+                  <td>Gouda</td></tr>
+                </thead>
+                <tr>
+                  <td>Haarlem</td>
+                  <td>396</td>
+                  <td>131</td>
+                  <td>188</td></tr>
+                <tr>
+                  <td>Eindhoven</td>
+                  <td>366</td>
+                  <td>554</td>
+                  <td>479</td></tr>
+                <caption class="text-left">Table 3 Cost of moving one truck from a brewery to a customer</caption>
+              </table>
+            </div>
+          </div>
+          <div class="col-xs-5">
+            <figure>
+              <img src="img/NLmap_enhanced_simplified.jpg" class="img-rounded img-responsive">
+              <figcaption>Figure 1 Locations of breweries and customers</figcaption>
+            </figure>
+          </div>
+        </div>
+        <p class="lead">Try to create the model for this problem</p>
+        <p>Help me with: <a href="#" class="beerTransportDecisionVariables">the decision variables</a>, <a href="#" class="beerTransportObjectiveFunction">the objective function</a>, 
+          <a href="#" class="beerTransportConstraints">the constraints</a>, <a href="#" class="beerTransportNonNegContraints">the non-negativity constraints</a>.
+        </p>
+        <a href="#" class="beerTransportSolution">I'm done, show me the solution</a>
       </div>
     </div>
     
@@ -62,6 +137,5 @@
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="js/playbasisWidgets.js"></script>
   </body>
 </html>

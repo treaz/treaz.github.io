@@ -1,0 +1,41 @@
+<h1>Decision variables</h1>
+<p class="lead">Description</p>
+<p>An inequality (e.g. a>b, a>=b) or equality (e.g. a=b) defining limitations on decision variables.</p>
+<p class="lead">Quiz</p>
+<p>For the <a href="introToOptimizationModeling.html" target="_blank">chips problem</a> (opens in new page) presented before, can you identify the constraints?</p>
+<div class="form-group">
+  <label for="answer">Answer:</label>
+  <textarea class="form-control userAnswerQuizConstraints" rows="5"></textarea>
+</div>
+<p class="correctAnswerQuizConstraints" style="display:none">
+  The time required to slice the plain chips (TS_plain) plus the time required to slice the Mexican chips (TS_mexican) must be less than or equal to the time the slicer is available (TSa), sum (X_i*TS_i) <= TSa; i = {plain, mexican}</br>
+  </br>
+  The time required to fry the plain chips (TF_plain) plus the time required to fry the Mexican chips (TF_mexican) must be less than or equal to the time the fryer is available (TFa), sum(X_i*TF_i) <= TFa; i = {plain, mexican}</br>
+  </br>
+  The time required to package the plain chips (TP_plain) plus the time required to package the Mexican chips (TP_mexican) must be less than or equal to the time the packager is available (TPa), sum(X_i*TP_i) <= TPa; i = {plain, mexican}</br>
+</p>
+<button class="btn btn-primary btn-default validateQuizConstraints">Submit answer</button>
+<button class="btn btn-primary btn-default showAnswerQuizConstraints">Show correct answer</button>
+
+
+<script>
+//answer should contain the following words: plain, mexican, slic, fry, pack, time, available
+$(document).ready(function(){
+  $('.validateQuizConstraints').on('click',function() {
+    var answer = $('.userAnswerQuizConstraints').val().toLowerCase();
+    if(answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1 && answer.indexOf("slic") != -1 && answer.indexOf("fry") != -1 && answer.indexOf("pack") != -1 && answer.indexOf("time") != -1 && answer.indexOf("available") != -1){
+      alert("correct answer");
+      $('.correctAnswerQuizConstraints').slideDown();
+    } else {
+      alert("try again answer");
+    }
+  });
+});
+
+$(document).ready(function(){
+  $('.showAnswerQuizConstraints').on('click',function() {
+    alert("you looked at the answer...");
+    $('.correctAnswerQuizConstraints').slideToggle();
+  });
+});
+</script>

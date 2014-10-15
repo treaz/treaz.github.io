@@ -1,0 +1,56 @@
+<h1>Chair transport problem</h1>
+<div class="row">
+  <div class="col-xs-7">
+    <p>Consider a chair manufacturing company with 2 factories (1, 2) and wants to transport them to retailers in 3 different cities (A, B, C). Supply at each factory (Table 1), demand at each retailer (Table 2), transport costs for one chair from each factory to each retailer (Table 3) are <b>known</b>.</p>
+  </div>
+  <div class="col-xs-2">
+    <figure>
+      <img src="img/examplesProblem2Table1.png" class="img-rounded img-responsive">
+      <figcaption>Table 1</figcaption>
+    </figure>
+  </div>
+  <div class="col-xs-2">
+    <figure>
+      <img src="img/examplesProblem2Table2.png" class="img-rounded img-responsive">
+      <figcaption>Table 2</figcaption>
+    </figure>
+  </div>
+  <div class="col-xs-4">
+    <figure>
+      <img src="img/examplesProblem2Table3.png" class="img-rounded img-responsive">
+      <figcaption>Table 3 Transport costs</figcaption>
+    </figure>
+  </div>
+</div>
+<p class="lead">What are the unknowns?</p>
+<p>The unknowns are the volume of chairs that is to be transported from each factory to each retailer.</br>
+  X1A, X1B, X1C, X2A, X2B, X2C</br>
+  Mathematical form: X_i_j, i={1,2}, j={A,B,C}</br>
+</p>
+<p class="lead">Formal expression including the unknowns</p>
+<p>We can write the total cost of transporting the chairs to all the retailers in a mathematical form. We want to minimize this cost.</br>
+  C(ost) = X1A*P1A + X1B*P1B + X1C*P1C + X2A*P2A + X2B*P2B + X2C*P2C</br>
+  Mathematical form: C(ost) = sum (Xij*Pij); i = {1,2}, j = {A, B, C}</br>
+</p>
+<p class="lead">Business limitations imposed on the unknowns</p>
+<p>The number of chairs transported to a particular retailer is at least equal with its demand.</br>
+  The number of chairs transported from each factory has to be less than its production capacity.</br>
+  X1A+X2A >= D_A; X1B+X2B >= D_B; X1C+X2C >= D_C; D_x is the demand by retailer x</br>
+  X1A+X1B+X1C >= P_1; X2A+X2B+X2C >= P_2; P_y is the production capacity of factory y</br>
+</p>
+<p class="lead">Practical limitations imposed on the unknowns</p>
+<div class="row">
+  <div class="col-xs-8">
+    <p>The number of chairs transported from each factory to each retailer cannot be less than 0.</br>
+      X1A >= 0, X1B >= 0, X1C >= 0, X2A >= 0, X2B >= 0, X2C >= 0</br>
+      </br>
+      TThe optimal solution (Table 4) is X1A=55; X1B=0; X1C=29; X2A=0; X2B=31; X2C=49.</br>
+    </p>
+  </div>
+  <div class="col-xs-4">
+    <figure>
+      <img src="img/examplesProblem2Table4.png" class="img-rounded img-responsive">
+      <figcaption>Table 4 Chair transport optimal solution</figcaption>
+    </figure>
+  </div>
+</div>
