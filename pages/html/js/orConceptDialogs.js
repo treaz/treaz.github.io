@@ -1,6 +1,7 @@
-var allConcepts = ["operationsResearch", "mathematicalModel", "mathematicalProgramming", "optimizationModeling", "solution", "linearProgramming", "objectiveFunction", "constraints", "feasibleSolution", "parameters", "decisionVariables", "optimalSolution"];
+var allConcepts = ["operationsResearch", "mathematicalModel", "mathematicalProgramming", "optimizationModeling", "solution", "linearProgramming", "objectiveFunction", "constraints", "feasibleSolution", "parameters", "decisionVariables", "optimalSolution",/*4 graphical concepts*/"objectiveFunctionContour","optimalSolutionGraphical", "constraintRegionGraphical", "feasibleRegionGraphical"];
 var CONCEPT_SEPARATOR = "|";
 
+//concept map concepts
 $(document).ready(function(){
   $('.optimizationModeling').on('click',function() {
     bootbox.alert($('<div></div>').load( "dialogs/optimizationModeling.html" ), function(result) {
@@ -96,6 +97,40 @@ $(document).ready(function(){
     });
   });
 });
+
+//graphical concepts
+$(document).ready(function(){
+  $('.objectiveFunctionContour').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/objectiveFunctionContour.html" ), function(result) {
+      handleConceptGamification("objectiveFunctionContour");
+    });
+  });
+});
+
+$(document).ready(function(){
+  $('.optimalSolutionGraphical').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/optimalSolutionGraphical.html" ), function(result) {
+      handleConceptGamification("optimalSolutionGraphical");
+    });
+  });
+});
+
+$(document).ready(function(){
+  $('.constraintRegionGraphical').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/constraintRegionGraphical.html" ), function(result) {
+      handleConceptGamification("constraintRegionGraphical");
+    });
+  });
+});
+
+$(document).ready(function(){
+  $('.feasibleRegionGraphical').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/feasibleRegionGraphical.html" ), function(result) {
+      handleConceptGamification("feasibleRegionGraphical");
+    });
+  });
+});
+//END graphical concepts 
 
 
 function handleConceptGamification(conceptName){

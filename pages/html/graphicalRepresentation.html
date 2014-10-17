@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Optimization modeling tutorial</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for the tutorial -->
+    <link href="starter-template.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
+    
+    <script src="js/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/playbasis.js"></script>
+    <script src="js/playBasisImplementation.js"></script>
+    <script src="js/chipsDemoProblem.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/orConceptDialogs.js"></script>
+    <script type="text/javascript" src="js/jsxgraphcore.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="starter-template">
+        <h1>Interactive graphical representation of a two variable LP problem</h1>
+        <p class="lead">Description</p>
+        <p>
+          The <a href="introToOptimizationModeling.html" target="_blank">chips problem</a> is a LP problem with two values for the variable, X_plain and X_mexican. Therefore, the model can be represented on a graph.
+        </p>
+        <div class="row">
+          <div class="col-xs-5">
+            <div id="box" class="jxgbox" style="width:450px; height:300px;"></div>
+            <p>
+              Ox shows the amount of plain chips.<br>
+              Oy shows the amount of mexican chips.<br>
+            </p>
+          </div>
+          <div class="col-xs-2">
+            <p style="color:red">Available slicing time</p>
+            <p style="color:green">Available frying time</p>
+            <p style="color:cyan">Available packing time</p>
+            <p style="color:blue">Objective function contour</p>
+          </div>
+          <div class="col-xs-4">
+            <p class="lead">Change these values</p>
+            <table class="table table-condensed table-striped table-bordered">
+              <thead>
+              <tr>
+                <td></td>
+                <td>kg to make</td></tr>
+              </thead>
+              <tr>
+                <td>plain</td>
+                <td><input class="plainToMakeGraph" value="0" type="number" onchange="updateGraph();"></td></tr>
+              <tr>
+                <td>mexican</td>
+                <td><input class="mexicanToMakeGraph" value="0" type="number" onchange="updateGraph();"></td></tr>
+            </table>
+            <p>
+              By changing the values in the accompanying table, you will be able to understand what the <a href="#" class="objectiveFunctionContour">contour of the objective function</a></br> is. <br>
+              By pushing it to the edge of the feasible region, you will be able to find the <a href="#" class="optimalSolutionGraphical">optimal solution</a>.<br>
+            </p>
+          </div>
+        </div>
+        <p>
+          You can already see the constraints represented as lines (available_slicing_time, available_frying_time, available_packing_time).<br>
+          Looking at the available slicing time constraint (green), we see that it determines a specific <a href="#" class="constraintRegionGraphical">region</a>.<br>
+          The intersection of all the constraints is known as the <a href="#" class="feasibleRegionGraphical">feasible region</a><br>
+        </p>
+        <a href="modelingLPProblem.html" onclick="window.close()">Close and go back to previous page.</a>
+        
+        
+      </div>
+    </div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+  <script type="text/javascript">
+    var fryingConstraintLineColor = 'green';
+    var slicingConstraintLineColor = 'red';
+    var packingConstraintLineColor = 'cyan';
+    var objectiveFunctionContourColor = 'blue';
+    var b = JXG.JSXGraph.initBoard('box', {boundingbox: [-10, 180, 200, -30],keepaspectratio: true, axis:true, showCopyright: false});
+    
+    var maxMexicanFryingPoint = b.create('point',[0,availableFryingTime/fryingTimeMexican], {name:'', size:0, strokeColor:fryingConstraintLineColor});
+    var maxPlainFryingPoint = b.create('point',[availableFryingTime/fryingTimePlain,0], {name:'', size:0, strokeColor:fryingConstraintLineColor});
+    var availableFryingTimeLine = b.create('line',[maxMexicanFryingPoint,maxPlainFryingPoint], {straightFirst:false, straightLast:false, strokeColor:fryingConstraintLineColor,strokeWidth:2});
+    
+    var maxMexicanSlicingTime = b.create('point',[0,availableSlicingTime/sliceTimeMexican], {name:'', size:0, strokeColor:slicingConstraintLineColor});
+    var maxPlainSlicingTime = b.create('point',[availableSlicingTime/sliceTimePlain,0], {name:'', size:0, strokeColor:slicingConstraintLineColor});
+    var availableSlicingTimeLine = b.create('line',[maxMexicanSlicingTime,maxPlainSlicingTime], {straightFirst:false, straightLast:false, strokeColor:slicingConstraintLineColor,strokeWidth:2});
+    
+    var maxMexicanPackingPoint = b.create('point',[0,availablePackingTime/packingTimeMexican], {name:'', size:0, strokeColor:packingConstraintLineColor});
+    var maxPlainPackingPoint = b.create('point',[availablePackingTime/packingTimePlain,0], {name:'', size:0, strokeColor:packingConstraintLineColor});
+    var availablePackingTimeLine = b.create('line',[maxMexicanPackingPoint,maxPlainPackingPoint], {straightFirst:false, straightLast:false, strokeColor:packingConstraintLineColor,strokeWidth:2});
+    
+    var oldOy = b.create('point',[0,0], {name:'', size:0, strokeColor:objectiveFunctionContourColor});
+    var oldOx = b.create('point',[0,0], {name:'', size:0, strokeColor:objectiveFunctionContourColor});
+    var objectiveFunctionContour = b.create('line',[oldOy,oldOx], {straightFirst:false, straightLast:false, strokeColor:objectiveFunctionContourColor,strokeWidth:2});
+    
+    function updateGraph(){
+      var plainToMakeGraph = $('.plainToMakeGraph').val();
+      var mexicanToMakeGraph = $('.mexicanToMakeGraph').val(); //Q3_Profit / model_sellingPrice('Mexican')
+      
+      //Function for contour y=-(sellPricePlain/sellPriceMexican)*x + (sellPricePlain*plainToMakeGraph+sellPriceMexican*mexicanToMakeGraph)/sellPriceMexican
+      var profitGraph = sellPricePlain*plainToMakeGraph+sellPriceMexican*mexicanToMakeGraph;
+      
+      var newOy = b.create('point',[0,profitGraph/sellPriceMexican], {name:'', size:0, strokeColor:objectiveFunctionContourColor});
+      var newOx = b.create('point',[profitGraph/sellPricePlain,0], {name:'', size:0, strokeColor:objectiveFunctionContourColor});
+      
+      b.migratePoint(oldOy,newOy);
+      b.migratePoint(oldOx,newOx);
+      
+      oldOy = newOy;
+      oldOx= newOx;
+    }
+</script>
+</html>

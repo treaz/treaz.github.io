@@ -14,35 +14,6 @@ caption {
   caption-side: bottom;
 }
 
-/* button color overrides
-Generator: http://twitterbootstrap3buttons.w3masters.nl */
-.btn-custom {
-  background-color: #393E99;
-  border-color: #393E99;
-}
-.btn-custom:hover,
-.btn-custom:focus,
-.btn-custom:active,
-.btn-custom.active {
-  background-color: #323686;
-  border-color: #2b2f74;
-}
-.btn-custom.disabled:hover,
-.btn-custom.disabled:focus,
-.btn-custom.disabled:active,
-.btn-custom.disabled.active,
-.btn-custom[disabled]:hover,
-.btn-custom[disabled]:focus,
-.btn-custom[disabled]:active,
-.btn-custom[disabled].active,
-fieldset[disabled] .btn-custom:hover,
-fieldset[disabled] .btn-custom:focus,
-fieldset[disabled] .btn-custom:active,
-fieldset[disabled] .btn-custom.active {
-  background-color: #393E99;
-  border-color: #393E99;
-}
-
 
 /*
 The navbar color overrides
