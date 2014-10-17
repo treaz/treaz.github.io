@@ -14,11 +14,10 @@
     
     <script src="js/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/playbasis.js"></script>
-    <script src="js/playBasisImplementation.js"></script>
+    <script src="js/gamificationMechanisms.js"></script>
     <script src="js/bootbox.min.js"></script>
     <script src="js/whyOptimizationModeling.js"></script>
     <script src="js/orConceptDialogs.js"></script>
-    <script src="js/gamificationMechanisms.js"></script>
 
   </head>
 
@@ -55,10 +54,10 @@
         <div class="row">
           <ul class="nav nav-tabs" role="tablist">
             <li class="active"><a href="#easy" role="tab" data-toggle="tab">Easy</a></li>
-            <li><a href="#medium" role="tab" data-toggle="tab">Medium</a></li>
-            <li><a href="#hard" role="tab" data-toggle="tab">Hard</a></li>
-            <li><a href="#veryHard" role="tab" data-toggle="tab">VeryHard</a></li>
-            <li><a href="#veryVeryHard" role="tab" data-toggle="tab">VeryVeryHard</a></li>
+            <li><a href="#medium" role="tab" data-toggle="tab" onclick='handleConceptGamification("mediumDifficultyChips")'>Medium</a></li>
+            <li><a href="#hard" role="tab" data-toggle="tab" onclick='handleConceptGamification("hardDifficultyChips")'>Hard</a></li>
+            <li><a href="#veryHard" role="tab" data-toggle="tab" onclick='handleConceptGamification("veryHardDifficultyChips")'>VeryHard</a></li>
+            <li><a href="#veryVeryHard" role="tab" data-toggle="tab" onclick='handleConceptGamification("veryVeryHardDifficultyChips")'>VeryVeryHard</a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="easy">
@@ -588,14 +587,12 @@
         <a href="introToOptimizationModeling.html" class="btn btn-block btn-primary ">Intro to optimization modeling</a>
       </div>
     </div><!-- /.container -->
-    
-    <div class="pb-userbar" data-pb-displayPoint="exp" ></div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>

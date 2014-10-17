@@ -20,8 +20,8 @@ caption {
 The navbar color overrides
 Generator: http://twbscolor.smarchal.com/*/
 .navbar-default {
-	background-color: #393e99;
-	border-color: #282c6c;
+	background-color: #0e9ce4;
+	border-color: #0a70a0;
 }
 .navbar-default .navbar-brand {
 	color: #ffffff;
@@ -40,17 +40,17 @@ Generator: http://twbscolor.smarchal.com/*/
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
 	color: #ffffff;
-	background-color: #282c6c;
+	background-color: #0a70a0;
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
 	color: #ffffff;
-	background-color: #282c6c;
+	background-color: #0a70a0;
 }
 .navbar-default .navbar-toggle {
-	border-color: #282c6c;
+	border-color: #0a70a0;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-	background-color: #282c6c;
+	background-color: #0a70a0;
 }
 .navbar-default .navbar-toggle .icon-bar {
 	background-color: #ffffff;
@@ -75,6 +75,6 @@ Generator: http://twbscolor.smarchal.com/*/
 	}
 	.navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
 		color: #ffffff;
-		background-color: #282c6c;
+		background-color: #0a70a0;
 	}
 }
