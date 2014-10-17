@@ -1,4 +1,4 @@
-var allConcepts = ["operationsResearch", "optimizationModeling"];
+var allConcepts = ["operationsResearch", "mathematicalModel", "mathematicalProgramming", "optimizationModeling", "solution", "linearProgramming", "objectiveFunction", "constraints", "feasibleSolution", "parameters", "decisionVariables", "optimalSolution"];
 var CONCEPT_SEPARATOR = "|";
 
 $(document).ready(function(){
@@ -32,6 +32,71 @@ $(document).ready(function(){
     });
   });
 });
+
+$(document).ready(function(){
+  $('.mathematicalModel').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/mathematicalModel.html" ), function(result) {
+      handleConceptGamification("mathematicalModel");
+    });
+  });
+});
+
+$(document).ready(function(){
+  $('.objectiveFunction').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/objectiveFunction.html" ), function(result) {
+      handleConceptGamification("objectiveFunction");
+    });
+  });
+});
+
+$(document).ready(function(){
+  $('.constraints').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/constraints.html" ), function(result) {
+      handleConceptGamification("constraints");
+    });
+  });
+});
+
+$(document).ready(function(){
+  $('.solution').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/solution.html" ), function(result) {
+      handleConceptGamification("solution");
+    });
+  });
+});
+
+$(document).ready(function(){
+  $('.optimalSolution').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/optimalSolution.html" ), function(result) {
+      handleConceptGamification("optimalSolution");
+    });
+  });
+});
+
+$(document).ready(function(){
+  $('.feasibleSolution').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/optimalSolution.html" ), function(result) {
+      handleConceptGamification("feasibleSolution");
+    });
+  });
+});
+
+$(document).ready(function(){
+  $('.parameters').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/parameters.html" ), function(result) {
+      handleConceptGamification("parameters");
+    });
+  });
+});
+
+$(document).ready(function(){
+  $('.decisionVariables').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/decisionVariables.html" ), function(result) {
+      handleConceptGamification("decisionVariables");
+    });
+  });
+});
+
 
 function handleConceptGamification(conceptName){
   awardPointForFirstRead(conceptName);

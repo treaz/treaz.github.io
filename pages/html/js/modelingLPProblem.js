@@ -59,3 +59,10 @@ $(document).ready(function(){
     $('.chipsModel').slideToggle();
   });
 });
+
+$(document).ready(function(){
+  $('.notationExplanation').on('click',function() {
+    bootbox.alert($('<div></div>').load( "modelingLPProblem/notationExplanation.html" ), function(result) {
+    });
+  });
+});
