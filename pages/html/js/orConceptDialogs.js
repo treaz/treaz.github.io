@@ -57,7 +57,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('.solution').on('click',function() {
-    bootbox.alert($('<div></div>').load( "dialogs/solution.html" ), function(result) {
+    bootbox.alert($('<div></div>').load( "dialogs/optimalSolution.html" ), function(result) {
       handleConceptGamification("solution");
     });
   });
