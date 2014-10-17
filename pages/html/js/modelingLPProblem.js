@@ -1,3 +1,6 @@
+var messageOnCorrectAnswer = "Your answer is correct.";
+var messageOnIncorrectAnswer = "Your answer is incorrect. Try again...";
+
 $(document).ready(function(){
   $('.busProblem').on('click',function() {
     bootbox.alert($('<div></div>').load( "modelingLPProblem/busProblem.html" ), function(result) {

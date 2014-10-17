@@ -35,7 +35,6 @@ $(document).ready(function(){
     }
     if (q1Profit===344) {
       bootbox.alert("You found the most profitable solution");
-      alert('playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result)');
       //playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
       //  console.log("pb.auth");
       //  console.log(result);
@@ -68,7 +67,6 @@ $(document).ready(function(){
     }
     if (medProfit===240) {
       bootbox.alert("You found the most profitable solution");
-       alert('playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result)');
       //playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
       //  console.log("pb.auth");
       //  console.log(result);
@@ -105,7 +103,6 @@ $(document).ready(function(){
     }
     if (hardProfit===189) {
       bootbox.alert("You found the most profitable solution");
-       alert('playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result)');
       //playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
       //  console.log("pb.auth");
       //  console.log(result);
@@ -143,7 +140,6 @@ $(document).ready(function(){
     }
     if (veryHardProfit===201.5) {
       bootbox.alert("You found the most profitable solution");
-      alert('playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result)');
       //playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
       //  console.log("pb.auth");
       //  console.log(result);

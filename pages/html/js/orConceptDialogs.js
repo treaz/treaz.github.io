@@ -1,4 +1,4 @@
-//concept map concepts
+//13 OR concept concepts (12 in concept map + non negativvity constraints
 $(document).ready(function(){
   $('.optimizationModeling').on('click',function() {
     bootbox.alert($('<div></div>').load( "dialogs/optimizationModeling.html" ), function(result) {
@@ -91,6 +91,14 @@ $(document).ready(function(){
   $('.decisionVariables').on('click',function() {
     bootbox.alert($('<div></div>').load( "dialogs/decisionVariables.html" ), function(result) {
       handleConceptGamification("decisionVariables");
+    });
+  });
+});
+
+$(document).ready(function(){
+  $('.nonNegConstraints').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/nonNegConstraints.html" ), function(result) {
+      handleConceptGamification("nonNegConstraints");
     });
   });
 });
