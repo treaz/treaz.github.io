@@ -17,12 +17,14 @@
 
 
 <script>
+var conceptId = "nonNegConstraints";
 //answer should contain the following words: plain, mexican, non-negative || non negative || >=0 || >= 0
 $(document).ready(function(){
   $('.validateQuizNonNegConstraints').on('click',function() {
     var answer = $('.userAnswerQuizNonNegConstraints').val().toLowerCase();
-    handleQuizAnswer("nonNegConstraints");
+    handleAnyQuizAnswer(conceptId);
     if(answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1 && (answer.indexOf("non-negative") != -1 || answer.indexOf("non negative") != -1|| answer.indexOf(">=0") != -1|| answer.indexOf(">= 0") != -1|| answer.indexOf("nonnegative") != -1)){
+      handleCorrectQuizAnswer(conceptId);
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizNonNegConstraints').slideDown();
     } else {
@@ -33,7 +35,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('.showAnswerQuizNonNegConstraints').on('click',function() {
-    alert("you looked at the answer...");
+    addConceptToLocalstorageItem("answeredCorrectlyQuizzes", conceptId);
     $('.correctAnswerQuizNonNegConstraints').slideToggle();
   });
 });

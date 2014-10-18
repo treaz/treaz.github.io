@@ -66,7 +66,7 @@ function isGamificationEnabled(){
 }
 
 // Quiz handling functions
-function handleQuizAnswer(conceptId){
+function handleAnyQuizAnswer(conceptId){
   if (isGamificationEnabled()){
     console.log("handleQuizAnswer for id: "+conceptId);
     awardPointForFirstQuizSubmission(conceptId);
@@ -78,9 +78,27 @@ function awardPointForFirstQuizSubmission(conceptId){
   var readConcepts = readArrayFromLocalstorage("answeredQuizzes");
   if ($.inArray(conceptId, readConcepts)===-1) {
     console.log("awardPointForFirstQuizSubmission: "+conceptId);
-    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "exp", function (result) {
+    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "any", function (result) {
       console.log(result);
     });
+  }
+}
+
+function awardPointForFirstCorrectQuizSubmission(conceptId){
+  var readConcepts = readArrayFromLocalstorage("answeredCorrectlyQuizzes");
+  if ($.inArray(conceptId, readConcepts)===-1) {
+    console.log("awardPointForFirstCorrectQuizSubmission: "+conceptId);
+    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "correct", function (result) {
+      console.log(result);
+    });
+  }
+}
+
+function handleCorrectQuizAnswer(conceptId){
+  if (isGamificationEnabled()){
+    console.log("handleQuizAnswer for id: "+conceptId);
+    awardPointForFirstCorrectQuizSubmission(conceptId);
+    addConceptToLocalstorageItem("answeredCorrectlyQuizzes", conceptId);
   }
 }
 //END

@@ -13,12 +13,14 @@
 
 
 <script>
+var conceptId = "decisionVariables";
 //answer should contain the following words: plain, mexican
 $(document).ready(function(){
   $('.validateQuizDecisionVariables').on('click',function() {
     var answer = $('.userAnswerQuizDecisionVariables').val().toLowerCase();
-    handleQuizAnswer("decisionVariables");
+    handleAnyQuizAnswer(conceptId);
     if(answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1){
+      handleCorrectQuizAnswer(conceptId);
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizDecisionVariables').slideDown();
     } else {
@@ -29,7 +31,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('.showAnswerQuizDecisionVariables').on('click',function() {
-    alert("you looked at the answer...");
+    addConceptToLocalstorageItem("answeredCorrectlyQuizzes", conceptId);
     $('.correctAnswerQuizDecisionVariables').slideToggle();
   });
 });

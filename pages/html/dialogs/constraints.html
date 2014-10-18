@@ -19,12 +19,14 @@
 
 
 <script>
+var conceptId = "constraints";
 //answer should contain the following words: plain, mexican, slic, fry, pack, time, available
 $(document).ready(function(){
   $('.validateQuizConstraints').on('click',function() {
     var answer = $('.userAnswerQuizConstraints').val().toLowerCase();
-    handleQuizAnswer("constraints");
+    handleAnyQuizAnswer(conceptId);
     if(answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1 && answer.indexOf("slic") != -1 && answer.indexOf("fry") != -1 && answer.indexOf("pack") != -1 && answer.indexOf("time") != -1 && answer.indexOf("available") != -1){
+      handleCorrectQuizAnswer(conceptId);
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizConstraints').slideDown();
     } else {
@@ -35,7 +37,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('.showAnswerQuizConstraints').on('click',function() {
-    alert("you looked at the answer...");
+    addConceptToLocalstorageItem("answeredCorrectlyQuizzes", conceptId);
     $('.correctAnswerQuizConstraints').slideToggle();
   });
 });
