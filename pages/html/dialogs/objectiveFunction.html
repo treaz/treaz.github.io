@@ -17,6 +17,7 @@
 $(document).ready(function(){
   $('.validateQuizObjectiveFunction').on('click',function() {
     var answer = $('.userAnswerQuizObjectiveFunction').val().toLowerCase();
+    handleQuizAnswer("objectiveFunction");
     if(answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1 && answer.indexOf("maxim") != -1  && answer.indexOf("sell") != -1 && answer.indexOf("price") != -1&& answer.indexOf("=") != -1 &&(answer.indexOf("sum") != -1 ||answer.indexOf("+") != -1 )){
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizObjectiveFunction').slideDown();

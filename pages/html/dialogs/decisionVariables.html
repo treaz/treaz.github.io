@@ -17,6 +17,7 @@
 $(document).ready(function(){
   $('.validateQuizDecisionVariables').on('click',function() {
     var answer = $('.userAnswerQuizDecisionVariables').val().toLowerCase();
+    handleQuizAnswer("decisionVariables");
     if(answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1){
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizDecisionVariables').slideDown();

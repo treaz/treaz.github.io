@@ -1,7 +1,9 @@
-var allInformationPages = [/*13 or concepts*/"operationsResearch", "mathematicalModel", "mathematicalProgramming", "optimizationModeling", "solution", "linearProgramming", "objectiveFunction", "constraints", "feasibleSolution", "parameters", "decisionVariables", "optimalSolution", "nonNegConstraints",/*5 graphical concepts*/"graphicalRepresentation", "objectiveFunctionContour","optimalSolutionGraphical", "constraintRegionGraphical", "feasibleRegionGraphical", /*4 levels of difficulty on whyOR page (except easy which is displayed initially*/"mediumDifficultyChips", "hardDifficultyChips", "veryHardDifficultyChips", "veryVeryHardDifficultyChips", /*1 concept map*/"conceptMap", /*2 lp examples*/"busProblem", "chairProblem", /*4 major pages*/"whyOptimizationModeling", "introToOptimizationModeling", "modelingLPProblem", "lpProblemText"];
 var CONCEPT_SEPARATOR = "|";
-
 var USER_ID;
+
+var allInformationPages = [/*13 or concepts*/"operationsResearch", "mathematicalModel", "mathematicalProgramming", "optimizationModeling", "solution", "linearProgramming", "objectiveFunction", "constraints", "feasibleSolution", "parameters", "decisionVariables", "optimalSolution", "nonNegConstraints",/*5 graphical concepts*/"graphicalRepresentation", "objectiveFunctionContour","optimalSolutionGraphical", "constraintRegionGraphical", "feasibleRegionGraphical", /*4 levels of difficulty on whyOR page (except easy which is displayed initially*/"mediumDifficultyChips", "hardDifficultyChips", "veryHardDifficultyChips", "veryVeryHardDifficultyChips", /*1 concept map*/"conceptMap", /*2 lp examples*/"busProblem", "chairProblem", /*4 major pages*/"whyOptimizationModeling", "introToOptimizationModeling", "modelingLPProblem", "lpProblemText"];
+
+var answeredQuizzes = ["decisionVariables", "objectiveFunction", "constraints", "nonNegConstraints", "parameters"];
 
 var playbasis = new Playbasis('2767998996');
 var playbasisToken;
@@ -63,16 +65,37 @@ function isGamificationEnabled(){
   return isGamified==="true";
 }
 
+// Quiz handling functions
+function handleQuizAnswer(conceptId){
+  if (isGamificationEnabled()){
+    console.log("handleQuizAnswer for id: "+conceptId);
+    awardPointForFirstQuizSubmission(conceptId);
+    addConceptToLocalstorageItem("answeredQuizzes", conceptId);
+  }
+}
+
+function awardPointForFirstQuizSubmission(conceptId){
+  var readConcepts = readArrayFromLocalstorage("answeredQuizzes");
+  if ($.inArray(conceptId, readConcepts)===-1) {
+    console.log("awardPointForFirstQuizSubmission: "+conceptId);
+    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "exp", function (result) {
+      console.log(result);
+    });
+  }
+}
+//END
+
+// Information pages handling functions
 function handleConceptGamification(conceptName){
   if (isGamificationEnabled()){
     awardPointForFirstRead(conceptName);
-    addConceptToReadConcepts(conceptName);
+    addConceptToLocalstorageItem("readConcepts", conceptName);
     checkallInformationPagesRead();
   }
 }
 
 function awardPointForFirstRead(conceptId){
-  var readConcepts = getReadConceptsArray();
+  var readConcepts = readArrayFromLocalstorage("readConcepts");
   if ($.inArray(conceptId, readConcepts)===-1) {
     console.log("playbasisToken"+playbasisToken);
     console.log("awardPointForFirstRead");
@@ -82,32 +105,35 @@ function awardPointForFirstRead(conceptId){
   }
 }
 
-function addConceptToReadConcepts(conceptId){
-  var readConcepts = localStorage.getItem("readConcepts"); 
+function addConceptToLocalstorageItem(localstorageItem, conceptId ){
+  var readConcepts = localStorage.getItem(localstorageItem); 
   if (readConcepts===null){
     readConcepts = conceptId;
   } else {
     readConcepts += CONCEPT_SEPARATOR;
     readConcepts += conceptId;
   }
-  localStorage.setItem("readConcepts", readConcepts);
+  localStorage.setItem(localstorageItem, readConcepts);
 }
 
-function getReadConceptsArray(){
-  if (localStorage.getItem("readConcepts")===null) {
-    return [];
-  } else {
-    return localStorage.getItem("readConcepts").split(CONCEPT_SEPARATOR);
-  }
-}
 
 function checkallInformationPagesRead(){
-  var readConcepts = getReadConceptsArray();
+  var readConcepts = readArrayFromLocalstorage("readConcepts");
   if (allInformationPages.length === intersectStringArrays(readConcepts, allInformationPages).length){
     alert("giving academic badge");
     //playbasis.rule(playbasisToken, "read", "1", "", function (result) {
     //  console.log(result);
     //});
+  }
+}
+
+//END
+
+function readArrayFromLocalstorage(item){
+  if (localStorage.getItem(item)===null) {
+    return [];
+  } else {
+    return localStorage.getItem(item).split(CONCEPT_SEPARATOR);
   }
 }
 

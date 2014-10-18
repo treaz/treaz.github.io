@@ -23,6 +23,7 @@
 $(document).ready(function(){
   $('.validateQuizConstraints').on('click',function() {
     var answer = $('.userAnswerQuizConstraints').val().toLowerCase();
+    handleQuizAnswer("constraints");
     if(answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1 && answer.indexOf("slic") != -1 && answer.indexOf("fry") != -1 && answer.indexOf("pack") != -1 && answer.indexOf("time") != -1 && answer.indexOf("available") != -1){
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizConstraints').slideDown();
