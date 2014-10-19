@@ -125,4 +125,5 @@ $(document).ready(function(){
 
 window.onload=function() {
   handleConceptGamification("whyOptimizationModeling");
+  handleStayedOnMainPageLongBadge("whyOptimizationModeling");
 };

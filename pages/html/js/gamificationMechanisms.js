@@ -211,6 +211,40 @@ function checkAllVideosPlayed(){
 }
 // END
 
+//badges awarded for hanging out on a page long enough
+function handleStayedOnMainPageLongBadge(mainPageId){
+  if (isGamificationEnabled()){
+    awardBadgeOnFirstMainPageView(mainPageId);
+  }
+}
+
+function awardBadgeOnFirstMainPageView(mainPageId)
+  var viewedMainPages = readArrayFromLocalstorage("viewedMainPages");
+  if ($.inArray(mainPageId, viewedMainPages)===-1){
+    addConceptToLocalstorageItem("viewedMainPages", mainPageId);
+    if (mainPageId==="whyOptimizationModeling") {
+      console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
+      var delay=3 * 60 * 1000;//3 mins
+      setTimeout(function(){
+        bootbox.alert("You have earned the 'Supporter' badge");
+      },delay); 
+    } else if (mainPageId==="modelingLPProblem") {
+      console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
+      var delay=5* 60 * 1000;//5 mins
+      setTimeout(function(){
+        bootbox.alert("You have earned the 'Enlightened' badge");
+      },delay);
+    } else if (mainPageId==="introToOptimizationModeling") {
+      console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
+      var delay=2* 60 * 1000;//2 mins
+        setTimeout(function(){
+          bootbox.alert("You have earned the 'Student' badge");
+        },delay);
+    }
+  }
+}
+// END
+
 function readArrayFromLocalstorage(item){
   if (localStorage.getItem(item)===null) {
     return [];

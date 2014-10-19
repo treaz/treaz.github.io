@@ -27,5 +27,6 @@ $(document).ready(function(){
 
 window.onload=function() {
   handleConceptGamification("modelingLPProblem");
+  handleStayedOnMainPageLongBadge("modelingLPProblem");
 };
 
