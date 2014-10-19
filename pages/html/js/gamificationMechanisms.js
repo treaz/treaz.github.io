@@ -1,9 +1,13 @@
+$.getScript('js/underscore-min.js', function(){});
+
 var CONCEPT_SEPARATOR = "|";
 var USER_ID;
 
-var allInformationPages = [/*13 or concepts*/"operationsResearch", "mathematicalModel", "mathematicalProgramming", "optimizationModeling", "solution", "linearProgramming", "objectiveFunction", "constraints", "feasibleSolution", "parameters", "decisionVariables", "optimalSolution", "nonNegConstraints",/*5 graphical concepts*/"graphicalRepresentation", "objectiveFunctionContour","optimalSolutionGraphical", "constraintRegionGraphical", "feasibleRegionGraphical", /*4 levels of difficulty on whyOR page (except easy which is displayed initially*/"mediumDifficultyChips", "hardDifficultyChips", "veryHardDifficultyChips", "veryVeryHardDifficultyChips", /*1 concept map*/"conceptMap", /*2 lp examples*/"busProblem", "chairProblem", /*4 major pages*/"whyOptimizationModeling", "introToOptimizationModeling", "modelingLPProblem", "lpProblemText"];
+var allInformationPages = [/*13 or concepts*/"operationsResearch", "mathematicalModel", "mathematicalProgramming", "optimizationModeling", "solution", "linearProgramming", "objectiveFunction", "constraints", "feasibleSolution", "parameters", "decisionVariables", "optimalSolution", "nonNegConstraints",/*5 graphical concepts*/"graphicalRepresentation", "objectiveFunctionContour","optimalSolutionGraphical", "constraintRegionGraphical", "feasibleRegionGraphical", /*4 levels of difficulty on whyOR page (except easy which is displayed initially*/"mediumDifficultyChips", "hardDifficultyChips", "veryHardDifficultyChips", "veryVeryHardDifficultyChips", /*1 concept map*/"conceptMap", /*2 lp examples*/"busProblem", "chairProblem", /*3 major pages*/"whyOptimizationModeling", "introToOptimizationModeling", "modelingLPProblem"];
 
-var answeredQuizzes = ["decisionVariables", "objectiveFunction", "constraints", "nonNegConstraints", "parameters"];
+var allQuizzesToAnswer = ["decisionVariables", "objectiveFunction", "constraints", "nonNegConstraints", "parameters"];
+
+var allChipsProblemVersion = ["easyDifficultyChips", "mediumDifficultyChips", "hardDifficultyChips", "veryHardDifficultyChips"]
 
 var playbasis = new Playbasis('2767998996');
 var playbasisToken;
@@ -19,6 +23,7 @@ $(document).ready(function() {
     //append all gamification elements to dom
     $( "body" ).append( '<div class="pb-userbar" data-pb-displayPoint="exp" ></div>' );
     $(".nav.navbar-nav").append('<li><a href="dashboard.html">Dashboard</a></li>');
+    $(".nav.navbar-nav").append('<li><a href="gamificationTutorial.html">Using the tutorial</a></li>');
   } else if (isGamified==="false"){
     //playbasis is disabled
   } else {
@@ -99,6 +104,19 @@ function handleCorrectQuizAnswer(conceptId){
     console.log("handleQuizAnswer for id: "+conceptId);
     awardPointForFirstCorrectQuizSubmission(conceptId);
     addConceptToLocalstorageItem("answeredCorrectlyQuizzes", conceptId);
+    checkAllQuizzesCorrectlyAnswered();
+  }
+}
+
+function checkAllQuizzesCorrectlyAnswered(){
+  var answeredCorrectlyQuizzes = readArrayFromLocalstorage("answeredCorrectlyQuizzes");
+  var intersectionLength = _.intersection(answeredCorrectlyQuizzes, allQuizzesToAnswer).length;
+  console.log("intersectionLength: "+intersectionLength)
+  if (allQuizzesToAnswer.length === intersectionLength){
+    bootbox.alert("You have earned the 'Quiz whiz' badge");
+    //playbasis.rule(playbasisToken, "read", "1", "", function (result) {
+    //  console.log(result);
+    //});
   }
 }
 //END
@@ -137,14 +155,37 @@ function addConceptToLocalstorageItem(localstorageItem, conceptId ){
 
 function checkallInformationPagesRead(){
   var readConcepts = readArrayFromLocalstorage("readConcepts");
-  if (allInformationPages.length === intersectStringArrays(readConcepts, allInformationPages).length){
-    alert("giving academic badge");
+  var intersectionLength = _.intersection(readConcepts, allInformationPages).length;
+  console.log("checkallInformationPagesRead intersectionLength: "+intersectionLength)
+  if (allInformationPages.length === intersectionLength){
+    bootbox.alert("You have earned the 'Academic' badge");
     //playbasis.rule(playbasisToken, "read", "1", "", function (result) {
     //  console.log(result);
     //});
   }
 }
+//END
 
+
+//logic for the version of the chips problem
+function handleChipsProblemCorrectSubmission(chipsDifficultyId){
+  if (isGamificationEnabled()){
+    addConceptToLocalstorageItem("submittedChipsProblemVersion", chipsDifficultyId);
+    checkAllChipsProblemDifficultiesCompleted();
+  }
+}
+
+function checkAllChipsProblemDifficultiesCompleted(){
+  var submittedChipsProblemVersion = readArrayFromLocalstorage("submittedChipsProblemVersion");
+  var intersectionLength = _.intersection(allChipsProblemVersion, submittedChipsProblemVersion).length;
+  console.log("checkAllChipsProblemDifficultiesCompleted intersectionLength: "+intersectionLength)
+  if (allChipsProblemVersion.length === intersectionLength){
+    bootbox.alert("You have earned the 'Math lover' badge");
+    //playbasis.rule(playbasisToken, "read", "1", "", function (result) {
+    //  console.log(result);
+    //});
+  }
+}
 //END
 
 function readArrayFromLocalstorage(item){
@@ -153,28 +194,4 @@ function readArrayFromLocalstorage(item){
   } else {
     return localStorage.getItem(item).split(CONCEPT_SEPARATOR);
   }
-}
-
-function intersectStringArrays(array1, array2) {
-   var result = [];
-   // Don't destroy the original arrays
-   var a = array1.slice(0);
-   var b = array2.slice(0);
-   var aLast = a.length - 1;
-   var bLast = b.length - 1;
-   while (aLast >= 0 && bLast >= 0) {
-      if (a[aLast].localeCompare(b[bLast]) > 0 ) {
-         a.pop();
-         aLast--;
-      } else if (a[aLast].localeCompare(b[bLast]) < 0 ){
-         b.pop();
-         bLast--;
-      } else /* they're equal */ {
-         result.push(a.pop());
-         b.pop();
-         aLast--;
-         bLast--;
-      }
-   }
-   return result;
 }

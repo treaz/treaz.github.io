@@ -9,6 +9,7 @@ $(document).ready(function(){
     }
     if (q1Profit===344) {
       bootbox.alert("You found the most profitable solution");
+      handleChipsProblemCorrectSubmission("easyDifficultyChips");
       //playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
       //  console.log("pb.auth");
       //  console.log(result);
@@ -38,6 +39,7 @@ $(document).ready(function(){
     }
     if (medProfit===240) {
       bootbox.alert("You found the most profitable solution");
+      handleChipsProblemCorrectSubmission("mediumDifficultyChips");
       //playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
       //  console.log("pb.auth");
       //  console.log(result);
@@ -71,6 +73,7 @@ $(document).ready(function(){
     }
     if (hardProfit===189) {
       bootbox.alert("You found the most profitable solution");
+      handleChipsProblemCorrectSubmission("hardDifficultyChips");
       //playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
       //  console.log("pb.auth");
       //  console.log(result);
@@ -105,6 +108,7 @@ $(document).ready(function(){
     }
     if (veryHardProfit===201.5) {
       bootbox.alert("You found the most profitable solution");
+      handleChipsProblemCorrectSubmission("veryHardDifficultyChips");
       //playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
       //  console.log("pb.auth");
       //  console.log(result);

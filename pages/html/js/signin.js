@@ -19,7 +19,7 @@ $(document).ready(function(){
     if (username in gamificationUsers) {
       localStorage.setItem("isGamified", "true");
       localStorage.setItem("userId", gamificationUsers[username]);
-      window.location.href = "whyOptimizationModeling.html";
+      window.location.href = "gamificationTutorial.html";
       return false;
     } else if (normalUsers.indexOf(username) != -1) {
       localStorage.setItem("isGamified", "false");

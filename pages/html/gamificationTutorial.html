@@ -15,7 +15,6 @@
     <script src="js/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/playbasis.js"></script>
     <script src="js/gamificationMechanisms.js"></script>
-    <script src="js/signin.js"></script>
   </head>
 
   <body>
@@ -43,31 +42,22 @@
     <div class="container">
       
       <div class="starter-template">
-        <h1>Gamification dashboard</h1>
+        <h1>Using the tutorial</h1>
+        <p class="lead">Features presentations videos</p>
         <div ="row">
-          <div class="col-xs-7">
-            <div class="pb-profile" data-pb-displayPoint="exp" ></div>
+          <div class="col-xs-4">
+            video about the gamification features: userbar, earning the points. It is not a game.
           </div>
           <div class="col-xs-4">
-            <div class="pb-leaderboard" data-pb-rankBy="exp" ></div>
-          </div>
-          <div class="col-xs-7">
-            <h1>
-              <a href="javascript:void(0)" class="pb-userbar-achievement"><i class="fa fa-star"></i>Show badges</a>
-            </h1>
-          </div>
-          <div class="col-xs-7">
-            <form class="form-signin" role="form">
-              <h2 class="form-signin-heading">Show me more about user:</h2>
-              <input type="username" class="form-control otherUserInput" placeholder="username" required>
-              <button class="btn btn-block btn-primary otherUserButton" type="submit">Show</button>
-            </form>
+            video about the user dashboard
           </div>
           <div class="col-xs-4">
-            <div class="pb-livefeed" ></div>
+            description of levels, how the points are awarded and how many for each section
           </div>
-          
         </div>
+      </div>
+      <div class="row">
+        <a href="whyOptimizationModeling.html" class="btn btn-block btn-primary ">Start the tutorial.</a>
       </div>
     </div><!-- /.container -->
 
@@ -77,20 +67,6 @@
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-      $(document).ready(function(){
-        $(".otherUserButton").on('click',function() {
-          var username = $(".otherUserInput").val();
-          if (username in gamificationUsers) {
-            //set otherusername in localsession
-            localStorage.setItem("otherUserId", gamificationUsers[username]);
-            window.open('otherUser.html','_blank');
-          } else {
-            alert("Please enter a valid username");
-          }
-        });
-      });
-    </script>
     
   </body>
 </html>
