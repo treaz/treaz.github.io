@@ -15,6 +15,10 @@
     <script src="js/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/playbasis.js"></script>
     <script src="js/gamificationMechanisms.js"></script>
+    <script src="js/bootbox.min.js"></script>
+  </script>
+    
+
   </head>
 
   <body>
@@ -44,20 +48,31 @@
       <div class="starter-template">
         <h1>Using the tutorial</h1>
         <p class="lead">Features presentations videos</p>
+        
         <div ="row">
           <div class="col-xs-4">
-            video about the gamification features: userbar, earning the points. It is not a game.
+            video about the gamification features: userbar, earning the points and badges and leveling up. It is not a game.
+            <div class="embed-responsive embed-responsive-4by3">
+              <div id="generalGamificationPlayer" class="embed-responsive-item"></div>
+            </div>
           </div>
           <div class="col-xs-4">
-            video about the user dashboard
+            video about the user dashboard: explain elements a bit.
+            <div class="embed-responsive embed-responsive-4by3">
+              <div id="gamificationDashboardPlayer" class="embed-responsive-item"></div>
+            </div>
           </div>
           <div class="col-xs-4">
             description of levels, how the points are awarded and how many for each section
           </div>
+        
+        
         </div>
-      </div>
-      <div class="row">
-        <a href="whyOptimizationModeling.html" class="btn btn-block btn-primary ">Start the tutorial.</a>
+        <div class="row">
+          <div class="col-xs-12">
+            <a href="whyOptimizationModeling.html" class="btn btn-block btn-primary ">Start the tutorial.</a>
+          </div>
+        </div>
       </div>
     </div><!-- /.container -->
 
@@ -68,5 +83,42 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
     
+        <script>
+        //see https://developers.google.com/youtube/iframe_api_reference?csw=1
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      var player;
+      var gamificationDashboardPlayer;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('generalGamificationPlayer', {
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onStateChange': generalGamificationPlayerStateChange
+          }
+        });
+         gamificationDashboardPlayer = new YT.Player('gamificationDashboardPlayer', {
+          videoId: 'NK-T_t166TY',
+          events: {
+            'onStateChange': gamificationDashboardPlayerStateChange
+          }
+        });
+      }
+
+      function gamificationDashboardPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.ENDED){
+          handleVideoPlayed("gamificationDashboardPlayer");
+        }
+      }
+      
+      function generalGamificationPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.ENDED){
+          handleVideoPlayed("generalGamificationPlayer");
+        }
+      }
+    </script>
   </body>
 </html>

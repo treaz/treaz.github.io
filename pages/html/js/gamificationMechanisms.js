@@ -9,6 +9,8 @@ var allQuizzesToAnswer = ["decisionVariables", "objectiveFunction", "constraints
 
 var allChipsProblemVersion = ["easyDifficultyChips", "mediumDifficultyChips", "hardDifficultyChips", "veryHardDifficultyChips"]
 
+var allVideosToPlay = ["gamificationDashboardPlayer", "generalGamificationPlayer"]
+
 var playbasis = new Playbasis('2767998996');
 var playbasisToken;
 
@@ -187,6 +189,27 @@ function checkAllChipsProblemDifficultiesCompleted(){
   }
 }
 //END
+
+// gamification tutorial handling functions
+function handleVideoPlayed(videoId){
+  if (isGamificationEnabled()){
+    addConceptToLocalstorageItem("watchedVideos", videoId);
+    checkAllVideosPlayed();
+  }
+}
+
+function checkAllVideosPlayed(){
+  var watchedVideos = readArrayFromLocalstorage("watchedVideos");
+  var intersectionLength = _.intersection(allVideosToPlay, watchedVideos).length;
+  console.log("checkAllVideosPlayed intersectionLength: "+intersectionLength)
+  if (allVideosToPlay.length === intersectionLength){
+    bootbox.alert("You have earned the 'Feature explorer' badge");
+    //playbasis.rule(playbasisToken, "read", "1", "", function (result) {
+    //  console.log(result);
+    //});
+  }
+}
+// END
 
 function readArrayFromLocalstorage(item){
   if (localStorage.getItem(item)===null) {
