@@ -218,7 +218,7 @@ function handleStayedOnMainPageLongBadge(mainPageId){
   }
 }
 
-function awardBadgeOnFirstMainPageView(mainPageId)
+function awardBadgeOnFirstMainPageView(mainPageId){
   var viewedMainPages = readArrayFromLocalstorage("viewedMainPages");
   if ($.inArray(mainPageId, viewedMainPages)===-1){
     addConceptToLocalstorageItem("viewedMainPages", mainPageId);
