@@ -58,15 +58,6 @@ function showUserBar(){
   }
 }
 
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
-
 function isGamificationEnabled(){
   var isGamified = localStorage.getItem("isGamified");
   return isGamified==="true";
@@ -85,8 +76,9 @@ function awardPointForFirstQuizSubmission(conceptId){
   var readConcepts = readArrayFromLocalstorage("answeredQuizzes");
   if ($.inArray(conceptId, readConcepts)===-1) {
     console.log("awardPointForFirstQuizSubmission: "+conceptId);
-    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "any", function (result) {
-      console.log(result);
+    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "any", "", "", function (response) {
+      console.log(response);
+      checkLevel5Reached();
     });
   }
 }
@@ -95,10 +87,25 @@ function awardPointForFirstCorrectQuizSubmission(conceptId){
   var readConcepts = readArrayFromLocalstorage("answeredCorrectlyQuizzes");
   if ($.inArray(conceptId, readConcepts)===-1) {
     console.log("awardPointForFirstCorrectQuizSubmission: "+conceptId);
-    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "correct", function (result) {
-      console.log(result);
+    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "correct", "", "", function (response) {
+      console.log(response);
+      checkLevel5Reached();
     });
   }
+}
+
+//'Champion' badge
+function checkLevel5Reached(){
+  playbasis.player(USER_ID, function (response) {
+    console.log(response);
+      var userCurrentLevel = response.response.player.level;
+      if (userCurrentLevel===5){
+      playbasis.rule(playbasisToken, "levelup", USER_ID, "", "", "", function (response) {
+        badgeAwardNotification(response, "You have earned the 'Champion' badge");
+      });
+    }
+  });
+  
 }
 
 function handleCorrectQuizAnswer(conceptId){
@@ -115,9 +122,8 @@ function checkAllQuizzesCorrectlyAnswered(){
   var intersectionLength = _.intersection(answeredCorrectlyQuizzes, allQuizzesToAnswer).length;
   console.log("intersectionLength: "+intersectionLength)
   if (allQuizzesToAnswer.length === intersectionLength){
-    bootbox.alert("You have earned the 'Quiz whiz' badge");
-    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "quiz", function (result) {
-      console.log(result);
+    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "quiz", "", "", function (response) {
+      badgeAwardNotification(response, "You have earned the 'Quiz whiz' badge");
     });
   }
 }
@@ -137,8 +143,9 @@ function awardPointForFirstRead(conceptId){
   if ($.inArray(conceptId, readConcepts)===-1) {
     console.log("playbasisToken"+playbasisToken);
     console.log("awardPointForFirstRead");
-    playbasis.rule(playbasisToken, "read", USER_ID, "exp", function (result) {
-      console.log(result);
+    playbasis.rule(playbasisToken, "read", USER_ID, "exp", "", "", function (response) {
+      console.log(response);
+      checkLevel5Reached();
     });
   }
 }
@@ -153,6 +160,7 @@ function addConceptToLocalstorageItem(localstorageItem, conceptId ){
   }
   localStorage.setItem(localstorageItem, readConcepts);
 }
+//END
 
 //'Academic' badge
 function checkallInformationPagesRead(){
@@ -160,20 +168,24 @@ function checkallInformationPagesRead(){
   var intersectionLength = _.intersection(readConcepts, allInformationPages).length;
   console.log("checkallInformationPagesRead intersectionLength: "+intersectionLength)
   if (allInformationPages.length === intersectionLength){
-    bootbox.alert("You have earned the 'Academic' badge");
-    playbasis.rule(playbasisToken, "read", USER_ID, "readAllConcepts", function (result) {
-      console.log(result);
+    playbasis.rule(playbasisToken, "read", USER_ID, "readAllConcepts", "", "", function (response) {
+      badgeAwardNotification(response, "You have earned the 'Academic' badge");
     });
   }
 }
-//END
 
-
-//logic for the version of the chips problem
+//'Math lover' badge
 function handleChipsProblemCorrectSubmission(chipsDifficultyId){
   if (isGamificationEnabled()){
     addConceptToLocalstorageItem("submittedChipsProblemVersion", chipsDifficultyId);
     checkAllChipsProblemDifficultiesCompleted();
+  }
+}
+
+function badgeAwardNotification(response, message){
+  console.log(response);
+  if (response.response.events.length > 0){
+    bootbox.alert(message);
   }
 }
 
@@ -182,9 +194,8 @@ function checkAllChipsProblemDifficultiesCompleted(){
   var intersectionLength = _.intersection(allChipsProblemVersion, submittedChipsProblemVersion).length;
   console.log("checkAllChipsProblemDifficultiesCompleted intersectionLength: "+intersectionLength)
   if (allChipsProblemVersion.length === intersectionLength){
-    bootbox.alert("You have earned the 'Math lover' badge");
-    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "introProblem", function (result) {
-      console.log(result);
+    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "introProblem", "", "", function (response) {
+      badgeAwardNotification(response, "You have earned the 'Math lover' badge");
     });
   }
 }
@@ -207,9 +218,8 @@ function checkAllVideosPlayed(){
   var intersectionLength = _.intersection(allVideosToPlay, watchedVideos).length;
   console.log("checkAllVideosPlayed intersectionLength: "+intersectionLength)
   if (allVideosToPlay.length === intersectionLength){
-    bootbox.alert("You have earned the 'Feature explorer' badge");
-    playbasis.rule(playbasisToken, "watchedvideo", USER_ID, "", function (result) {
-      console.log(result);
+    playbasis.rule(playbasisToken, "watchedvideo", USER_ID, "", "", "", function (response) {
+      badgeAwardNotification(response, "You have earned the 'Feature explorer' badge");
     });
   }
 }
@@ -231,27 +241,24 @@ function awardBadgeOnFirstMainPageView(mainPageId){
       console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
       var delay=3 * 60 * 1000;//3 mins
       setTimeout(function(){
-        bootbox.alert("You have earned the 'Supporter' badge");
-        playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
-          console.log(result);
+        playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", "", "", function (response) {
+          badgeAwardNotification(response, "You have earned the 'Supporter' badge");
         });
       },delay);
     } else if (mainPageId==="modelingLPProblem") {
       console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
       var delay=5* 60 * 1000;//5 mins
       setTimeout(function(){
-        bootbox.alert("You have earned the 'Enlightened' badge");
-        playbasis.rule(playbasisToken, "read", USER_ID, "ModelingIntro", function (result) {
-          console.log(result);
+        playbasis.rule(playbasisToken, "read", USER_ID, "ModelingIntro", "", "", function (response) {
+          badgeAwardNotification(response, "You have earned the 'Enlightened' badge");
         });
       },delay);
     } else if (mainPageId==="introToOptimizationModeling") {
       console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
       var delay=2* 60 * 1000;//2 mins
         setTimeout(function(){
-          bootbox.alert("You have earned the 'Student' badge");
-          playbasis.rule(playbasisToken, "read", USER_ID, "ORIntro", function (result) {
-            console.log(result);
+          playbasis.rule(playbasisToken, "read", USER_ID, "ORIntro", "", "", function (response) {
+            badgeAwardNotification(response, "You have earned the 'Student' badge");
           });
         },delay);
     }
