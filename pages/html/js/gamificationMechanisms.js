@@ -116,9 +116,9 @@ function checkAllQuizzesCorrectlyAnswered(){
   console.log("intersectionLength: "+intersectionLength)
   if (allQuizzesToAnswer.length === intersectionLength){
     bootbox.alert("You have earned the 'Quiz whiz' badge");
-    //playbasis.rule(playbasisToken, "read", "1", "", function (result) {
-    //  console.log(result);
-    //});
+    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "quiz", function (result) {
+      console.log(result);
+    });
   }
 }
 //END
@@ -154,16 +154,16 @@ function addConceptToLocalstorageItem(localstorageItem, conceptId ){
   localStorage.setItem(localstorageItem, readConcepts);
 }
 
-
+//'Academic' badge
 function checkallInformationPagesRead(){
   var readConcepts = readArrayFromLocalstorage("readConcepts");
   var intersectionLength = _.intersection(readConcepts, allInformationPages).length;
   console.log("checkallInformationPagesRead intersectionLength: "+intersectionLength)
   if (allInformationPages.length === intersectionLength){
     bootbox.alert("You have earned the 'Academic' badge");
-    //playbasis.rule(playbasisToken, "read", "1", "", function (result) {
-    //  console.log(result);
-    //});
+    playbasis.rule(playbasisToken, "read", USER_ID, "readAllConcepts", function (result) {
+      console.log(result);
+    });
   }
 }
 //END
@@ -183,9 +183,9 @@ function checkAllChipsProblemDifficultiesCompleted(){
   console.log("checkAllChipsProblemDifficultiesCompleted intersectionLength: "+intersectionLength)
   if (allChipsProblemVersion.length === intersectionLength){
     bootbox.alert("You have earned the 'Math lover' badge");
-    //playbasis.rule(playbasisToken, "read", "1", "", function (result) {
-    //  console.log(result);
-    //});
+    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "introProblem", function (result) {
+      console.log(result);
+    });
   }
 }
 //END
@@ -197,19 +197,23 @@ function handleVideoPlayed(videoId){
     checkAllVideosPlayed();
   }
 }
+// END
 
+////////////////// BADGES ///////////////////////
+
+//'Feature explorer' badge
 function checkAllVideosPlayed(){
   var watchedVideos = readArrayFromLocalstorage("watchedVideos");
   var intersectionLength = _.intersection(allVideosToPlay, watchedVideos).length;
   console.log("checkAllVideosPlayed intersectionLength: "+intersectionLength)
   if (allVideosToPlay.length === intersectionLength){
     bootbox.alert("You have earned the 'Feature explorer' badge");
-    //playbasis.rule(playbasisToken, "read", "1", "", function (result) {
-    //  console.log(result);
-    //});
+    playbasis.rule(playbasisToken, "watchedvideo", USER_ID, "", function (result) {
+      console.log(result);
+    });
   }
 }
-// END
+
 
 //badges awarded for hanging out on a page long enough
 function handleStayedOnMainPageLongBadge(mainPageId){
@@ -218,6 +222,7 @@ function handleStayedOnMainPageLongBadge(mainPageId){
   }
 }
 
+//'Supporter' badge, 'Enlightened' badge, 'Student' badge
 function awardBadgeOnFirstMainPageView(mainPageId){
   var viewedMainPages = readArrayFromLocalstorage("viewedMainPages");
   if ($.inArray(mainPageId, viewedMainPages)===-1){
@@ -227,18 +232,27 @@ function awardBadgeOnFirstMainPageView(mainPageId){
       var delay=3 * 60 * 1000;//3 mins
       setTimeout(function(){
         bootbox.alert("You have earned the 'Supporter' badge");
-      },delay); 
+        playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
+          console.log(result);
+        });
+      },delay);
     } else if (mainPageId==="modelingLPProblem") {
       console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
       var delay=5* 60 * 1000;//5 mins
       setTimeout(function(){
         bootbox.alert("You have earned the 'Enlightened' badge");
+        playbasis.rule(playbasisToken, "read", USER_ID, "ModelingIntro", function (result) {
+          console.log(result);
+        });
       },delay);
     } else if (mainPageId==="introToOptimizationModeling") {
       console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
       var delay=2* 60 * 1000;//2 mins
         setTimeout(function(){
           bootbox.alert("You have earned the 'Student' badge");
+          playbasis.rule(playbasisToken, "read", USER_ID, "ORIntro", function (result) {
+            console.log(result);
+          });
         },delay);
     }
   }
