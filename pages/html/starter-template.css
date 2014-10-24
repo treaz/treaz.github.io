@@ -19,6 +19,11 @@ caption {
   display: ;
 }
 
+.conceptMapWidth {
+    margin: 0 auto;
+    width: 1068px;
+}
+
 /*
 The navbar color overrides
 Generator: http://twbscolor.smarchal.com/*/

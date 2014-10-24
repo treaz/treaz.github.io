@@ -23,6 +23,12 @@ $(document).ready(function(){
     bootbox.alert($('<div></div>').load( "modelingLPProblem/notationExplanation.html" ), function(result) {
     });
   });
+  
+  $('.conceptMap').on('click',function() {
+    bootbox.alert($('<div></div>').load( "dialogs/conceptMap.html" ), function(result) {
+    }).find("div.modal-dialog").addClass("conceptMapWidth");
+    handleConceptGamification('conceptMap');
+  });
 });
 
 window.onload=function() {

@@ -18,6 +18,15 @@
     <script src="js/modelingLPProblem.js"></script>
     <script src="js/orConceptDialogs.js"></script>
     <script src="js/bootbox.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      $('.conceptMap').on('click',function() {
+        bootbox.alert($('<div></div>').load( "conceptMap.html" ), function(result) {
+          handleConceptGamification('conceptMap');
+        }).find("div.modal-dialog").addClass("conceptMapWidth");
+      });
+    });
+    </script>
   </head>
 
   <body>
@@ -68,7 +77,7 @@
             <a href="#" class="nonNegConstraints">Identify the non-negativity constraints</a></br>
             Two auxiliary concepts to this methodology that have introduced during the examples are: <a href="#" class="parameters">parameters</a> and <a href="#" class="optimalSolution">optimal solution</a>. </br>
             </br>
-            There were many new concepts presented in this section. We have created a <a href="conceptMap.html" target="_blank" onclick="handleConceptGamification('conceptMap')">concept map</a>(opens in new page) that shows how they relate to each other.
+            There were many new concepts presented in this section. We have created a <a href="#" class="conceptMap">concept map</a>(opens in new page) that shows how they relate to each other.
           </p>
           <h1>Chips problem model</h1>
           <a href="#" class="btn btn-primary showChipsModel">Show me the full model</a>
