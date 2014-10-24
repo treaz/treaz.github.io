@@ -1,3 +1,5 @@
+var pageId = "whyOptimizationModeling";
+
 /* Functions used in the easy version*/
 $(document).ready(function(){
   $('.validateProdMixEasy').on('click',function() {
@@ -124,6 +126,11 @@ $(document).ready(function(){
 });
 
 window.onload=function() {
-  handleConceptGamification("whyOptimizationModeling");
-  handleStayedOnMainPageLongBadge("whyOptimizationModeling");
+  handleConceptGamification(pageId);
+  handleStayedOnMainPageLongBadge(pageId);
+  pageEvent(USER_ID, pageId, "openPage");
 };
+
+$(window).on('beforeunload', function () {
+  pageEvent(USER_ID, pageId, "closePage");
+});

@@ -14,19 +14,11 @@
     
     <script src="js/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/playbasis.js"></script>
+    <script src="js/tracking.js"></script>
     <script src="js/gamificationMechanisms.js"></script>
     <script src="js/modelingLPProblem.js"></script>
     <script src="js/orConceptDialogs.js"></script>
     <script src="js/bootbox.min.js"></script>
-    <script>
-    $(document).ready(function(){
-      $('.conceptMap').on('click',function() {
-        bootbox.alert($('<div></div>').load( "conceptMap.html" ), function(result) {
-          handleConceptGamification('conceptMap');
-        }).find("div.modal-dialog").addClass("conceptMapWidth");
-      });
-    });
-    </script>
   </head>
 
   <body>

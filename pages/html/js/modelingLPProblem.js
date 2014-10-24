@@ -1,6 +1,8 @@
 var messageOnCorrectAnswer = "Your answer is correct.";
 var messageOnIncorrectAnswer = "Your answer is incorrect. Try again...";
 
+var pageId = "modelingLPProblem";
+
 //registering various events in the page
 $(document).ready(function(){
   $('.chairProblem').on('click',function() {
@@ -32,7 +34,12 @@ $(document).ready(function(){
 });
 
 window.onload=function() {
-  handleConceptGamification("modelingLPProblem");
-  handleStayedOnMainPageLongBadge("modelingLPProblem");
+  handleConceptGamification(pageId);
+  handleStayedOnMainPageLongBadge(pageId);
+  pageEvent(USER_ID, pageId, "openPage");
 };
+
+$(window).on('beforeunload', function () {
+  pageEvent(USER_ID, pageId, "closePage");
+});
 
