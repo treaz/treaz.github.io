@@ -1,7 +1,7 @@
 var messageOnCorrectAnswer = "Your answer is correct.";
 var messageOnIncorrectAnswer = "Your answer is incorrect. Try again...";
 
-var pageId = "modelingLPProblem";
+var pageId ="modelingLPProblem";
 
 //registering various events in the page
 $(document).ready(function(){
@@ -25,21 +25,14 @@ $(document).ready(function(){
     bootbox.alert($('<div></div>').load( "modelingLPProblem/notationExplanation.html" ), function(result) {
     });
   });
-  
-  $('.conceptMap').on('click',function() {
-    bootbox.alert($('<div></div>').load( "dialogs/conceptMap.html" ), function(result) {
-    }).find("div.modal-dialog").addClass("conceptMapWidth");
-    handleConceptGamification('conceptMap');
-  });
 });
 
 window.onload=function() {
   handleConceptGamification(pageId);
   handleStayedOnMainPageLongBadge(pageId);
-  pageEvent(USER_ID, pageId, "openPage");
+  pageEvent(pageId, "openPage");
 };
 
 $(window).on('beforeunload', function () {
-  pageEvent(USER_ID, pageId, "closePage");
+  pageEvent(pageId, "closePage");
 });
-

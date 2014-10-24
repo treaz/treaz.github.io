@@ -13,6 +13,7 @@
     <link href="starter-template.css" rel="stylesheet">
     
     <script src="js/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/tracking.js"></script>
   </head>
 
   <body>
@@ -30,5 +31,11 @@
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+      var pageId="finishedTutorial";
+      window.onload=function() {
+        pageEvent(pageId, "openPage");
+      };
+    </script>
   </body>
 </html>

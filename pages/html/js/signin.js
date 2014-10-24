@@ -1,4 +1,16 @@
-var normalUsers = ["test","CEaJZYqGIgOw", "dhixTHutsGph", "HpGTPASOBBBb", "ItvyFqBPUkji", "kelGzVwttiSr", "oyOwhrvaIdtm", "YYBLveewYNyq", "NGEkfGvnSPMG", "fpKRBUIdXvSd", "IHXWqdxmdMLU"];
+var normalUsers = {}
+normalUsers["test"]="120";
+normalUsers["IHXWqdxmdMLU"]="100";
+normalUsers["fpKRBUIdXvSd"]="101";
+normalUsers["CEaJZYqGIgOw"]="102";
+normalUsers["dhixTHutsGph"]="103";
+normalUsers["HpGTPASOBBBb"]="104";
+normalUsers["ItvyFqBPUkji"]="105";
+normalUsers["kelGzVwttiSr"]="106";
+normalUsers["oyOwhrvaIdtm"]="107";
+normalUsers["YYBLveewYNyq"]="108";
+normalUsers["NGEkfGvnSPMG"]="109";
+
 
 var gamificationUsers = {};
 gamificationUsers["horia"] = "1";
@@ -21,8 +33,9 @@ $(document).ready(function(){
       localStorage.setItem("userId", gamificationUsers[username]);
       window.location.href = "gamificationTutorial.html";
       return false;
-    } else if (normalUsers.indexOf(username) != -1) {
+    } else if (username in normalUsers) {
       localStorage.setItem("isGamified", "false");
+      localStorage.setItem("userId", normalUsers[username]);
       window.location.href = "whyOptimizationModeling.html";
       return false;
     } else {
@@ -30,3 +43,8 @@ $(document).ready(function(){
     }
   });
 });
+
+var pageId="login";
+window.onload=function() {
+  pageEvent(pageId, "openPage");
+};

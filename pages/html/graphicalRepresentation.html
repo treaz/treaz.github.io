@@ -16,11 +16,11 @@
     <script src="js/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/playbasis.js"></script>
     <script src="js/gamificationMechanisms.js"></script>
-    <script src="js/whyOptimizationModeling.js"></script>
     <script src="js/bootbox.min.js"></script>
+    <script src="js/tracking.js"></script>
     <script src="js/orConceptDialogs.js"></script>
     <script src="js/jsxgraphcore.js"></script>
-    
+    <script src="js/chipsProblemData.js"></script>
   </head>
 
   <body>
@@ -71,7 +71,7 @@
           Looking at the available slicing time constraint (green), we see that it determines a specific <a href="#" class="constraintRegionGraphical">region</a>.<br>
           The intersection of all the constraints is known as the <a href="#" class="feasibleRegionGraphical">feasible region</a><br>
         </p>
-        <a href="modelingLPProblem.html" onclick="window.close()">Close and go back to previous page.</a>
+        <a href="#" onclick="window.close()" class="btn btn-block btn-primary ">Close and go back to previous page</a>
         
         
       </div>
@@ -85,6 +85,16 @@
     <script src="js/ie10-viewport-bug-workaround.js"></script>
   </body>
   <script type="text/javascript">
+  
+    var pageId="graphicalRepresentation";
+    window.onload=function() {
+      pageEvent(pageId, "openPage");
+    };
+
+    $(window).on('beforeunload', function () {
+      pageEvent(pageId, "closePage");
+    });
+  
     var fryingConstraintLineColor = 'green';
     var slicingConstraintLineColor = 'red';
     var packingConstraintLineColor = 'cyan';
@@ -123,5 +133,6 @@
       oldOy = newOy;
       oldOx= newOx;
     }
+      
 </script>
 </html>
