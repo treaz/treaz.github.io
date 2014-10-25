@@ -23,7 +23,17 @@ $(document).ready(function() {
     initializeGamificationLibrary();
     //enalbe playbasis client
     //append all gamification elements to dom
-    $( "body" ).append( '<div class="pb-userbar" data-pb-displayPoint="exp" ></div>' );
+    $("body").append( '<div class="pb-userbar" data-pb-displayPoint="exp" ></div>' );
+    $(".chatPlaceholder").append( '<div class="col-xs-12">'+
+          '<div id="chat"></div>'+
+          '<div id="input">'+
+            '<div id="joined">'+
+              'Chat:&nbsp;'+
+              '<input id="phrase" type="text" /> '+
+              '<input id="sendB" class="btn btn-primary " type="submit" name="join" value="Send" />'+
+            '</div>'+
+          '</div>'+
+        '</div>' );
     $(".nav.navbar-nav").append('<li><a href="dashboard.html">Dashboard</a></li>');
     $(".nav.navbar-nav").append('<li><a href="gamificationTutorial.html">Using the tutorial</a></li>');
   } else if (isGamified==="false"){
@@ -270,12 +280,6 @@ function awardBadgeOnFirstMainPageView(mainPageId){
 if (!window.WebSocket) {
   alert("WebSocket not supported by this browser");
 }
-
-function getKeyCode(ev) {
-    if (window.event)
-        return window.event.keyCode;
-    return ev.keyCode;
-}
  
 var room = {
   join : function(name) {
@@ -320,7 +324,7 @@ var room = {
           chat.append(spanFrom);
           chat.append(spanText);
           chat.append(lineBreak);
-          chat.scrollTop = chat.scrollHeight - chat.clientHeight;
+          chat.scrollTop(chat.prop('scrollHeight') - chat.prop('clientHeight'));
       }
   },
 
@@ -342,7 +346,28 @@ var room = {
             this._ws.send(user + ':' + message);
     }
 };
+$(document).ready(function() {
+  room.join(USER_ID);
 
+  // 2) When user is connected, 'phrase' div is displayed with Chat input + Send button      
+  $('#phrase').attr('autocomplete', 'OFF');
+  // Enter in the 'phrase' field send the message
+  $('#phrase').keyup(function (ev) {
+    var keyCode = ev.which;
+    if (keyCode === 13 || keyCode === 10) {
+      room.chat($('#phrase').val());
+      $('#phrase').val('');
+      return false;
+    }
+    return true;
+  });
+  // "Send" button click send the message
+  $('#sendB').click(function (event) {
+    room.chat($('#phrase').val());
+    $('#phrase').val('');
+    return false;
+  });
+})
        
 
 function readArrayFromLocalstorage(item){

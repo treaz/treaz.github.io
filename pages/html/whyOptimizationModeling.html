@@ -582,21 +582,9 @@
           </div>
         </div>
       </div>
+      <div class="row chatPlaceholder"></div>
       <div class="row">
-        <div id="chat"></div>
-          <div id="input">
-              <div id="join">
-                  Username:&nbsp;
-                  <input id="username" type="text" /><input id="joinB"
-                      class="button" type="submit" name="join" value="Join" />
-              </div>
-              <div id="joined" class="hidden">
-                  Chat:&nbsp;<input id="phrase" type="text" /> <input id="sendB"
-                      class="button" type="submit" name="join" value="Send" />
-              </div>
-          </div>
-        </div>
-      <div class="row">
+        <br>
         <a href="introToOptimizationModeling.html" class="btn btn-block btn-primary ">Intro to optimization modeling</a>
       </div>
     </div><!-- /.container -->
@@ -608,43 +596,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
     <script>
-window.onload = function () {
- // 1) When user is NOT connected, 'join' div is displayed with Username input + Join button
-    $('#username').attr('autocomplete', 'OFF');
-    // Enter in the username field, opens Chat WebSockets
-    $('#username').keyup(function (ev) {
-      var keyc = getKeyCode(ev);
-      if (keyc === 13 || keyc === 10) {
-          room.join($('#username').val());
-          return false;
-      }
-      return true;
-    });
-    // "Join" button click opens Chat WebSockets
-    $('#joinB').click(function () {
-      room.join($('#username').val());
-      return false;
-    });
 
-  // 2) When user is connected, 'phrase' div is displayed with Chat input + Send button      
-  $('#phrase').attr('autocomplete', 'OFF');
-  // Enter in the 'phrase' field send the message
-  $('#phrase').keyup(function (ev) {
-    var keyc = getKeyCode(ev);
-    if (keyc === 13 || keyc === 10) {
-      room.chat($('#phrase').val());
-      $('phrase').val('');
-      return false;
-    }
-    return true;
-  });
-  // "Send" button click send the message
-  $('#sendB').click(function (event) {
-    room.chat($('#phrase').val());
-    $('#phrase').val('');
-    return false;
-  });
-}
 //end chat room
     </script>
   </body>
