@@ -1,0 +1,43 @@
+<h1>Decision variables</h1>
+<p class="lead">Description</p>
+<p>The quantities that the decision makers would like to determine. They are the unknowns of a mathematical programming model.</p>
+<p class="lead">Quiz</p>
+<p>For the beer transport problem presented before, can you identify the decision variables?</p>
+<div class="form-group">
+  <label for="answer">Answer:</label>
+  <textarea class="form-control userAnswerQuizDecisionVariablesLP2" rows="5"></textarea>
+</div>
+<p class="correctAnswerQuizDecisionVariablesLP2" style="display:none">
+  The number of pallets of beer to transport from each brewery to each customer.</br>
+  X_b_c, b={Haarlem, Eindhoven}, c={Amsterdam, Amersfoort, Gouda}</br>
+</p>
+<a href="#" class="btn btn-primary  validateQuizDecisionVariablesLP2">Submit answer</a>
+<a href="#" class="btn btn-primary  showAnswerQuizDecisionVariablesLP2">Show correct answer</a>
+
+
+<script>
+var conceptId = "decisionVariablesLP2";
+//answer should contain the following words: pallet, beer, transport, brewer, customer || Amsterdam& Amersfoort& Gouda& Haarlem& Eindhoven
+$(document).ready(function(){
+  $('.validateQuizDecisionVariablesLP2').on('click',function() {
+    var answer = $('.userAnswerQuizDecisionVariablesLP2').val().toLowerCase();
+    handleAnyQuizAnswer(conceptId);
+    if((answer.indexOf("pallet") != -1 && answer.indexOf("beer") != -1 && answer.indexOf("transport") != -1 && answer.indexOf("brewer") != -1 && answer.indexOf("customer") != -1) || (answer.indexOf("Amsterdam") != -1 && answer.indexOf("Amersfoort") != -1 && answer.indexOf("Gouda") != -1 && answer.indexOf("Haarlem") != -1 && answer.indexOf("Eindhoven") != -1)){
+      handleCorrectQuizAnswer(conceptId);
+      alert(messageOnCorrectAnswer);
+      $('.correctAnswerQuizDecisionVariablesLP2').slideDown();
+    } else {
+      alert(messageOnIncorrectAnswer);
+    }
+    return false;
+  });
+});
+
+$(document).ready(function(){
+  $('.showAnswerQuizDecisionVariablesLP2').on('click',function() {
+    localStorage.setItem("cheater", "true");
+    $('.correctAnswerQuizDecisionVariablesLP2').slideToggle();
+    return false;
+  });
+});
+</script>

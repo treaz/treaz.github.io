@@ -1,38 +1,3 @@
 <h1>Objective function</h1>
 <p class="lead">Description</p>
 <p>A function that consists of decision variables that needs to be maximized or minimized which specifies the criterion the decision maker will use to evaluate alternative solutions to the problem.</p>
-<p class="lead">Quiz</p>
-<p>For the chips problem (opens in new page) presented before, can you identify the objective function?</p>
-<div class="form-group">
-  <label for="answer">Answer:</label>
-  <textarea class="form-control userAnswerQuizObjectiveFunction" rows="5"></textarea>
-</div>
-<p class="correctAnswerQuizObjectiveFunction" style="display:none">The objective function is P(rofit) = sum (X_i*SellPrice_i); i= {plain, mexican}, needing to be maximized.</p>
-<a href="#" class="btn btn-primary  validateQuizObjectiveFunction">Submit answer</a>
-<a href="#" class="btn btn-primary  showAnswerQuizObjectiveFunction">Show correct answer</a>
-
-
-<script>
-var conceptId = "objectiveFunction";
-//answer should contain the following words: plain, mexican, maxim, sell, price, =, sum || +
-$(document).ready(function(){
-  $('.validateQuizObjectiveFunction').on('click',function() {
-    var answer = $('.userAnswerQuizObjectiveFunction').val().toLowerCase();
-    handleAnyQuizAnswer(conceptId);
-    if(answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1 && answer.indexOf("maxim") != -1  && answer.indexOf("sell") != -1 && answer.indexOf("price") != -1&& answer.indexOf("=") != -1 &&(answer.indexOf("sum") != -1 ||answer.indexOf("+") != -1 )){
-      handleCorrectQuizAnswer(conceptId);
-      alert(messageOnCorrectAnswer);
-      $('.correctAnswerQuizObjectiveFunction').slideDown();
-    } else {
-      alert(messageOnIncorrectAnswer);
-    }
-  });
-});
-
-$(document).ready(function(){
-  $('.showAnswerQuizObjectiveFunction').on('click',function() {
-    addConceptToLocalstorageItem("answeredCorrectlyQuizzes", conceptId);
-    $('.correctAnswerQuizObjectiveFunction').slideToggle();
-  });
-});
-</script>

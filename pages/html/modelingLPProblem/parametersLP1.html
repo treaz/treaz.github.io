@@ -1,0 +1,49 @@
+<h1>Parameters</h1>
+<p class="lead">Description</p>
+<p>The collection of coefficients, representing known data, which are used in the model.</p>
+<p class="lead">Notation</p>
+<p>No specific notations available. Parameters usually appear as tables or concrete values.</p>
+<p class="lead">Quiz</p>
+<p>For the chips problem presented before, can you identify the parameters?</p>
+<div class="form-group">
+  <label for="answer">Answer:</label>
+  <textarea class="form-control userAnswerQuizParametersLP1" rows="5"></textarea>
+</div>
+<p class="correctAnswerQuizParametersLP1" style="display:none">
+  The time required to slice plain chips (TSp), mexican chips (TSm) and the time the slicer is available (TSa).</br>
+  </br>
+  The time required to fry plain chips (TFp), mexican chips (TFm) and the time the fryer is available (TFa).</br>
+  </br>
+  The time required to package plain chips (TPp), mexican chips (TPm) and the time the packager is available (TPa).</br>
+</p>
+<a href="#" class="btn btn-primary  validateQuizParametersLP1">Submit answer</a>
+<a href="#" class="btn btn-primary  showAnswerQuizParametersLP1">Show correct answer</a>
+
+
+<script>
+var conceptId="parametersLP1";
+
+//answer should contain the following words: (plain, mexican, slic, fry, pack, time, available) || (table 1 && table 2 & table 3)
+$(document).ready(function(){
+  $('.validateQuizParametersLP1').on('click',function() {
+    var answer = $('.userAnswerQuizParametersLP1').val().toLowerCase();
+    handleAnyQuizAnswer(conceptId);
+    if((answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1 && answer.indexOf("slic") != -1 && answer.indexOf("fry") != -1 && answer.indexOf("pack") != -1 && answer.indexOf("time") != -1 && answer.indexOf("available") != -1) || (answer.indexOf("table 1") != -1 && answer.indexOf("table 2") != -1 && answer.indexOf("table 3") != -1)){
+      handleCorrectQuizAnswer(conceptId);
+      alert(messageOnCorrectAnswer);
+      $('.correctAnswerQuizParametersLP1').slideDown();
+    } else {
+      alert(messageOnIncorrectAnswer);
+    }
+    return false;
+  });
+});
+
+$(document).ready(function(){
+  $('.showAnswerQuizParametersLP1').on('click',function() {
+    localStorage.setItem("cheater", "true");
+    $(".correctAnswerQuizParametersLP1").slideToggle();
+    return false;
+  });
+});
+</script>

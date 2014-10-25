@@ -1,0 +1,40 @@
+<h1>Decision variables</h1>
+<p class="lead">Description</p>
+<p>The quantities that the decision makers would like to determine. They are the unknowns of a mathematical programming model.</p>
+<p class="lead">Quiz</p>
+<p>For the chips problem presented before, can you identify the decision variables?</p>
+<div class="form-group">
+  <label for="answer">Answer:</label>
+  <textarea class="form-control userAnswerQuizDecisionVariablesLP1" rows="5"></textarea>
+</div>
+<p class="correctAnswerQuizDecisionVariablesLP1" style="display:none">The decision variables are the number of bags of plain chips and of mexican chips to produce, X_plain and X_mexican.</p>
+<a href="#" class="btn btn-primary  validateQuizDecisionVariablesLP1">Submit answer</a>
+<a href="#" class="btn btn-primary  showAnswerQuizDecisionVariablesLP1">Show correct answer</a>
+
+
+<script>
+var conceptId = "decisionVariablesLP1";
+//answer should contain the following words: plain, mexican
+$(document).ready(function(){
+  $('.validateQuizDecisionVariablesLP1').on('click',function() {
+    var answer = $('.userAnswerQuizDecisionVariablesLP1').val().toLowerCase();
+    handleAnyQuizAnswer(conceptId);
+    if(answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1){
+      handleCorrectQuizAnswer(conceptId);
+      alert(messageOnCorrectAnswer);
+      $('.correctAnswerQuizDecisionVariablesLP1').slideDown();
+    } else {
+      alert(messageOnIncorrectAnswer);
+    }
+    return false;
+  });
+});
+
+$(document).ready(function(){
+  $('.showAnswerQuizDecisionVariablesLP1').on('click',function() {
+    localStorage.setItem("cheater", "true");
+    $('.correctAnswerQuizDecisionVariablesLP1').slideToggle();
+    return false;
+  });
+});
+</script>

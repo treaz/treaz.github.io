@@ -5,62 +5,48 @@ $(document).ready(function(){
       handleConceptGamification("optimizationModeling");
     });
   });
-});
-
-$(document).ready(function(){
+  
   $('.operationsResearch').on('click',function() {
     bootbox.alert($('<div></div>').load( "dialogs/operationsResearch.html" ), function(result) {
       handleConceptGamification("operationsResearch");
     });
   });
-});
-
-$(document).ready(function(){
+  
   $('.mathematicalProgramming').on('click',function() {
     bootbox.alert($('<div></div>').load( "dialogs/mathematicalProgramming.html" ), function(result) {
       handleConceptGamification("mathematicalProgramming");
     });
   });
-});
-
-$(document).ready(function(){
+  
   $('.linearProgramming').on('click',function() {
     bootbox.alert($('<div></div>').load( "dialogs/linearProgramming.html" ), function(result) {
       handleConceptGamification("linearProgramming");
     });
   });
-});
-
-$(document).ready(function(){
+  
   $('.mathematicalModel').on('click',function() {
     bootbox.alert($('<div></div>').load( "dialogs/mathematicalModel.html" ), function(result) {
       handleConceptGamification("mathematicalModel");
     });
   });
-});
-
-$(document).ready(function(){
+  
   $('.objectiveFunction').on('click',function() {
     bootbox.alert($('<div></div>').load( "dialogs/objectiveFunction.html" ), function(result) {
       handleConceptGamification("objectiveFunction");
     });
   });
-});
-
-$(document).ready(function(){
+  
   $('.constraints').on('click',function() {
     bootbox.alert($('<div></div>').load( "dialogs/constraints.html" ), function(result) {
       handleConceptGamification("constraints");
     });
   });
-});
-
-$(document).ready(function(){
+  
   $('.solution').on('click',function() {
     bootbox.alert($('<div></div>').load( "dialogs/optimalSolution.html" ), function(result) {
       handleConceptGamification("solution");
     });
-  });
+  }); 
 });
 
 $(document).ready(function(){

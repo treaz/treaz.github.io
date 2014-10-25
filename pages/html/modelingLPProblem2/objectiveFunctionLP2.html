@@ -1,0 +1,43 @@
+<h1>Objective function</h1>
+<p class="lead">Description</p>
+<p>A function that consists of decision variables that needs to be maximized or minimized which specifies the criterion the decision maker will use to evaluate alternative solutions to the problem.</p>
+<p class="lead">Quiz</p>
+<p>For the beer transport problem presented before, can you identify the objective function?</p>
+<div class="form-group">
+  <label for="answer">Answer:</label>
+  <textarea class="form-control userAnswerQuizObjectiveFunctionLP2" rows="5"></textarea>
+</div>
+<p class="correctAnswerQuizObjectiveFunctionLP2" style="display:none">
+  The total transport costs (the sum of the transport costs for each route brewery -> customer), needing to be minimized.</br>
+  C=sum(X_b_c*P_b_c), b={Haarlem, Eindhoven}, c={Amsterdam, Amersfoort, Gouda}</br>
+</p>
+<a href="#" class="btn btn-primary  validateQuizObjectiveFunctionLP2">Submit answer</a>
+<a href="#" class="btn btn-primary  showAnswerQuizObjectiveFunctionLP2">Show correct answer</a>
+
+
+<script>
+var conceptId = "objectiveFunctionLP2";
+//answer should contain the following words: total & transport & cost & minim || sum && * & = & { & } & Eindhoven
+$(document).ready(function(){
+  $('.validateQuizObjectiveFunctionLP2').on('click',function() {
+    var answer = $('.userAnswerQuizObjectiveFunctionLP2').val().toLowerCase();
+    handleAnyQuizAnswer(conceptId);
+    if((answer.indexOf("total") != -1 && answer.indexOf("transport") != -1 && answer.indexOf("cost") != -1  && answer.indexOf("minim") != -1) || (answer.indexOf("sum") != -1&& answer.indexOf("=") != -1 &&answer.indexOf("*") != -1 && answer.indexOf("{") != -1 && answer.indexOf("}") != -1 && answer.indexOf("Eindhoven") != -1)){
+      handleCorrectQuizAnswer(conceptId);
+      alert(messageOnCorrectAnswer);
+      $('.correctAnswerQuizObjectiveFunctionLP2').slideDown();
+    } else {
+      alert(messageOnIncorrectAnswer);
+    }
+    return false;
+  });
+});
+
+$(document).ready(function(){
+  $('.showAnswerQuizObjectiveFunctionLP2').on('click',function() {
+    localStorage.setItem("cheater", "true");
+    $('.correctAnswerQuizObjectiveFunctionLP2').slideToggle();
+    return false;
+  });
+});
+</script>

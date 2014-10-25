@@ -5,25 +5,46 @@ var pageId ="modelingLPProblem";
 
 //registering various events in the page
 $(document).ready(function(){
-  $('.chairProblem').on('click',function() {
-    bootbox.alert($('<div></div>').load( "modelingLPProblem/chairProblem.html" ), function(result) {
-    });
-  handleConceptGamification("chairProblem");
-  });
-  
-  $('.busProblem').on('click',function() {
-    bootbox.alert($('<div></div>').load( "modelingLPProblem/busProblem.html" ), function(result) {
-    });
-  handleConceptGamification("busProblem");
-  });
   
   $('.showChipsModel').on('click',function() {
     $('.chipsModel').slideToggle();
+    return false;
   });
   
   $('.notationExplanation').on('click',function() {
-    bootbox.alert($('<div></div>').load( "modelingLPProblem/notationExplanation.html" ), function(result) {
+    bootbox.alert($('<div></div>').load( "modelingLPProblem/notationExplanationLP1.html" ), function(result) {
     });
+    return false;
+  });
+  
+  $('.objectiveFunctionLP1').on('click',function() {
+    bootbox.alert($('<div></div>').load( "modelingLPProblem/objectiveFunctionLP1.html" ), function(result) {
+    });
+    return false;
+  });
+  
+  $('.decisionVariablesLP1').on('click',function() {
+    bootbox.alert($('<div></div>').load( "modelingLPProblem/decisionVariablesLP1.html" ), function(result) {
+    });
+    return false;
+  });
+  
+  $('.constraintsLP1').on('click',function() {
+    bootbox.alert($('<div></div>').load( "modelingLPProblem/constraintsLP1.html" ), function(result) {
+    });
+    return false;
+  });
+  
+  $('.nonNegConstraintsLP1').on('click',function() {
+    bootbox.alert($('<div></div>').load( "modelingLPProblem/nonNegConstraintsLP1.html" ), function(result) {
+    });
+    return false;
+  });
+  
+  $('.parametersLP1').on('click',function() {
+    bootbox.alert($('<div></div>').load( "modelingLPProblem/parametersLP1.html" ), function(result) {
+    });
+    return false;
   });
 });
 

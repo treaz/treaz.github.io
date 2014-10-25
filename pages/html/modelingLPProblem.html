@@ -16,8 +16,8 @@
     <script src="js/playbasis.js"></script>
     <script src="js/gamificationMechanisms.js"></script>
     <script src="js/tracking.js"></script>
+    <script src="js/chipsProblemData.js"></script>
     <script src="js/modelingLPProblem.js"></script>
-    <script src="js/orConceptDialogs.js"></script>
     <script src="js/bootbox.min.js"></script>
   </head>
 
@@ -31,13 +31,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Optimization modeling tutorial</a>
+          
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="whyOptimizationModeling.html">Why optimization modeling</a></li>
             <li><a href="introToOptimizationModeling.html">Intro to optimization modeling</a></li>
-            <li class="active"><a href="modelingLPProblem.html">Modeling a LP problem</a></li>
+            <li class="active"><a href="modelingLPProblem.html">Modeling a LP problem (1)</a></li>
+            <li><a href="modelingLPProblem2.html">Modeling a LP problem (2)</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -46,53 +47,103 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Reaching a methodology for modeling any linear programming (LP) problem</h1>
+        <h1>Product mix - a linear programming (LP) problem</h1>
         <div class="row">
-          <p>Let's take a look at 2 different linear programming problems:</p>
-           
-        </div>
-        <div class="row">
-          <div class="col-xs-2">
-            <a href="#" class="busProblem"><img src="img/bus.gif" class="img-rounded img-responsive"></a>
-            <a href="#" class="busProblem">Bus driver allocation</a>
+          <div class="col-xs-7">
+            <p>A company produces plain and mexican chips. The chips have to go through three processes: slicing, frying, and packing.</p>
+            <img src="img/chipsProcess.png" class="img-rounded img-responsive">
+            <p>The time required by each type of chips for each process is presented in Table 1. There is a limit on the amount of time available for each process (Table 2).The sell price of the chips is presented in Table 3.</br>
+              </br>
+              You want to determine what combination of chips to produce in order to yeld the highest profit possible.
+            </p>
           </div>
-          <div class="col-xs-2">
-            <a href="#" class="chairProblem"><img src="img/chair.jpg" class="img-rounded img-responsive"></a>
-            <a href="#" class="chairProblem">Chair transport</a>
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-xs-8">
+                <table class="table table-condensed table-striped table-bordered">
+                  <thead>
+                  <tr>
+                    <td></td>
+                    <td>Slicing(min)</td>
+                    <td>Frying(min)</td>
+                    <td>Packing(min)</td></tr>
+                  </thead>
+                  <tr>
+                    <td>plain</td>
+                    <td class="slicingTimePlain"></td>
+                    <td class="fryingTimePlain"></td>
+                    <td class="packingTimePlain"></td></tr>
+                  <tr>
+                    <td>mexican</td>
+                    <td class="slicingTimeMexican"></td>
+                    <td class="fryingTimeMexican"></td>
+                    <td class="packingTimeMexican"></td></tr>
+                  <caption class="text-left">Table 1, 1kg of potatoes processing time</caption>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-7">
+                <table class="table table-condensed table-striped table-bordered">
+                  <tr>
+                    <td>Available slicing time</td>
+                    <td class="availableSlicingTime"></td></tr>
+                  <tr>
+                    <td>Available frying time</td>
+                    <td class="availableFryingTime"></td></tr>
+                  <tr>
+                    <td>Available packing time</td>
+                    <td class="availablePackingTime"></td></tr>
+                  <caption class="text-left">Table 2, machine availability(min)</caption>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6">
+                <table class="table table-condensed table-striped table-bordered">
+                  <thead>
+                  <tr>
+                    <td></td>
+                    <td>Sell price(euro)</td></tr>
+                  </thead>
+                  <tr>
+                    <td>plain</td>
+                    <td class="sellPricePlain"></td></tr>
+                  <tr>
+                    <td>mexican</td>
+                    <td class="sellPriceMexican"></td></tr>
+                  <caption class="text-left">Table 3, chips sell price</caption>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <p>A pattern emerges for creating an optimization model for a LP problem:</br>
-            <a href="#" class="decisionVariables">Identify decision variables</a></br>
-            <a href="#" class="objectiveFunction">Identify the objective function</a></br>
-            <a href="#" class="constraints">Identify the constraints</a></br>
-            <a href="#" class="nonNegConstraints">Identify the non-negativity constraints</a></br>
-            Two auxiliary concepts to this methodology that have introduced during the examples are: <a href="#" class="parameters">parameters</a> and <a href="#" class="optimalSolution">optimal solution</a>. </br>
-            </br>
-            There were many new concepts presented in this section. We have created a <a href="conceptMap.html" onclick="handleConceptGamification('conceptMap');" target="_blank">concept map</a>(opens in new page) that shows how they relate to each other.
-          </p>
-          <h1>Chips problem model</h1>
-          <a href="#" class="btn btn-primary showChipsModel">Show me the full model</a>
-          <p class="chipsModel" style="display:none">Decision variable: X_i, where i= {plain, mexican}.</br>
-            P(rofit) = sum (X_i*SellPrice_i); i= {plain, mexican}, needing to be maximized</br>
-            sum (X_i*TS_i) <= TSa; i = {plain, mexican}</br>
-            sum(X_i*TF_i) <= TFa; i = {plain, mexican}</br>
-            sum(X_i*TP_i) <= TPa; i = {plain, mexican}</br>
-            X_i >= 0; i = {plain, mexican}</br>
-            <a href="#" class="notationExplanation">Confused with the notations?</a></br>
-            </br>
-            For the given parameters, the optimal solution is:</br>
-            X_plain = 57.5</br>
-            X_mexican = 50</br>
-          </p>
-          <p>Since this is a very easy LP problem, we can create, for the model, a <a href="graphicalRepresentation.html" target="_blank" onclick="handleConceptGamification('graphicalRepresentation')">graphical representation</a>.</p>
-        </div>
-      </div>
-      <div class="row chatPlaceholder"></div>
-      <div class="row">
+        <p>To create an optimization model for this problem:</br>
+          <a href="#" class="decisionVariablesLP1">Identify decision variables</a></br>
+          <a href="#" class="objectiveFunctionLP1">Identify the objective function</a></br>
+          <a href="#" class="constraintsLP1">Identify the constraints</a></br>
+          <a href="#" class="nonNegConstraintsLP1">Identify the non-negativity constraints</a></br>
+          Additionally, you will have to understand what the <a href="#" class="parametersLP1">parameters</a> are.</br>
+        </p>
+        <h1>Chips problem model</h1>
+        <a href="#" class="btn btn-primary showChipsModel">Show me the full model</a>
+        <p class="chipsModel" style="display:none">
+          Decision variable: X_i, where i= {plain, mexican}.</br>
+          <br>
+          P(rofit) = sum (X_i*SellPrice_i); i= {plain, mexican}, needing to be maximized</br>
+          <br>
+          sum (X_i*TS_i) <= TSa; i = {plain, mexican}</br>
+          sum(X_i*TF_i) <= TFa; i = {plain, mexican}</br>
+          sum(X_i*TP_i) <= TPa; i = {plain, mexican}</br>
+          <br>
+          X_i >= 0; i = {plain, mexican}</br>
+          <a href="#" class="notationExplanation">Confused with the notations?</a></br>
+        </p>
+        <p>Since this is a very easy LP problem, we can create, for the model, a <a href="graphicalRepresentation.html" target="_blank" onclick="handleConceptGamification('graphicalRepresentation')">graphical representation</a>.</p>
+        <div class="row chatPlaceholder"></div>
         <br>
-        <a href="tutorialFinished.html" class="btn btn-block btn-primary">Finish the tutorial.</a>
-      </div>
+        <a href="modelingLPProblem2.html" class="btn btn-block btn-primary">Continue with another example</a>
+      </div><!-- /.starter-template -->
     </div><!-- /.container -->
 
     <!-- Bootstrap core JavaScript

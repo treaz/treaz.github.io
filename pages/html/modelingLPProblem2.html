@@ -15,7 +15,8 @@
     <script src="js/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/playbasis.js"></script>
     <script src="js/gamificationMechanisms.js"></script>
-    <script src="js/lpProblemText.js"></script>
+    <script src="js/tracking.js"></script>
+    <script src="js/modelingLPProblemLP2.js"></script>
     <script src="js/bootbox.min.js"></script>
 
     
@@ -31,14 +32,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Optimization modeling tutorial</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="whyOptimizationModeling.html">Why optimization modeling</a></li>
             <li><a href="introToOptimizationModeling.html">Intro to optimization modeling</a></li>
-            <li><a href="modelingLPProblem.html">Modeling a LP problem</a></li>
-            <li class="active"><a href="lpProblemText.html">LP problem</a></li>
+            <li><a href="modelingLPProblem.html">Modeling a LP problem (1)</a></li>
+            <li class="active"><a href="modelingLPProblem2.html">Modeling a LP problem (2)</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -46,6 +46,7 @@
     
     <div class="container">
       <div class="starter-template">
+        <h1>Beer transport - a linear programming (LP) problem</h1>
         <div class="row">
           <div class="col-xs-7">
             <p> A small beer company established in the Netherlands needs to deliver (every day) beer produced in 2 breweries to 3 customers in different cities (Figure 1).</br>
@@ -111,7 +112,7 @@
                   <td>366</td>
                   <td>554</td>
                   <td>479</td></tr>
-                <caption class="text-left">Table 3 Cost of moving one truck from a brewery to a customer</caption>
+                <caption class="text-left">Table 3 Cost of moving one pallet from a brewery to a customer</caption>
               </table>
             </div>
           </div>
@@ -122,15 +123,31 @@
             </figure>
           </div>
         </div>
-        <p class="lead">Try to create the model for this problem</p>
-        <p>Help me with: <a href="#" class="beerTransportDecisionVariables">the decision variables</a>, <a href="#" class="beerTransportObjectiveFunction">the objective function</a>, 
-          <a href="#" class="beerTransportConstraints">the constraints</a>, <a href="#" class="beerTransportNonNegContraints">the non-negativity constraints</a>.
+        <p>To create an optimization model for this problem:</br>
+          <a href="#" class="decisionVariablesLP2">Identify decision variables</a></br>
+          <a href="#" class="objectiveFunctionLP2">Identify the objective function</a></br>
+          <a href="#" class="constraintsLP2">Identify the constraints</a></br>
+          <a href="#" class="nonNegConstraintsLP2">Identify the non-negativity constraints</a></br>
+          Additionally, you will have to understand what the <a href="#" class="parametersLP2">parameters</a> are.</br>
         </p>
-        <a href="#" class="beerTransportSolution">I'm done, show me the solution</a>
+        <h1>Beer transport problem model</h1>
+        <a href="#" class="btn btn-primary showModelLP2">Show me the full model</a>
+        <p class="modelLP2" style="display:none">
+          Decision variable: X_b_c, where b={Haarlem, Eindhoven}, c={Amsterdam, Amersfoort, Gouda}</br>
+          </br>
+          C=sum(X_b_c*P_b_c), b={Haarlem, Eindhoven}, c={Amsterdam, Amersfoort, Gouda},minimize</br>
+          </br>
+          sum(X_b_c) <= supply_b, b={Haarlem, Eindhoven}, c={Amsterdam, Amersfoort, Gouda}</br>
+          </br>
+          sum(X_b_c) >= demand_c, b={Haarlem, Eindhoven}, c={Amsterdam, Amersfoort, Gouda}</br>
+          </br>
+          X_b_c>=0, b={Haarlem, Eindhoven}, c={Amsterdam, Amersfoort, Gouda}</br>
+          <a href="#" class="notationExplanationLP2">Confused with the notations?</a></br>
+        </p>
       </div>
-      <div class="row">
-        <a href="#" class="btn btn-block btn-primary" onclick="window.close();">Finish the tutorial.</a>
-      </div>
+      <div class="row chatPlaceholder"></div>
+      <br>
+      <a href="tutorialFinished.html" class="btn btn-block btn-primary">Finish the tutorial</a>
     </div>
 
     <!-- Bootstrap core JavaScript

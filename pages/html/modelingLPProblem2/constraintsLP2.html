@@ -1,0 +1,48 @@
+<h1>Constraints</h1>
+<p class="lead">Description</p>
+<p>An inequality (e.g. a>b, a>=b) or equality (e.g. a=b) defining limitations on decision variables.</p>
+<p class="lead">Quiz</p>
+<p>For the beer transport problem presented before, can you identify the constraints?</p>
+<div class="form-group">
+  <label for="answer">Answer:</label>
+  <textarea class="form-control userAnswerQuizConstraintsLP2" rows="5"></textarea>
+</div>
+<p class="correctAnswerQuizConstraintsLP2" style="display:none">
+  The amount of beer transported from each brewery should be at most the supply of the brewery.</br>
+  sum(X_Haarlem_c) <= supply_Haarlem, c={Amsterdam, Amersfoort, Gouda}</br>
+  sum(X_Eindhoven_c) <= supply_Eindhoven, c={Amsterdam, Amersfoort, Gouda}</br>
+  </br>
+  The amount of beer transported to each customer should be at least than the demand of the customer.</br>
+  sum(X_b_Amsterdam) >= demand_Amsterdam, c={Haarlem, Eindhoven}</br>
+  sum(X_b_Amersfoort) >= demand_Amersfoort, c={Haarlem, Eindhoven}</br>
+  sum(X_b_Gouda) >= demand_Gouda, c={Haarlem, Eindhoven}</br>
+</p>
+<a href="#" class="btn btn-primary validateQuizConstraintsLP2">Submit answer</a>
+<a href="#" class="btn btn-primary showAnswerQuizConstraintsLP2">Show correct answer</a>
+
+<script>
+var conceptId = "constraintsLP2";
+//answer should contain the following words: demand & supply& transp& brew& customer& beer || sum& demand& supply& Amsterdam& Amersfoort& Gouda& Haarlem& Eindhoven
+$(document).ready(function(){
+  $('.validateQuizConstraintsLP2').on('click',function() {
+    var answer = $('.userAnswerQuizConstraintsLP2').val().toLowerCase();
+    handleAnyQuizAnswer(conceptId);
+    if((answer.indexOf("demand") != -1 && answer.indexOf("supply") != -1 && answer.indexOf("transp") != -1 && answer.indexOf("brew") != -1 && answer.indexOf("customer") != -1 && answer.indexOf("beer") != -1) || (answer.indexOf("sum") != -1 && answer.indexOf("demand") != -1 && answer.indexOf("supply") != -1 && answer.indexOf("Amsterdam") != -1 && answer.indexOf("Amersfoort") != -1 && answer.indexOf("Gouda") != -1 && answer.indexOf("Haarlem") != -1 && answer.indexOf("Eindhoven") != -1)){
+      handleCorrectQuizAnswer(conceptId);
+      alert(messageOnCorrectAnswer);
+      $('.correctAnswerQuizConstraintsLP2').slideDown();
+    } else {
+      alert(messageOnIncorrectAnswer);
+    }
+    return false;
+  });
+});
+
+$(document).ready(function(){
+  $('.showAnswerQuizConstraintsLP2').on('click',function() {
+    localStorage.setItem("cheater", "true");
+    $('.correctAnswerQuizConstraintsLP2').slideToggle();
+    return false;
+  });
+});
+</script>
