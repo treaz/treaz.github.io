@@ -31,6 +31,8 @@ $(document).ready(function() {
               'Chat:&nbsp;'+
               '<input id="phrase" type="text" /> '+
               '<input id="sendB" class="btn btn-primary " type="submit" name="join" value="Send" />'+
+              '<input id="otherUserId" type="text" style="float:right"/> '+
+              '<input id="rateUserAsHelpful" class="btn btn-primary" style="float:right" type="submit" value="Rate user as helpful" />'+
             '</div>'+
           '</div>'+
         '</div>' );
@@ -42,6 +44,19 @@ $(document).ready(function() {
     window.location.href = "login.html";
     return false;
   }
+  
+  $('#rateUserAsHelpful').on('click',function() {
+    if ($("#otherUserId").val()===USER_ID){
+      bootbox.alert("You cannot rate yourself as helpful.");
+    } else {
+      playbasis.rule(playbasisToken, "like", $("#otherUserId").val(), "", "", "", function (response) {
+        console.log(response);
+      });
+    }
+    $("#otherUserId").val('');
+    return false;
+  });
+  
 });
 
 function initializeGamificationLibrary(){
@@ -260,7 +275,7 @@ function awardBadgeOnFirstMainPageView(mainPageId){
       },delay);
     } else if (mainPageId==="modelingLPProblem") {
       console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
-      var delay=5* 60 * 1000;//5 mins
+      var delay=3 * 60 * 1000;
       setTimeout(function(){
         playbasis.rule(playbasisToken, "read", USER_ID, "ModelingIntro", "", "", function (response) {
           badgeAwardNotification(response, "You have earned the 'Enlightened' badge");
@@ -268,10 +283,18 @@ function awardBadgeOnFirstMainPageView(mainPageId){
       },delay);
     } else if (mainPageId==="introToOptimizationModeling") {
       console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
-      var delay=2* 60 * 1000;//2 mins
+      var delay=4 * 60 * 1000;//2 mins
         setTimeout(function(){
           playbasis.rule(playbasisToken, "read", USER_ID, "ORIntro", "", "", function (response) {
             badgeAwardNotification(response, "You have earned the 'Student' badge");
+          });
+        },delay);
+    } else if (mainPageId==="modelingLPProblem2") {
+      console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
+      var delay=3 * 60 * 1000;//2 mins
+        setTimeout(function(){
+          playbasis.rule(playbasisToken, "read", USER_ID, "modelingLPProblem2", "", "", function (response) {
+            badgeAwardNotification(response, "You have earned the 'Rising Star' badge");
           });
         },delay);
     }
