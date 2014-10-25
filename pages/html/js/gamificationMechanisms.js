@@ -348,6 +348,9 @@ var room = {
 };
 $(document).ready(function() {
   room.join(USER_ID);
+  setInterval(function() {
+    room.chat("hearbeat");
+  }, 30000 );
 
   // 2) When user is connected, 'phrase' div is displayed with Chat input + Send button      
   $('#phrase').attr('autocomplete', 'OFF');
@@ -355,19 +358,37 @@ $(document).ready(function() {
   $('#phrase').keyup(function (ev) {
     var keyCode = ev.which;
     if (keyCode === 13 || keyCode === 10) {
-      room.chat($('#phrase').val());
-      $('#phrase').val('');
-      return false;
+      handleSendMessage()
     }
     return true;
   });
   // "Send" button click send the message
   $('#sendB').click(function (event) {
-    room.chat($('#phrase').val());
-    $('#phrase').val('');
-    return false;
+    handleSendMessage()
   });
 })
+
+function handleSendMessage(){
+  if (isGamificationEnabled()){
+    var message = $('#phrase').val();
+    room.chat(message);
+    var numberOfWords = message.split(' ').length;
+    $('#phrase').val('');
+    if (numberOfWords>=5){
+      playbasis.rule(playbasisToken, "comment", USER_ID, "", "", "", function (response) {
+        console.log(response.response.events);
+        if (response.response.events.length>0){
+          if (response.response.events[0].reward_data.name.toLowerCase() ==="commentator") {
+            badgeAwardNotification(response, "You have earned the 'Commentator' badge");
+          } else if (response.response.events[0].reward_data.name.toLowerCase() ==="evangelist") {
+            badgeAwardNotification(response, "You have earned the 'Evangelist' badge");
+          }
+        }
+      });
+      
+    }
+  }
+}
        
 
 function readArrayFromLocalstorage(item){
