@@ -32,8 +32,9 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('.showAnswerQuizDecisionVariablesLP1').on('click',function() {
-    localStorage.setItem("cheater", "true");
+    $('.validateQuizDecisionVariablesLP1').hide();
     $('.correctAnswerQuizDecisionVariablesLP1').slideToggle();
+    pageEvent(conceptId, showedAnswer);
     return false;
   });
 });

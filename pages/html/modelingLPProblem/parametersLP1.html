@@ -22,7 +22,6 @@
 
 <script>
 var conceptId="parametersLP1";
-
 //answer should contain the following words: (plain, mexican, slic, fry, pack, time, available) || (table 1 && table 2 & table 3)
 $(document).ready(function(){
   $('.validateQuizParametersLP1').on('click',function() {
@@ -41,8 +40,9 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('.showAnswerQuizParametersLP1').on('click',function() {
-    localStorage.setItem("cheater", "true");
+    $('.validateQuizParametersLP1').hide();
     $(".correctAnswerQuizParametersLP1").slideToggle();
+    pageEvent(conceptId, showedAnswer);
     return false;
   });
 });

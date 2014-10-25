@@ -38,8 +38,9 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('.showAnswerQuizConstraintsLP1').on('click',function() {
-    localStorage.setItem("cheater", "true");
     $('.correctAnswerQuizConstraintsLP1').slideToggle();
+    $('.validateQuizConstraintsLP1').hide();
+    pageEvent(conceptId, showedAnswer);
     return false;
   });
 });

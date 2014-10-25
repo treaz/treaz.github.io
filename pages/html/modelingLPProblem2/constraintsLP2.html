@@ -40,8 +40,9 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('.showAnswerQuizConstraintsLP2').on('click',function() {
-    localStorage.setItem("cheater", "true");
     $('.correctAnswerQuizConstraintsLP2').slideToggle();
+    $('.validateQuizConstraintsLP2').hide();
+    pageEvent(conceptId, showedAnswer);
     return false;
   });
 });

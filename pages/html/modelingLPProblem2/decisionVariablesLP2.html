@@ -35,8 +35,9 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('.showAnswerQuizDecisionVariablesLP2').on('click',function() {
-    localStorage.setItem("cheater", "true");
+    $('.validateQuizDecisionVariablesLP2').hide();
     $('.correctAnswerQuizDecisionVariablesLP2').slideToggle();
+    pageEvent(conceptId, showedAnswer);
     return false;
   });
 });

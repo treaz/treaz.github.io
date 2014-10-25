@@ -15,7 +15,17 @@
     <script src="js/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/playbasis.js"></script>
     <script src="js/gamificationMechanisms.js"></script>
-    <script src="js/signin.js"></script>
+    <script src="js/users.js"></script>
+    <script src="js/tracking.js"></script>
+    <script>
+      window.onload=function() {
+        pageEvent(pageId, "openPage");
+      };
+
+      $(window).on('beforeunload', function () {
+        pageEvent(pageId, "closePage");
+      });
+    </script>
   </head>
 
   <body>

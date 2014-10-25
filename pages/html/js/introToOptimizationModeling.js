@@ -10,13 +10,15 @@ $(document).ready(function(){
   $('.chairProblem').on('click',function() {
     bootbox.alert($('<div></div>').load( "modelingLPProblem/chairProblem.html" ), function(result) {
     });
-  handleConceptGamification("chairProblem");
+    pageEvent("chairProblem", "pageOpen");
+    handleConceptGamification("chairProblem");
   });
   
   $('.busProblem').on('click',function() {
     bootbox.alert($('<div></div>').load( "modelingLPProblem/busProblem.html" ), function(result) {
     });
-  handleConceptGamification("busProblem");
+    pageEvent("busProblem", "pageOpen");
+    handleConceptGamification("busProblem");
   });
 });
 

@@ -1,8 +1,12 @@
 var pageId = "whyOptimizationModeling";
 
+var attemptProdMix = "attemptProductMix"
+var foundCorrectProductMix = "foundCorrectProductMix"
+
 /* Functions used in the easy version*/
 $(document).ready(function(){
   $('.validateProdMixEasy').on('click',function() {
+    pageEvent("validateProdMixEasy", attemptProdMix);
     var plainToMake = $('.plainToMake').val();
     var mexicanToMake = $('.mexicanToMake').val();
     if (availableSlicingTime < plainToMake*sliceTimePlain + mexicanToMake*sliceTimeMexican) {
@@ -11,6 +15,7 @@ $(document).ready(function(){
     }
     if (q1Profit===344) {
       bootbox.alert("You found the most profitable solution");
+      pageEvent("validateProdMixEasy", foundCorrectProductMix);
       handleChipsProblemCorrectSubmission("easyDifficultyChips");
       //playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
       //  console.log("pb.auth");
@@ -29,6 +34,7 @@ $(document).ready(function(){
 /* Functions used in the medium version*/
 $(document).ready(function(){
   $('.validateProdMixMed').on('click',function() {
+    pageEvent("validateProdMixMed", attemptProdMix);
     var plainToMake = $('.plainToSliceMed').val();
     var mexicanToMake = $('.mexicanToSliceMed').val();
     if (availableSlicingTime < plainToMake*sliceTimePlain + mexicanToMake*sliceTimeMexican) {
@@ -41,6 +47,7 @@ $(document).ready(function(){
     }
     if (medProfit===240) {
       bootbox.alert("You found the most profitable solution");
+      pageEvent("validateProdMixMed", foundCorrectProductMix);
       handleChipsProblemCorrectSubmission("mediumDifficultyChips");
       //playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
       //  console.log("pb.auth");
@@ -59,6 +66,7 @@ $(document).ready(function(){
 /* Functions used in the hard version*/
 $(document).ready(function(){
   $('.validateProdMixHard').on('click',function() {
+    pageEvent("validateProdMixHard", attemptProdMix);
     var plainToMake = $('.plainToSliceHard').val();
     var mexicanToMake = $('.mexicanToSliceHard').val();
     if (availableSlicingTime < plainToMake*sliceTimePlain + mexicanToMake*sliceTimeMexican) {
@@ -75,11 +83,8 @@ $(document).ready(function(){
     }
     if (hardProfit===189) {
       bootbox.alert("You found the most profitable solution");
+      pageEvent("validateProdMixMed", foundCorrectProductMix);
       handleChipsProblemCorrectSubmission("hardDifficultyChips");
-      //playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
-      //  console.log("pb.auth");
-      //  console.log(result);
-      //});
     } else {
       bootbox.alert("This is not the most profitable solution.");
     }
@@ -93,6 +98,7 @@ $(document).ready(function(){
 /* Functions used in the very hard version*/
 $(document).ready(function(){
   $('.validateProdMixVeryHard').on('click',function() {
+    pageEvent("validateProdMixVeryHard", attemptProdMix);
     var plainToMake = $('.plainToSliceVeryHard').val();
     var mexicanToMake = $('.mexicanToSliceVeryHard').val();
     var twistedToMake = $('.twistedToSliceVeryHard').val();
@@ -110,11 +116,8 @@ $(document).ready(function(){
     }
     if (veryHardProfit===201.5) {
       bootbox.alert("You found the most profitable solution");
+      pageEvent("validateProdMixMed", foundCorrectProductMix);
       handleChipsProblemCorrectSubmission("veryHardDifficultyChips");
-      //playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", function (result) {
-      //  console.log("pb.auth");
-      //  console.log(result);
-      //});
     } else {
       bootbox.alert("This is not the most profitable solution.");
     }

@@ -14,6 +14,10 @@ var allVideosToPlay = ["gamificationDashboardPlayer", "generalGamificationPlayer
 var playbasis = new Playbasis('2767998996');
 var playbasisToken;
 
+var attemptAnswer = "attemptAnswer";
+var correctAnswer = "correctAnswer";
+var showedAnswer = "showedAnswer";
+
 window.setInterval("showUserBar()", 100);
 
 $(document).ready(function() {
@@ -78,6 +82,7 @@ function initializeGamificationLibrary(){
 }
 
 function showUserBar(){
+  
   if($(".pb-menu-bar-wrapper").is(":hidden")) {
     $(".pb-menu-bar-wrapper").show();
   }
@@ -90,6 +95,7 @@ function isGamificationEnabled(){
 
 // Quiz handling functions
 function handleAnyQuizAnswer(conceptId){
+  pageEvent(conceptId, attemptAnswer);
   if (isGamificationEnabled()){
     console.log("handleQuizAnswer for id: "+conceptId);
     awardPointForFirstQuizSubmission(conceptId);
@@ -134,6 +140,7 @@ function checkLevel5Reached(){
 }
 
 function handleCorrectQuizAnswer(conceptId){
+  pageEvent(conceptId, correctAnswer);
   if (isGamificationEnabled()){
     console.log("handleQuizAnswer for id: "+conceptId);
     awardPointForFirstCorrectQuizSubmission(conceptId);
@@ -143,17 +150,15 @@ function handleCorrectQuizAnswer(conceptId){
 }
 
 function checkAllQuizzesCorrectlyAnswered(){
-  var currentIds = localStorage.getItem('cheater');
-  if (!((currentIds === undefined) || (currentIds == null) || (currentIds == "undefined"))){
-    var answeredCorrectlyQuizzes = readArrayFromLocalstorage("answeredCorrectlyQuizzes");
-    var intersectionLength = _.intersection(answeredCorrectlyQuizzes, allQuizzesToAnswer).length;
-    console.log("intersectionLength: "+intersectionLength)
-    if (allQuizzesToAnswer.length === intersectionLength){
-      playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "quiz", "", "", function (response) {
-        badgeAwardNotification(response, "You have earned the 'Quiz whiz' badge");
-      });
-    }
+  var answeredCorrectlyQuizzes = readArrayFromLocalstorage("answeredCorrectlyQuizzes");
+  var intersectionLength = _.intersection(answeredCorrectlyQuizzes, allQuizzesToAnswer).length;
+  console.log("intersectionLength: "+intersectionLength)
+  if (allQuizzesToAnswer.length === intersectionLength){
+    playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "quiz", "", "", function (response) {
+      badgeAwardNotification(response, "You have earned the 'Quiz whiz' badge");
+    });
   }
+  
 }
 //END
 
