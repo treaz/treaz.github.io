@@ -16,6 +16,16 @@
     <script src="js/playbasis.js"></script>
     <script src="js/gamificationMechanisms.js"></script>
     <script src="js/bootbox.min.js"></script>
+    <script>
+      var pageId = "gamificationTutorial";
+      window.onload=function() {
+        pageEvent(pageId, "openPage");
+      };
+
+      $(window).on('beforeunload', function () {
+        pageEvent(pageId, "closePage");
+      });
+    </script>
   </script>
     
 
