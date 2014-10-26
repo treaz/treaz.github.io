@@ -1,18 +1,19 @@
 $(document).ready(function(){
   $(".buttonLogin").on('click',function() {
     var username = $(".inputlogin").val();
-    if (username in gamificationUsers) {
+    var password = $(".inputPassword").val();
+    if (username in gamificationUsers && password===gamificationUsers[username]) {
       localStorage.setItem("isGamified", "true");
-      localStorage.setItem("userId", gamificationUsers[username]);
+      localStorage.setItem("userId", username);
       window.location.href = "gamificationTutorial.html";
       return false;
-    } else if (username in normalUsers) {
+    } else if (username in normalUsers && password===normalUsers[username]) {
       localStorage.setItem("isGamified", "false");
-      localStorage.setItem("userId", normalUsers[username]);
+      localStorage.setItem("userId", username);
       window.location.href = "whyOptimizationModeling.html";
       return false;
     } else {
-      alert("Please enter a valid username");
+      alert("Please enter a valid username and password");
     }
   });
 });
