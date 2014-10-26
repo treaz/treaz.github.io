@@ -1,5 +1,3 @@
-$.getScript('underscore-min.js', function(){});
-
 var CONCEPT_SEPARATOR = "|";
 var USER_ID;
 
