@@ -22,23 +22,23 @@
     </figure>
   </div>
 </div>
-<p class="lead">What are the unknowns?</p>
+<p class="lead">Identify the unknowns (identify the decision variables)</p>
 <p>The unknowns are the volume of chairs that is to be transported from each factory to each retailer.</br>
   X1A, X1B, X1C, X2A, X2B, X2C</br>
   Mathematical form: Xij, i={1,2}, j={A,B,C}</br>
 </p>
-<p class="lead">Formal expression including the unknowns</p>
+<p class="lead">Formal expression including the unknowns (identify the objective function)</p>
 <p>We can write the total cost of transporting the chairs to all the retailers in a mathematical form. We want to minimize this cost.</br>
   C(ost) = X1A*P1A + X1B*P1B + X1C*P1C + X2A*P2A + X2B*P2B + X2C*P2C</br>
   Mathematical form: C(ost) = sum (Xij*Pij); i = {1,2}, j = {A, B, C}</br>
 </p>
-<p class="lead">Business limitations imposed on the unknowns</p>
+<p class="lead">Business limitations imposed on the unknowns (identify the constraints)</p>
 <p>The number of chairs transported to a particular retailer is at least equal with its demand.</br>
   The number of chairs transported from each factory has to be less than its production capacity.</br>
   X1A+X2A >= D_A; X1B+X2B >= D_B; X1C+X2C >= D_C; D_x is the demand by retailer x</br>
   X1A+X1B+X1C >= P1; X2A+X2B+X2C >= P2; Py is the production capacity of factory y</br>
 </p>
-<p class="lead">Practical limitations imposed on the unknowns</p>
+<p class="lead">Practical limitations imposed on the unknowns (identify the non-negativity constraints)</p>
 <div class="row">
   <div class="col-xs-8">
     <p>The number of chairs transported from each factory to each retailer cannot be less than 0.</br>

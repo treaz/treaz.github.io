@@ -10,21 +10,21 @@
     </figure>
   </div>
 </div>
-<p class="lead">What are the unknowns?</p>
+<p class="lead">Identify the unknowns (identify the decision variables)</p>
 <p>The decision variable is the number of drivers allocated every 4 hours.</br>
   X0, X4, X8, X12, X16, X20.</br>
   Mathematical notation: Xi, i={0, 4, 8,.. 20}</br>
 </p>
-<p class="lead">Formal expression including the unknowns</p>
+<p class="lead">Formal expression including the unknowns (identify the objective function)</p>
 <p>The objective function is the cost of paying all the bus drivers for a day. In this case we want to minimize the cost.</br>
   C(ost) = X0*RT + X4*RT + X8*RT+ ...</br>
   Mathematical form: C(ost) = sum(Xi*RT); i = {0, 4, 8, 12, 16, 20}</br>
 </p>
-<p class="lead">Business limitations imposed on the unknowns</p>
+<p class="lead">Business limitations imposed on the unknowns (identify the constraints)</p>
 <p>The constraints ensure that the drivers allocated for each interval cover the requirement for buses for it.</br>
   X20+X0 >= R0; X0+X4 >= R4; X4+X8 >= R8; ...; where Ri is the required number of buses for the interval starting at hour i and ending at hour i+4</br>
 </p>
-<p class="lead">Practical limitations imposed on the unknowns</p>
+<p class="lead">Practical limitations imposed on the unknowns (identify the non-negativity constraints)</p>
 <div class="row">
   <div class="col-xs-7">
     <p>The non-negativity constraints ensure the number if allocated drivers for an interval is not negative.</br>
