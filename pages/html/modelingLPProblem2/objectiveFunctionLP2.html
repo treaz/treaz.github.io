@@ -17,12 +17,12 @@
 
 <script>
 var conceptId = "objectiveFunctionLP2";
-//answer should contain the following words: total & transport & cost & minim || sum && * & = & { & } & Eindhoven
+//answer should contain the following words: total & transport & cost & minim || sum & * & = & eindhoven
 $(document).ready(function(){
   $('.validateQuizObjectiveFunctionLP2').on('click',function() {
     var answer = $('.userAnswerQuizObjectiveFunctionLP2').val().toLowerCase();
     handleAnyQuizAnswer(conceptId);
-    if((answer.indexOf("total") != -1 && answer.indexOf("transport") != -1 && answer.indexOf("cost") != -1  && answer.indexOf("minim") != -1) || (answer.indexOf("sum") != -1&& answer.indexOf("=") != -1 &&answer.indexOf("*") != -1 && answer.indexOf("{") != -1 && answer.indexOf("}") != -1 && answer.indexOf("Eindhoven") != -1)){
+    if((answer.indexOf("total") != -1 && answer.indexOf("transport") != -1 && answer.indexOf("cost") != -1  && answer.indexOf("minim") != -1) || (answer.indexOf("sum") != -1&& answer.indexOf("=") != -1 &&answer.indexOf("*") != -1 && answer.indexOf("eindhoven") != -1)){
       handleCorrectQuizAnswer(conceptId);
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizObjectiveFunctionLP2').slideDown();

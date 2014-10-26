@@ -17,12 +17,12 @@
 
 <script>
 var conceptId = "nonNegConstraintsLP2";
-//answer should contain the following words: pallet, beer, non-negative || non negative || >=0 || >= 0
+//answer should contain the following words: (pallet& transport) & (non-negative || non negative || >=0 || >= 0)
 $(document).ready(function(){
   $('.validateQuizNonNegConstraintsLP2').on('click',function() {
     var answer = $('.userAnswerQuizNonNegConstraintsLP2').val().toLowerCase();
     handleAnyQuizAnswer(conceptId);
-    if(answer.indexOf("pallet") != -1 && answer.indexOf("transport") != -1 && (answer.indexOf("non-negative") != -1 || answer.indexOf("non negative") != -1|| answer.indexOf(">=0") != -1|| answer.indexOf(">= 0") != -1|| answer.indexOf("nonnegative") != -1)){
+    if((answer.indexOf("pallet") != -1 && answer.indexOf("transport") != -1) && ((answer.indexOf("non-negative") != -1 || answer.indexOf("non negative") != -1|| answer.indexOf(">=0") != -1|| answer.indexOf(">= 0") != -1|| answer.indexOf("nonnegative") != -1))){
       handleCorrectQuizAnswer(conceptId);
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizNonNegConstraintsLP2').slideDown();

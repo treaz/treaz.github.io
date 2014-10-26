@@ -18,12 +18,12 @@
 
 <script>
 var conceptId = "nonNegConstraintsLP1";
-//answer should contain the following words: plain, mexican, non-negative || non negative || >=0 || >= 0
+//answer should contain the following words: (plain & mexican) & (non-negative || non negative || >=0 || >= 0)
 $(document).ready(function(){
   $('.validateQuizNonNegConstraintsLP1').on('click',function() {
     var answer = $('.userAnswerQuizNonNegConstraintsLP1').val().toLowerCase();
     handleAnyQuizAnswer(conceptId);
-    if(answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1 && (answer.indexOf("non-negative") != -1 || answer.indexOf("non negative") != -1|| answer.indexOf(">=0") != -1|| answer.indexOf(">= 0") != -1|| answer.indexOf("nonnegative") != -1)){
+    if((answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1) && ((answer.indexOf("non-negative") != -1 || answer.indexOf("non negative") != -1|| answer.indexOf(">=0") != -1|| answer.indexOf(">= 0") != -1|| answer.indexOf("nonnegative") != -1))){
       handleCorrectQuizAnswer(conceptId);
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizNonNegConstraintsLP1').slideDown();

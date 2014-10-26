@@ -14,12 +14,12 @@
 
 <script>
 var conceptId = "objectiveFunctionLP1";
-//answer should contain the following words: plain, mexican, maxim, sell, price, =, sum || +
+//answer should contain the following words: plain & mexican & maxim & sell || = & sum & *
 $(document).ready(function(){
   $('.validateQuizObjectiveFunctionLP1').on('click',function() {
     var answer = $('.userAnswerQuizObjectiveFunctionLP1').val().toLowerCase();
     handleAnyQuizAnswer(conceptId);
-    if(answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1 && answer.indexOf("maxim") != -1  && answer.indexOf("sell") != -1 && answer.indexOf("price") != -1&& answer.indexOf("=") != -1 &&(answer.indexOf("sum") != -1 ||answer.indexOf("+") != -1 )){
+    if((answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1 && answer.indexOf("maxim") != -1  && answer.indexOf("sell") != -1) || (answer.indexOf("=") != -1 && answer.indexOf("sum") != -1 && answer.indexOf("*") != -1 )){
       handleCorrectQuizAnswer(conceptId);
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizObjectiveFunctionLP1').slideDown();

@@ -63,6 +63,10 @@ span.text {
     color: green;
 }
 
+textarea {
+   resize: none;
+}
+
 /*
 The navbar color overrides
 Generator: http://twbscolor.smarchal.com/*/
