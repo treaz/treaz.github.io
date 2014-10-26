@@ -59,44 +59,58 @@
     <div class="container">
       
       <div class="starter-template">
-        <h1>Using the tutorial</h1>
-        <p class="lead">Features presentations videos</p>
-        
+        <h1>Tutorial of the tutorial</h1>
+        In addition to the elements that are characteristic to most modern web pages, this tutorial contains some game elements.<br>
+        <br>
+        Going through this tutorial of the optimization modeling tutorial will earn you your first achievement: Feature explorer.<br>
         <div ="row">
-          <div class="col-xs-4">
-            In addition to the elements that are characteristic to any tutorial, you will notice some features. This tutorial is again available at the end of the horizontal navigation menu.
-            Video about the gamification features: userbar description; earning XP and badges and leveling up. Note that the tutorial is not a game.
-            <div class="embed-responsive embed-responsive-4by3">
-              <div id="generalGamificationPlayer" class="embed-responsive-item"></div>
-            </div>
+          <div class="col-xs-6">
+            <h3>The userbar</h3>
+            To the bottom right of the page you will see the userbar handle. Click it, you will make all the userbar visible.<br>
+            On the userbar you can see your experience points (EXP), level and badges.
           </div>
-          <div class="col-xs-4">
-            video about the user dashboard: the profile, the leaderboard, the livefeed, the achievements and the show player.
-            <div class="embed-responsive embed-responsive-4by3">
-              <div id="gamificationDashboardPlayer" class="embed-responsive-item"></div>
-            </div>
+          <div class="col-xs-6">
+            <h3>Achievements</h3>
+            If you meet specific requirements, you will earn achievements. The conditions for earning achievements are visible when you hover over them.<br>
+            Check out the achievements that you can earn by opening the achievements drawer: click the Achievement button on the userbar.
           </div>
-          <div class="col-xs-4">
-            <p class="lead">Level experience points (XP)</p>
-              <ol>
-                <li>Level 1: 0 XP</li>
-                <li>Level 2: 50 XP</li>
-                <li>Level 3: 160 XP</li>
-                <li>Level 4: 320 XP</li>
-                <li>Level 5: 540 XP</li>
-              </ol>
-              There are 250 XP to be gathered by reading all the information in the tutorial. 10 XP are awarded for each page of the tutorial.<br>
-              There are 300 XP to be gathered by respoding to the 10 quizzes in the tutorial. 5 XP are awarded when you attempt the quiz. 25 XP are awarded for a correct response.
+          <div class="col-xs-6">
+            <h3>The dashboard</h3>
+            Is located rightmost on the top navigation bar. On the dashboard you can see:
+            <ul>
+              <li>Your profile</li>
+              <li>The leaderboard - the top scoring participants to this tutorial</li>
+              <li>The livefeed - the realtime actions of the other participants to this tutorial</li>
+              <li>An achievements link - will open your achievements drawer</li>
+              <li>A show other player form - by providing another participant's name here, you will be able to see (in a new page) his profile and achievements</li>
+            </ul>
+            Take a quick look at the <a href="dashboard.html" class="tutorialClickDashboard">dashboard</a> and come back here.
           </div>
-          <div class="col-xs-4">
-            <p class="lead">Chat room</p>
-              This tutorial offers a very basic chat room in which you can communicate with other people going throught the tutorial. Note that when you will switch to a new page of the tutorial, you will lose the chat history.
+          <div class="col-xs-6">
+            <h3>Experience points (EXP) and levels</h3>
+            As you progress through the tutorial, you will earn experience points and level up:
+            <ul>
+              <li>All the information in the tutorial is worth 250 EXP: 10 EXP are awarded for each page of the tutorial</li>
+              <li>There are 10 quizzes in the tutorial: 5 EXP are awarded when you attempt the quiz, 25 EXP are awarded for a correct response</li>
+            </ul>
+            <ol>
+              <li>Level 1: 0 EXP</li>
+              <li>Level 2: 50 EXP</li>
+              <li>Level 3: 160 EXP</li>
+              <li>Level 4: 320 EXP</li>
+              <li>Level 5: 540 EXP</li>
+            </ol>
           </div>
-        </div>
-        <div class="row">
           <div class="col-xs-12">
-            <p class="lead">This is not a game</p>
-            <p>The added game elements aim to make the experience more pleasurable, the intent of this tutorial is to teach you about optimization modeling.<p/>
+            <h3>Chat room</h3>
+            At the bottom of each page you will find a very basic chat room in which all the participants can communicate with each other.<br>
+            Try saying "hello" to the other participans.<br>
+            Note: when you switch to a new page of the tutorial, you will lose the chat history.
+            <div class="row chatPlaceholder"></div>
+          </div>
+          <div class="col-xs-12">
+            <h3>This is not a game</h3>
+            <b>The added game elements aim to make the experience more pleasurable, the intent of this tutorial is to teach you about optimization modeling.</b>
           </div>
           <div class="col-xs-12">
             <a href="whyOptimizationModeling.html" class="btn btn-block btn-primary ">Start the tutorial</a>
@@ -111,43 +125,25 @@
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
-    
-        <script>
-        //see https://developers.google.com/youtube/iframe_api_reference?csw=1
-      var tag = document.createElement('script');
-
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      var player;
-      var gamificationDashboardPlayer;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('generalGamificationPlayer', {
-          videoId: 'M7lc1UVf-VE',
-          events: {
-            'onStateChange': generalGamificationPlayerStateChange
-          }
-        });
-         gamificationDashboardPlayer = new YT.Player('gamificationDashboardPlayer', {
-          videoId: 'NK-T_t166TY',
-          events: {
-            'onStateChange': gamificationDashboardPlayerStateChange
-          }
-        });
-      }
-
-      function gamificationDashboardPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.ENDED){
-          handleVideoPlayed("gamificationDashboardPlayer");
+    <script>
+      var refreshIntervalId = setInterval( checkDOMChange, 500 );
+      function checkDOMChange() {
+        console.log($('.fa.fa-chevron-up').length);
+        if ($('.fa.fa-chevron-up').length === 1) {
+          clearInterval(refreshIntervalId);
+          $('.fa.fa-chevron-up').on('click',function() {
+            handleGamificationTutorialEvent("tutorialOpenUserbar");
+          });
         }
       }
-      
-      function generalGamificationPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.ENDED){
-          handleVideoPlayed("generalGamificationPlayer");
-        }
-      }
+      window.onload=function(){
+        $('.tutorialClickDashboard').on('click',function() {
+          handleGamificationTutorialEvent("tutorialClickDashboard");
+        });
+        $('#sendB').on('click',function() {
+          handleGamificationTutorialEvent("tutorialHelloAll");
+        });
+      };
     </script>
   </body>
 </html>

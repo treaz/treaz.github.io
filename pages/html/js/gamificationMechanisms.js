@@ -7,6 +7,7 @@ var allQuizzesToAnswer = ["decisionVariablesLP1", "objectiveFunctionLP1", "const
 
 var allChipsProblemVersion = ["easyDifficultyChips", "mediumDifficultyChips", "hardDifficultyChips", "veryHardDifficultyChips"]
 
+var allTutorialEvents = ["tutorialClickDashboard", "tutorialOpenUserbar", "tutorialHelloAll"]
 var allVideosToPlay = ["gamificationDashboardPlayer", "generalGamificationPlayer"]
 
 var playbasis = new Playbasis('2767998996');
@@ -228,29 +229,22 @@ function checkAllChipsProblemDifficultiesCompleted(){
 }
 //END
 
-// gamification tutorial handling functions
-function handleVideoPlayed(videoId){
-  if (isGamificationEnabled()){
-    addConceptToLocalstorageItem("watchedVideos", videoId);
-    checkAllVideosPlayed();
-  }
-}
-// END
-
 ////////////////// BADGES ///////////////////////
 
 //'Feature explorer' badge
-function checkAllVideosPlayed(){
-  var watchedVideos = readArrayFromLocalstorage("watchedVideos");
-  var intersectionLength = _.intersection(allVideosToPlay, watchedVideos).length;
-  console.log("checkAllVideosPlayed intersectionLength: "+intersectionLength)
-  if (allVideosToPlay.length === intersectionLength){
-    playbasis.rule(playbasisToken, "watchedvideo", USER_ID, "", "", "", function (response) {
-      badgeAwardNotification(response, "You have earned the 'Feature explorer' badge");
-    });
+function handleGamificationTutorialEvent(tutorialEvent){
+  if (isGamificationEnabled()){
+    addConceptToLocalstorageItem("tutorialEvents", tutorialEvent);
+    var tutorialEvents = readArrayFromLocalstorage("tutorialEvents");
+    var intersectionLength = _.intersection(allTutorialEvents, tutorialEvents).length;
+    console.log("handleGamificationTutorialEvent intersectionLength: "+intersectionLength)
+    if (allTutorialEvents.length === intersectionLength){
+      playbasis.rule(playbasisToken, "watchedvideo", USER_ID, "", "", "", function (response) {
+        badgeAwardNotification(response, "You have earned the 'Feature explorer' badge");
+      });
+    }
   }
 }
-
 
 //badges awarded for hanging out on a page long enough
 function handleStayedOnMainPageLongBadge(mainPageId){
