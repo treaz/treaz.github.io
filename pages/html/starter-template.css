@@ -56,6 +56,11 @@ div.hidden {
  
 span.from {
     font-weight: bold;
+    color: green;
+}
+
+span.text {
+    color: green;
 }
 
 /*
