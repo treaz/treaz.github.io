@@ -37,7 +37,7 @@ $(document).ready(function() {
           '</div>'+
         '</div>' );
     $(".nav.navbar-nav").append('<li><a href="dashboard.html">Dashboard</a></li>');
-    $(".nav.navbar-nav").append('<li><a href="gamificationTutorial.html">Using the tutorial</a></li>');
+    $(".nav.navbar-nav").prepend('<li><a href="gamificationTutorial.html">Using the tutorial</a></li>');
   } else if (isGamified==="false"){
     //playbasis is disabled
   } else {
