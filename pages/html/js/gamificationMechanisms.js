@@ -16,8 +16,6 @@ var attemptAnswer = "attemptAnswer";
 var correctAnswer = "correctAnswer";
 var showedAnswer = "showedAnswer";
 
-window.setInterval("showUserBar()", 100);
-
 $(document).ready(function() {
   var isGamified = localStorage.getItem("isGamified");
   if (isGamified==="true"){
@@ -79,13 +77,6 @@ function initializeGamificationLibrary(){
     };(!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://widget.pbapp.net/playbasis/en/all.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','playbasis-js'));
 }
 
-function showUserBar(){
-  
-  if($(".pb-menu-bar-wrapper").is(":hidden")) {
-    $(".pb-menu-bar-wrapper").show();
-  }
-}
-
 function isGamificationEnabled(){
   var isGamified = localStorage.getItem("isGamified");
   return isGamified==="true";
@@ -107,7 +98,7 @@ function awardPointForFirstQuizSubmission(conceptId){
     console.log("awardPointForFirstQuizSubmission: "+conceptId);
     playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "any", "", "", function (response) {
       console.log(response);
-      checkLevel5Reached();
+      checkLevelReached();
     });
   }
 }
@@ -118,23 +109,28 @@ function awardPointForFirstCorrectQuizSubmission(conceptId){
     console.log("awardPointForFirstCorrectQuizSubmission: "+conceptId);
     playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "correct", "", "", function (response) {
       console.log(response);
-      checkLevel5Reached();
+      checkLevelReached(response);
     });
   }
 }
 
 //'Champion' badge
-function checkLevel5Reached(){
-  playbasis.player(USER_ID, function (response) {
-    console.log(response);
-      var userCurrentLevel = response.response.player.level;
-      if (userCurrentLevel===5){
-      playbasis.rule(playbasisToken, "levelup", USER_ID, "", "", "", function (response) {
-        badgeAwardNotification(response, "You have earned the 'Champion' badge");
-      });
+function checkLevelReached(response){
+  if (typeof response !== 'undefined' && typeof response.response !== 'undefined' && typeof response.response.events !== 'undefined' && response.response.events.length > 0) {
+    var leveUpEventArray = response.response.events.filter(function (el) {
+      return el.event_type === 'LEVEL_UP';
+    });
+    if (leveUpEventArray.length >0){
+      var currentLevel = leveUpEventArray[0].value;
+      console.log('currentLevel: ' + currentLevel)
+      bootbox.alert("Awesome, you're now level " + currentLevel);
+      if (currentLevel===5){
+        playbasis.rule(playbasisToken, "levelup", USER_ID, "", "", "", function (response) {
+          badgeAwardNotification(response, "You have earned the 'Champion' badge");
+        });
+      }
     }
-  });
-  
+  }  
 }
 
 function handleCorrectQuizAnswer(conceptId){
@@ -176,7 +172,7 @@ function awardPointForFirstRead(conceptId){
     console.log("awardPointForFirstRead");
     playbasis.rule(playbasisToken, "read", USER_ID, "exp", "", "", function (response) {
       console.log(response);
-      checkLevel5Reached();
+      checkLevelReached(response);
     });
   }
 }
@@ -404,7 +400,7 @@ function handleSendMessage(){
     if (numberOfWords>=5){
       playbasis.rule(playbasisToken, "comment", USER_ID, "", "", "", function (response) {
         console.log(response.response.events);
-        if (response.response.events.length>0){
+        if (typeof response.response !== 'undefined' && typeof response.response.events !== 'undefined' && response.response.events.length>0){
           if (response.response.events[0].reward_data.name.toLowerCase() ==="commentator") {
             badgeAwardNotification(response, "You have earned the 'Commentator' badge");
           } else if (response.response.events[0].reward_data.name.toLowerCase() ==="evangelist") {
