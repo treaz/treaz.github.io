@@ -15,6 +15,7 @@ normalUsers["user10"]="zdjK";
 var gamificationUsers = {};
 gamificationUsers["horia"] = "horia";
 gamificationUsers["fabiano"] = "fabiano";
+gamificationUsers["marjan"] = "marjan";
 gamificationUsers["user11"] = "mOlr";
 gamificationUsers["user12"] = "TDZc";
 gamificationUsers["user13"] = "RyxT";
