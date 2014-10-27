@@ -6,7 +6,7 @@
   <li>The constraints ensure that the drivers allocated for each interval cover the requirement for buses for it: X20+X0 >= R0; X0+X4 >= R4; X4+X8 >= R8; ...; where Ri is the required number of buses for the interval starting at hour i and ending at hour i+4</li>
 </ul>
 <p class="lead">Quiz</p>
-<p>For the beer transport problem presented before, can you identify the constraints?</p>
+<p>For the beer transport problem presented before, can you identify the constraints? (use words or mathematical notation; don't use numeric values)</p>
 <div class="form-group">
   <label for="answer">Answer:</label>
   <textarea class="form-control userAnswerQuizConstraintsLP2" rows="5"></textarea>
@@ -26,12 +26,12 @@
 
 <script>
 var conceptId = "constraintsLP2";
-//answer should contain the following words: demand & supply& transp& brew& customer& beer || sum& demand& supply& amsterdam& amersfoort& gouda& haarlem& eindhoven
+//answer should contain the following words: demand & supply& transp& beer || sum& demand& supply& amsterdam& amersfoort& gouda& haarlem& eindhoven
 $(document).ready(function(){
   $('.validateQuizConstraintsLP2').on('click',function() {
     var answer = $('.userAnswerQuizConstraintsLP2').val().toLowerCase();
     handleAnyQuizAnswer(conceptId);
-    if((answer.indexOf("demand") != -1 && answer.indexOf("supply") != -1 && answer.indexOf("transp") != -1 && answer.indexOf("brew") != -1 && answer.indexOf("customer") != -1 && answer.indexOf("beer") != -1) || (answer.indexOf("sum") != -1 && answer.indexOf("demand") != -1 && answer.indexOf("supply") != -1 && answer.indexOf("amsterdam") != -1 && answer.indexOf("amersfoort") != -1 && answer.indexOf("gouda") != -1 && answer.indexOf("haarlem") != -1 && answer.indexOf("eindhoven") != -1)){
+    if((answer.indexOf("demand") != -1 && answer.indexOf("supply") != -1 && answer.indexOf("transp") != -1 && answer.indexOf("beer") != -1) || (answer.indexOf("sum") != -1 && answer.indexOf("demand") != -1 && answer.indexOf("supply") != -1 && answer.indexOf("amsterdam") != -1 && answer.indexOf("amersfoort") != -1 && answer.indexOf("gouda") != -1 && answer.indexOf("haarlem") != -1 && answer.indexOf("eindhoven") != -1)){
       handleCorrectQuizAnswer(conceptId);
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizConstraintsLP2').slideDown();
