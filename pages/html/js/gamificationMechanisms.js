@@ -7,7 +7,7 @@ var allQuizzesToAnswer = ["decisionVariablesLP1", "objectiveFunctionLP1", "const
 
 var allChipsProblemVersion = ["easyDifficultyChips", "mediumDifficultyChips", "hardDifficultyChips", "veryHardDifficultyChips"]
 
-var allTutorialEvents = ["tutorialClickDashboard", "tutorialOpenUserbar", "tutorialHelloAll"]
+var allTutorialEvents = ["tutorialClickDashboard", "tutorialHelloAll"]
 var allVideosToPlay = ["gamificationDashboardPlayer", "generalGamificationPlayer"]
 
 var playbasis = new Playbasis('2767998996');

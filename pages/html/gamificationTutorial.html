@@ -126,16 +126,6 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
     <script>
-      var refreshIntervalId = setInterval( checkDOMChange, 500 );
-      function checkDOMChange() {
-        console.log($('.fa.fa-chevron-up').length);
-        if ($('.fa.fa-chevron-up').length === 1) {
-          clearInterval(refreshIntervalId);
-          $('.fa.fa-chevron-up').on('click',function() {
-            handleGamificationTutorialEvent("tutorialOpenUserbar");
-          });
-        }
-      }
       window.onload=function(){
         $('.tutorialClickDashboard').on('click',function() {
           handleGamificationTutorialEvent("tutorialClickDashboard");
