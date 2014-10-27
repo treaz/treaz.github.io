@@ -43,8 +43,8 @@ $(document).ready(function() {
               'Chat:&nbsp;'+
               '<input id="phrase" type="text" /> '+
               '<input id="sendB" class="btn btn-primary " type="submit" name="join" value="Send" />'+
-              '<input id="otherUserId" type="text" style="float:right"/> '+
-              '<input id="rateUserAsHelpful" class="btn btn-primary" style="float:right" type="submit" value="Rate user as helpful" />'+
+              '<input id="otherUserId" type="text" style="float:right" title="Enter another user\'s username here"/> '+
+              '<input id="rateUserAsHelpful" class="btn btn-primary" style="float:right" type="submit" value="Rate user as helpful" title="Enter another user\'s username in the box"/>'+
             '</div>'+
           '</div>'+
         '</div>' );
@@ -135,7 +135,7 @@ function checkLevelReached(response){
     if (leveUpEventArray.length >0){
       var currentLevel = leveUpEventArray[0].value;
       console.log('currentLevel: ' + currentLevel)
-      bootbox.alert("Awesome, you're now level " + currentLevel);
+      bootbox.alert("Awesome, you're now level " + currentLevel + ". You can see how much experience you need for the next level by looking at the tutorial of the tutorial again.");
       if (currentLevel===5){
         playbasis.rule(playbasisToken, "levelup", USER_ID, "", "", "", function (response) {
           badgeAwardNotification(response, "You have earned the 'Champion' badge");
@@ -271,7 +271,7 @@ function awardBadgeOnFirstMainPageView(mainPageId){
     addConceptToLocalstorageItem("viewedMainPages", mainPageId);
     if (mainPageId==="whyOptimizationModeling") {
       console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
-      var delay=3 * 60 * 1000;//3 mins
+      var delay=4 * 60 * 1000;//3 mins
       setTimeout(function(){
         playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", "", "", function (response) {
           badgeAwardNotification(response, "You have earned the 'Supporter' badge");
@@ -279,7 +279,7 @@ function awardBadgeOnFirstMainPageView(mainPageId){
       },delay);
     } else if (mainPageId==="modelingLPProblem") {
       console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
-      var delay=3 * 60 * 1000;
+      var delay=4 * 60 * 1000;
       setTimeout(function(){
         playbasis.rule(playbasisToken, "read", USER_ID, "ModelingIntro", "", "", function (response) {
           badgeAwardNotification(response, "You have earned the 'Enlightened' badge");
@@ -287,7 +287,7 @@ function awardBadgeOnFirstMainPageView(mainPageId){
       },delay);
     } else if (mainPageId==="introToOptimizationModeling") {
       console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
-      var delay=4 * 60 * 1000;//2 mins
+      var delay=4 * 60 * 1000;
         setTimeout(function(){
           playbasis.rule(playbasisToken, "read", USER_ID, "ORIntro", "", "", function (response) {
             badgeAwardNotification(response, "You have earned the 'Student' badge");
@@ -295,7 +295,7 @@ function awardBadgeOnFirstMainPageView(mainPageId){
         },delay);
     } else if (mainPageId==="modelingLPProblem2") {
       console.log("awardBadgeOnFirstMainPageView: "+mainPageId);
-      var delay=3 * 60 * 1000;//2 mins
+      var delay=4 * 60 * 1000;
         setTimeout(function(){
           playbasis.rule(playbasisToken, "read", USER_ID, "modelingLPProblem2", "", "", function (response) {
             badgeAwardNotification(response, "You have earned the 'Rising Star' badge");
