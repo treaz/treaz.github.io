@@ -25,6 +25,17 @@ $(document).ready(function() {
     //enalbe playbasis client
     //append all gamification elements to dom
     $("body").append( '<div class="pb-userbar" data-pb-displayPoint="exp" ></div>' );
+    
+    // show full userbar
+    var userbarIntervalId = setInterval( showUserbar, 100 );
+    function showUserbar() {    
+      console.log($(".pb-menu-bar-wrapper").is(":hidden"));
+      if ($(".pb-menu-bar-wrapper").is(":hidden")) {
+        clearInterval(userbarIntervalId);
+        $(".pb-menu-bar-wrapper").show();
+      }
+    }
+    
     $(".chatPlaceholder").append( '<div class="col-xs-12">'+
           '<div id="chat"></div>'+
           '<div id="input">'+
@@ -38,7 +49,7 @@ $(document).ready(function() {
           '</div>'+
         '</div>' );
     $(".nav.navbar-nav").append('<li><a href="dashboard.html">Dashboard</a></li>');
-    $(".nav.navbar-nav").prepend('<li><a href="gamificationTutorial.html">Using the tutorial</a></li>');
+    $(".nav.navbar-nav").prepend('<li><a href="gamificationTutorial.html">Tutorial of the tutorial</a></li>');
   } else if (isGamified==="false"){
     //playbasis is disabled
   } else {
