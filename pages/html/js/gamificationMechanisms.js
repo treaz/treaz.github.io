@@ -41,7 +41,7 @@ $(document).ready(function() {
           '<div id="input">'+
             '<div id="joined">'+
               'Chat:&nbsp;'+
-              '<input id="phrase" type="text" /> '+
+              '<input id="phrase" type="text" title="Write sentences of at least 5 words to earn badges."/> '+
               '<input id="sendB" class="btn btn-primary " type="submit" name="join" value="Send" />'+
               '<input id="otherUserId" type="text" style="float:right" title="Enter another user\'s username here"/> '+
               '<input id="rateUserAsHelpful" class="btn btn-primary" style="float:right" type="submit" value="Rate user as helpful" title="Enter another user\'s username in the box"/>'+
