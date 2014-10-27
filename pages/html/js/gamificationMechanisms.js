@@ -382,14 +382,6 @@ $(document).ready(function() {
 
   // 2) When user is connected, 'phrase' div is displayed with Chat input + Send button      
   $('#phrase').attr('autocomplete', 'OFF');
-  // Enter in the 'phrase' field send the message
-  $('#phrase').keyup(function (ev) {
-    var keyCode = ev.which;
-    if (keyCode === 13 || keyCode === 10) {
-      handleSendMessage()
-    }
-    return true;
-  });
   // "Send" button click send the message
   $('#sendB').click(function (event) {
     handleSendMessage()
