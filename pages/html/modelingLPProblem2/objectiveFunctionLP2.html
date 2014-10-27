@@ -9,7 +9,7 @@
   <li>Mathematical notation: C(ost) = sum(Xi*RT); i = {0, 4, 8, 12, 16, 20}</li>
 </ul>
 <p class="lead">Quiz</p>
-<p>For the beer transport problem presented before, can you identify the objective function?</p>
+<p>For the beer transport problem presented before, can you identify the objective function? (use words or mathematical notation; don't use numeric values)</p>
 <div class="form-group">
   <label for="answer">Answer:</label>
   <textarea class="form-control userAnswerQuizObjectiveFunctionLP2" rows="5"></textarea>
@@ -24,12 +24,12 @@
 
 <script>
 var conceptId = "objectiveFunctionLP2";
-//answer should contain the following words: total & transport & cost & minim || sum & * & = & eindhoven
+//answer should contain the following words: total & transport & cost & min || sum & * & = & eindhoven
 $(document).ready(function(){
   $('.validateQuizObjectiveFunctionLP2').on('click',function() {
     var answer = $('.userAnswerQuizObjectiveFunctionLP2').val().toLowerCase();
     handleAnyQuizAnswer(conceptId);
-    if((answer.indexOf("total") != -1 && answer.indexOf("transport") != -1 && answer.indexOf("cost") != -1  && answer.indexOf("minim") != -1) || (answer.indexOf("sum") != -1&& answer.indexOf("=") != -1 &&answer.indexOf("*") != -1 && answer.indexOf("eindhoven") != -1)){
+    if((answer.indexOf("total") != -1 && answer.indexOf("transport") != -1 && answer.indexOf("cost") != -1  && answer.indexOf("min") != -1) || (answer.indexOf("sum") != -1&& answer.indexOf("=") != -1 &&answer.indexOf("*") != -1 && answer.indexOf("eindhoven") != -1)){
       handleCorrectQuizAnswer(conceptId);
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizObjectiveFunctionLP2').slideDown();

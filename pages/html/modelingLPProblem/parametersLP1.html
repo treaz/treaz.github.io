@@ -9,7 +9,7 @@
   <li>the fix rate salary of the bus drivers</li>
 </ul>
 <p class="lead">Quiz</p>
-<p>For the chips problem presented before, can you identify the parameters?</p>
+<p>For the chips problem presented before, can you identify the parameters? (use words or mathematical notation; don't use numeric values)</p>
 <div class="form-group">
   <label for="answer">Answer:</label>
   <textarea class="form-control userAnswerQuizParametersLP1" rows="5"></textarea>
@@ -27,12 +27,12 @@
 
 <script>
 var conceptId="parametersLP1";
-//answer should contain the following words: (plain, mexican, slic, fry, pack, time, available) || (table 1 && table 2 & table 3)
+//answer should contain the following words: (slic, fry, pack, time, available) || (table 1 && table 2 & table 3)
 $(document).ready(function(){
   $('.validateQuizParametersLP1').on('click',function() {
     var answer = $('.userAnswerQuizParametersLP1').val().toLowerCase();
     handleAnyQuizAnswer(conceptId);
-    if((answer.indexOf("plain") != -1 && answer.indexOf("mexican") != -1 && answer.indexOf("slic") != -1 && answer.indexOf("fry") != -1 && answer.indexOf("pack") != -1 && answer.indexOf("time") != -1 && answer.indexOf("available") != -1) || (answer.indexOf("table 1") != -1 && answer.indexOf("table 2") != -1 && answer.indexOf("table 3") != -1)){
+    if((answer.indexOf("slic") != -1 && answer.indexOf("fry") != -1 && answer.indexOf("pack") != -1 && answer.indexOf("time") != -1 && answer.indexOf("available") != -1) || (answer.indexOf("table 1") != -1 && answer.indexOf("table 2") != -1 && answer.indexOf("table 3") != -1)){
       handleCorrectQuizAnswer(conceptId);
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizParametersLP1').slideDown();

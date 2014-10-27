@@ -9,7 +9,7 @@
   <li>the fix rate salary of the bus drivers</li>
 </ul>
 <p class="lead">Quiz</p>
-<p>For the beer transport problem, can you identify the parameters?</p>
+<p>For the beer transport problem, can you identify the parameters? (use words or mathematical notation; don't use numeric values)</p>
 <div class="form-group">
   <label for="answer">Answer:</label>
   <textarea class="form-control userAnswerQuizParametersLP2" rows="5"></textarea>
@@ -24,12 +24,12 @@
 <script>
 var conceptId="parametersLP2";
 
-//answer should contain the following words: (beer, demand, supply, transport, pallet) || (table 1 && table 2 & table 3)
+//answer should contain the following words: (beer, demand, supply, transport) || (table 1 && table 2 & table 3)
 $(document).ready(function(){
   $('.validateQuizParametersLP2').on('click',function() {
     var answer = $('.userAnswerQuizParametersLP2').val().toLowerCase();
     handleAnyQuizAnswer(conceptId);
-    if((answer.indexOf("beer") != -1 && answer.indexOf("demand") != -1 && answer.indexOf("supply") != -1 && answer.indexOf("transport") != -1 && answer.indexOf("pallet") != -1) || (answer.indexOf("table 1") != -1 && answer.indexOf("table 2") != -1 && answer.indexOf("table 3") != -1)){
+    if((answer.indexOf("beer") != -1 && answer.indexOf("demand") != -1 && answer.indexOf("supply") != -1 && answer.indexOf("transport") != -1) || (answer.indexOf("table 1") != -1 && answer.indexOf("table 2") != -1 && answer.indexOf("table 3") != -1)){
       handleCorrectQuizAnswer(conceptId);
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizParametersLP2').slideDown();

@@ -7,7 +7,7 @@
   <li>Mathematical notation: Xi>=0, i={0, 4, 8,.. 20}</li>
 </ul>
 <p class="lead">Quiz</p>
-<p>For the beer transport problem presented before, can you identify the non-negativity constraints?</p>
+<p>For the beer transport problem presented before, can you identify the non-negativity constraints? (use words or mathematical notation; don't use numeric values)</p>
 <div class="form-group">
   <label for="answer">Answer:</label>
   <textarea class="form-control userAnswerQuizNonNegConstraintsLP2" rows="5"></textarea>
@@ -22,12 +22,12 @@
 
 <script>
 var conceptId = "nonNegConstraintsLP2";
-//answer should contain the following words: (pallet& transport) & (non-negative || non negative || >=0 || >= 0)
+//answer should contain the following words: (beer& transport) & (non-negative || non negative || >=0 || >= 0)
 $(document).ready(function(){
   $('.validateQuizNonNegConstraintsLP2').on('click',function() {
     var answer = $('.userAnswerQuizNonNegConstraintsLP2').val().toLowerCase();
     handleAnyQuizAnswer(conceptId);
-    if((answer.indexOf("pallet") != -1 && answer.indexOf("transport") != -1) && ((answer.indexOf("non-negative") != -1 || answer.indexOf("non negative") != -1|| answer.indexOf(">=0") != -1|| answer.indexOf(">= 0") != -1|| answer.indexOf("nonnegative") != -1))){
+    if((answer.indexOf("beer") != -1 && answer.indexOf("transport") != -1) && ((answer.indexOf("non-negative") != -1 || answer.indexOf("non negative") != -1|| answer.indexOf(">=0") != -1|| answer.indexOf(">= 0") != -1|| answer.indexOf("nonnegative") != -1))){
       handleCorrectQuizAnswer(conceptId);
       alert(messageOnCorrectAnswer);
       $('.correctAnswerQuizNonNegConstraintsLP2').slideDown();
