@@ -138,7 +138,7 @@ function checkLevelReached(response){
       bootbox.alert("Awesome, you're now level " + currentLevel + ". You can see how much experience you need for the next level by looking at the tutorial of the tutorial again.");
       if (currentLevel===5){
         playbasis.rule(playbasisToken, "levelup", USER_ID, "", "", "", function (response) {
-          badgeAwardNotification(response, "You have earned the 'Champion' badge");
+          badgeAwardNotification(response, "You have earned the 'Champion' badge. (Reach level 5)");
         });
       }
     }
@@ -161,7 +161,7 @@ function checkAllQuizzesCorrectlyAnswered(){
   console.log("intersectionLength: "+intersectionLength)
   if (allQuizzesToAnswer.length === intersectionLength){
     playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "quiz", "", "", function (response) {
-      badgeAwardNotification(response, "You have earned the 'Quiz whiz' badge");
+      badgeAwardNotification(response, "You have earned the 'Quiz whiz' badge. (Correctly answer all the 10 quizzes in the tutorial. Hint: you can submit your answer multiple times, as long as you don't look at the answer)");
     });
   }
   
@@ -208,7 +208,7 @@ function checkallInformationPagesRead(){
   console.log("checkallInformationPagesRead intersectionLength: "+intersectionLength)
   if (allInformationPages.length === intersectionLength){
     playbasis.rule(playbasisToken, "read", USER_ID, "readAllConcepts", "", "", function (response) {
-      badgeAwardNotification(response, "You have earned the 'Academic' badge");
+      badgeAwardNotification(response, "You have earned the 'Academic' badge. (Read all the information in the tutorial. Hint: there are 25 windows with information in the tutorial)");
     });
   }
 }
@@ -234,7 +234,7 @@ function checkAllChipsProblemDifficultiesCompleted(){
   console.log("checkAllChipsProblemDifficultiesCompleted intersectionLength: "+intersectionLength)
   if (allChipsProblemVersion.length === intersectionLength){
     playbasis.rule(playbasisToken, "submitcorrectanswer", USER_ID, "introProblem", "", "", function (response) {
-      badgeAwardNotification(response, "You have earned the 'Math lover' badge");
+      badgeAwardNotification(response, "You have earned the 'Math lover' badge. (Find the most profitable solution to all the versions of the problem on the \"Why optimization modeling\" page)");
     });
   }
 }
@@ -251,7 +251,7 @@ function handleGamificationTutorialEvent(tutorialEvent){
     console.log("handleGamificationTutorialEvent intersectionLength: "+intersectionLength)
     if (allTutorialEvents.length === intersectionLength){
       playbasis.rule(playbasisToken, "watchedvideo", USER_ID, "", "", "", function (response) {
-        badgeAwardNotification(response, "You have earned the 'Feature explorer' badge");
+        badgeAwardNotification(response, "You have earned the 'Feature explorer' badge. (Try all the features suggested on the \"Using the tutorial\" page. Hint: look for \"try to…\")");
       });
     }
   }
@@ -274,7 +274,7 @@ function awardBadgeOnFirstMainPageView(mainPageId){
       var delay=4 * 60 * 1000;//3 mins
       setTimeout(function(){
         playbasis.rule(playbasisToken, "read", USER_ID, "ORValue", "", "", function (response) {
-          badgeAwardNotification(response, "You have earned the 'Supporter' badge");
+          badgeAwardNotification(response, "You have earned the 'Supporter' badge. (Spend at least 4 minutes, continuously, on the \"Why optimization modeling\" page)");
         });
       },delay);
     } else if (mainPageId==="modelingLPProblem") {
@@ -282,7 +282,7 @@ function awardBadgeOnFirstMainPageView(mainPageId){
       var delay=4 * 60 * 1000;
       setTimeout(function(){
         playbasis.rule(playbasisToken, "read", USER_ID, "ModelingIntro", "", "", function (response) {
-          badgeAwardNotification(response, "You have earned the 'Enlightened' badge");
+          badgeAwardNotification(response, "You have earned the 'Enlightened' badge. (Spend at least 4 minutes, continuously, on the \"Modeling a LP problem\" page)");
         });
       },delay);
     } else if (mainPageId==="introToOptimizationModeling") {
@@ -290,7 +290,7 @@ function awardBadgeOnFirstMainPageView(mainPageId){
       var delay=4 * 60 * 1000;
         setTimeout(function(){
           playbasis.rule(playbasisToken, "read", USER_ID, "ORIntro", "", "", function (response) {
-            badgeAwardNotification(response, "You have earned the 'Student' badge");
+            badgeAwardNotification(response, "You have earned the 'Student' badge. (Spend at least 4 minutes, continuously, on the \"Intro to optimization modeling\" page)");
           });
         },delay);
     } else if (mainPageId==="modelingLPProblem2") {
@@ -298,7 +298,7 @@ function awardBadgeOnFirstMainPageView(mainPageId){
       var delay=4 * 60 * 1000;
         setTimeout(function(){
           playbasis.rule(playbasisToken, "read", USER_ID, "modelingLPProblem2", "", "", function (response) {
-            badgeAwardNotification(response, "You have earned the 'Rising Star' badge");
+            badgeAwardNotification(response, "You have earned the 'Rising Star' badge. (Spend at least 4 minutes, continuously, on the \"Modeling a LP problem 2\" page)");
           });
         },delay);
     }
@@ -401,9 +401,9 @@ function handleSendMessage(){
         console.log(response.response.events);
         if (typeof response.response !== 'undefined' && typeof response.response.events !== 'undefined' && response.response.events.length>0){
           if (response.response.events[0].reward_data.name.toLowerCase() ==="commentator") {
-            badgeAwardNotification(response, "You have earned the 'Commentator' badge");
+            badgeAwardNotification(response, "You have earned the 'Commentator' badge. (Comment (at least 5 words) in the chat room for 5 times)");
           } else if (response.response.events[0].reward_data.name.toLowerCase() ==="evangelist") {
-            badgeAwardNotification(response, "You have earned the 'Evangelist' badge");
+            badgeAwardNotification(response, "You have earned the 'Evangelist' badge. (Comment (at least 5 words) in the chat room for 25 times)");
           }
         }
       });
