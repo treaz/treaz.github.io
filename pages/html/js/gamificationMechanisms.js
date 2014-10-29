@@ -25,7 +25,7 @@ $(document).ready(function() {
     //enalbe playbasis client
     //append all gamification elements to dom
     $("body").append( '<div class="pb-userbar" data-pb-displayPoint="exp" ></div>' );
-    
+    $(".achievementsPlaceholder").append('<div class="pb-achievement" ></div>');
     // show full userbar
     function showUserbar() {    
       console.log($(".pb-menu-bar-wrapper").is(":hidden"));
