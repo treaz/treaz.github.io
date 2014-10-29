@@ -27,13 +27,21 @@ gamificationUsers["user18"] = "sCPF";
 gamificationUsers["user19"] = "gSfV";
 gamificationUsers["user20"] = "HFrg";
 
-gamificationUsers["cutKcakcfizR"] = "1";
-gamificationUsers["FVHFOwjwUbqm"] = "1";
-gamificationUsers["ovewzQDfuHod"] = "1";
-gamificationUsers["fXyYxCDpUwFR"] = "1";
-gamificationUsers["uAYrhMIPdDDe"] = "1";
-gamificationUsers["aqdorOGzboop"] = "1";
-gamificationUsers["mOlrTDZcRyxT"] = "1";
-gamificationUsers["uKJYfDjwGgSt"] = "1";
-gamificationUsers["dEywdwCAssIS"] = "1";
-gamificationUsers["zxepkXIBBgPJ"] = "1";
+
+gamificationUsers["aimms1"] = "aimms1";
+gamificationUsers["aimms2"] = "aimms2";
+gamificationUsers["aimms3"] = "aimms3";
+gamificationUsers["aimms4"] = "aimms4";
+gamificationUsers["aimms5"] = "aimms5";
+gamificationUsers["aimms6"] = "aimms6";
+gamificationUsers["aimms7"] = "aimms7";
+gamificationUsers["aimms8"] = "aimms8";
+gamificationUsers["aimms9"] = "aimms9";
+
+gamificationUsers["gijs"] = "gijs";
+gamificationUsers["marcel"] = "marcel";
+gamificationUsers["janwillem"] = "janwillem";
+gamificationUsers["gertjan"] = "gertjan";
+gamificationUsers["patrick"] = "patrick";
+gamificationUsers["sales"] = "sales";
+gamificationUsers["deanne"] = "deanne";
