@@ -27,7 +27,6 @@ $(document).ready(function() {
     $("body").append( '<div class="pb-userbar" data-pb-displayPoint="exp" ></div>' );
     
     // show full userbar
-    var userbarIntervalId = setInterval( showUserbar, 100 );
     function showUserbar() {    
       console.log($(".pb-menu-bar-wrapper").is(":hidden"));
       if ($(".pb-menu-bar-wrapper").is(":hidden")) {
@@ -35,6 +34,7 @@ $(document).ready(function() {
         $(".pb-menu-bar-wrapper").show();
       }
     }
+    var userbarIntervalId = setInterval( showUserbar, 100 );
     
     $(".chatPlaceholder").append( '<div class="col-xs-12">'+
           '<div id="chat"></div>'+
