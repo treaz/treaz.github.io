@@ -386,6 +386,8 @@ $(document).ready(function() {
   $('#sendB').click(function (event) {
     handleSendMessage()
   });
+  
+  showOldChatMessages();
 })
 
 function handleSendMessage(){
@@ -409,7 +411,20 @@ function handleSendMessage(){
     }
   }
 }
-       
+
+function showOldChatMessages(){
+  var chat = $('#chat');
+  chat.append(localStorage.getItem("chatHistory"));
+  chat.scrollTop(chat.prop('scrollHeight') - chat.prop('clientHeight'));
+}
+
+function saveChatMessages(){
+  if (isGamificationEnabled()){
+    var chatHistory = localStorage.getItem("chatHistory");
+    var currentChatMessages = $("#chat").html();
+    localStorage.setItem("chatHistory", currentChatMessages);
+  }
+}      
 
 function readArrayFromLocalstorage(item){
   if (localStorage.getItem(item)===null) {

@@ -24,4 +24,5 @@ $(document).ready(function(){
 
 $(window).on('beforeunload', function () {
   pageEvent(pageId, "closePage");
+  saveChatMessages();
 });
