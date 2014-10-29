@@ -1,3 +1,5 @@
+var pageId="login";
+
 $(document).ready(function(){
   $(".buttonLogin").on('click',function() {
     var username = $(".inputlogin").val();
@@ -5,11 +7,13 @@ $(document).ready(function(){
     if (username in gamificationUsers && password===gamificationUsers[username]) {
       localStorage.setItem("isGamified", "true");
       localStorage.setItem("userId", username);
+      pageEvent(pageId, "openPage");
       window.location.href = "gamificationTutorial.html";
       return false;
     } else if (username in normalUsers && password===normalUsers[username]) {
       localStorage.setItem("isGamified", "false");
       localStorage.setItem("userId", username);
+      pageEvent(pageId, "openPage");
       window.location.href = "whyOptimizationModeling.html";
       return false;
     } else {
@@ -18,7 +22,7 @@ $(document).ready(function(){
   });
 });
 
-var pageId="login";
+
 window.onload=function() {
   pageEvent(pageId, "openPage");
 };
