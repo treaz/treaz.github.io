@@ -45,5 +45,6 @@ gamificationUsers["gertjan"] = "gertjan";
 gamificationUsers["patrick"] = "patrick";
 gamificationUsers["sales"] = "sales";
 gamificationUsers["deanne"] = "deanne";
+gamificationUsers["lei"] = "lei";
 
 gamificationUsers["rick"] = "rick";
