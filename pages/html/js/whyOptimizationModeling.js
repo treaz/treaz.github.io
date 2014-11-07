@@ -17,8 +17,6 @@ $(document).ready(function(){
       bootbox.alert("You found the most profitable solution");
       pageEvent("validateProdMixEasy", foundCorrectProductMix);
       handleChipsProblemCorrectSubmission("easyDifficultyChips");
-      $('#easyChipsLi').append(' <img src="img/smallCheck.jpg">');
-      addCheckMarkToElementText();
     } else {
       bootbox.alert("This is not the most profitable solution.");
     }
@@ -47,7 +45,6 @@ $(document).ready(function(){
       bootbox.alert("You found the most profitable solution");
       pageEvent("validateProdMixMed", foundCorrectProductMix);
       handleChipsProblemCorrectSubmission("mediumDifficultyChips");
-      $('#mediumChipsLi').append(' <img src="img/smallCheck.jpg">');
     } else {
       bootbox.alert("This is not the most profitable solution.");
     }
@@ -80,7 +77,6 @@ $(document).ready(function(){
       bootbox.alert("You found the most profitable solution");
       pageEvent("validateProdMixMed", foundCorrectProductMix);
       handleChipsProblemCorrectSubmission("hardDifficultyChips");
-      $('#hardChipsLi').append(' <img src="img/smallCheck.jpg">');
     } else {
       bootbox.alert("This is not the most profitable solution.");
     }
@@ -114,7 +110,6 @@ $(document).ready(function(){
       bootbox.alert("You found the most profitable solution");
       pageEvent("validateProdMixMed", foundCorrectProductMix);
       handleChipsProblemCorrectSubmission("veryHardDifficultyChips");
-      $('#veryHardChipsLi').append(' <img src="img/smallCheck.jpg">');
     } else {
       bootbox.alert("This is not the most profitable solution.");
     }

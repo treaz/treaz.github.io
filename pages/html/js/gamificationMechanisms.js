@@ -216,6 +216,7 @@ function checkallInformationPagesRead(){
 //'Math lover' badge
 function handleChipsProblemCorrectSubmission(chipsDifficultyId){
   if (isGamificationEnabled()){
+    $('#' +chipsDifficultyId+ 'Li').append(' <img src="img/smallCheck.jpg">');
     addConceptToLocalstorageItem("submittedChipsProblemVersion", chipsDifficultyId);
     checkAllChipsProblemDifficultiesCompleted();
   }
