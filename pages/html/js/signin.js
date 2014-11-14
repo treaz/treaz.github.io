@@ -21,7 +21,3 @@ $(document).ready(function(){
     }
   });
 });
-
-$(window).on('beforeunload', function () {
-  
-});
