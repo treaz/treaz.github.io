@@ -27,6 +27,13 @@ gamificationUsers["user18"] = "sCPF";
 gamificationUsers["user19"] = "gSfV";
 gamificationUsers["user20"] = "HFrg";
 
+gamificationUsers["user31"] = "GqBf";
+gamificationUsers["user32"] = "QEze";
+gamificationUsers["user33"] = "srfn";
+gamificationUsers["user34"] = "yVsz";
+gamificationUsers["user35"] = "cQpy";
+gamificationUsers["user36"] = "nrei";
+
 
 gamificationUsers["aimms1"] = "aimms1";
 gamificationUsers["aimms2"] = "aimms2";
