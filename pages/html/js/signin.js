@@ -7,13 +7,13 @@ $(document).ready(function(){
     if (username in gamificationUsers && password===gamificationUsers[username]) {
       localStorage.setItem("isGamified", "true");
       localStorage.setItem("userId", username);
-      pageEvent(username, pageId, "openPage");
+      pageEvent3(username, pageId, "openPage");
       window.location.href = "gamificationTutorial.html";
       return false;
     } else if (username in normalUsers && password===normalUsers[username]) {
       localStorage.setItem("isGamified", "false");
       localStorage.setItem("userId", username);
-      pageEvent(username, pageId, "openPage");
+      pageEvent3(username, pageId, "openPage");
       window.location.href = "whyOptimizationModeling.html";
       return false;
     } else {

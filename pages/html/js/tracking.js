@@ -8,7 +8,7 @@ function pageEvent(pageId, eventId){
   });
 }
 
-function pageEvent(userId, pageId, eventId){
+function pageEvent3(userId, pageId, eventId){
   console.log("pageEvent: "+eventId);
     $.ajax({
     async: false,
