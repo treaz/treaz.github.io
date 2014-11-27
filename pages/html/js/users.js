@@ -11,6 +11,28 @@ normalUsers["user8"]="QGsI";
 normalUsers["user9"]="gpuH";
 normalUsers["user10"]="zdjK";
 
+normalUsers["user40"]="YWnH";
+normalUsers["user41"]="UqUy";
+normalUsers["user42"]="BYdW";
+normalUsers["user43"]="eoGq";
+normalUsers["user44"]="ycUg";
+normalUsers["user45"]="FCdj";
+normalUsers["user46"]="noQO";
+normalUsers["user47"]="zClT";
+normalUsers["user48"]="CFDn";
+normalUsers["user49"]="WOnD";
+normalUsers["user50"]="MYhn";
+normalUsers["user51"]="VHJa";
+normalUsers["user52"]="nwEW";
+normalUsers["user53"]="QBvd";
+normalUsers["user54"]="WCHY";
+normalUsers["user55"]="KMWG";
+normalUsers["user56"]="DOEW";
+normalUsers["user57"]="podN";
+
+
+            
+
 
 var gamificationUsers = {};
 gamificationUsers["horia"] = "horia";
